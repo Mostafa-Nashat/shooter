@@ -26,7 +26,3 @@ func switch_state(state_name: String):
 	current_state._end()
 	new_state._start()
 	current_state = new_state
-
-
-func _on_health_manager_damaged(hitpoints: float, damager: Node2D) -> void:
-	pass # Replace with function body.

@@ -57,6 +57,7 @@ func spawn_wave(count: int, cooldown: float) -> void:
 		await get_tree().create_timer(cooldown).timeout
 		await spawn()
 		print("spawned")
+		get_tree().create_timer(0.1).timeout.connect(func(): if enemy_count == 0: wave_died.emit())
 		await wave_died
 		print('wave died') 
 	finite_wave_finished.emit()

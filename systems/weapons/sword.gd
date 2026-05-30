@@ -50,6 +50,8 @@ func _on_hit(area: Area2D):
 		if !hurtbox.health.died.is_connected(_on_kill):
 			hurtbox.health.died.connect(_on_kill)
 		hurtbox.health.damage(sword.damage, self)
+		print(hurtbox.get_collision_layer_value(2))
+		print(hitbox.get_collision_mask_value(2))
 
 func _on_kill(_killer: Node2D):
 	kill.emit()

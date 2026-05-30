@@ -10,6 +10,6 @@ func apply(player: Player) -> void:
 	player.gun.update()
 
 func craftable(player: Player) -> bool:
-	if player.gun.gun and player.gun.gun.name == gun.name:
+	if player.gun.gun == gun:
 		return false
 	return true

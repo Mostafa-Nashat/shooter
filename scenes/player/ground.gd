@@ -35,6 +35,3 @@ func _update():
 		dash_stamina -= 100
 		set_data_ui()
 		state.switch_state("dash")
-	
-	if Input.is_action_just_pressed("build"):
-		state.switch_state("build")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SaveFile" format=3 uid="uid://c8vkkwqqp5sc7"]
+
+[ext_resource type="PackedScene" uid="uid://b2c6aa03mouty" path="res://scenes/story_mode/level_1.tscn" id="1_q1rrh"]
+[ext_resource type="Script" uid="uid://dcr7pgwc6xj7t" path="res://systems/level/save_file.gd" id="2_jo3ng"]
+[ext_resource type="Resource" uid="uid://hiurog48n3ab" path="res://resources/sword.tres" id="3_5ken1"]
+
+[resource]
+script = ExtResource("2_jo3ng")
+sword = ExtResource("3_5ken1")
+health = 5
+global_position = Vector2(162, 91)
+scene = ExtResource("1_q1rrh")
+metadata/_custom_type_script = "uid://dcr7pgwc6xj7t"

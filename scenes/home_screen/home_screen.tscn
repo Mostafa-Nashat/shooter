@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="1_h7tmx"]
 [ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/textures/player.png" id="2_f338u"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="2_h7tmx"]
+[ext_resource type="PackedScene" uid="uid://ci7554v7eylc1" path="res://scenes/home_screen/savefile_button.tscn" id="3_0bnas"]
 [ext_resource type="Texture2D" uid="uid://mgtcmwdidm3h" path="res://assets/textures/survival_card.png" id="5_vk13r"]
 [ext_resource type="AudioStream" uid="uid://nbieqa0da5rc" path="res://assets/audio/click1.wav" id="6_celfk"]
 
@@ -70,6 +71,17 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("story_menu:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(312, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_l1s5h"]
 resource_name = "main_to_play"
@@ -99,6 +111,32 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.69905376, -0.23308021, -3.925435, 0, 0, -181, -0.25, 0, 0.13201864, 126.52792),
 "times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_8vivl"]
+resource_name = "play_to_story"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.69905376, -0.25, 0, 0.06341096, -211.47165, -197.56367, -0.16666667, 30.55016, 0, 0),
+"times": PackedFloat32Array(0, 0.49519902)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("story_menu:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(312, -0.25, 0, 0.25, 0, 7.5573997, -0.39523783, 3.193452, 0, 0),
+"times": PackedFloat32Array(0, 0.48656702)
 }
 
 [sub_resource type="Animation" id="Animation_celfk"]
@@ -143,6 +181,32 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jlg0n"]
+resource_name = "story_to_play"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-197.56367, -0.16666667, 30.55016, 0, 0, -0.69905376, -0.25, 0, 0.06341096, -211.47165),
+"times": PackedFloat32Array(0.0036151018, 0.49403572)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("story_menu:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(7.5573997, -0.39523783, 3.193452, 0, 0, 312, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.004790237, 0.49403572)
 }
 
 [sub_resource type="Animation" id="Animation_q4dac"]
@@ -194,11 +258,15 @@ _data = {
 &"RESET": SubResource("Animation_vk13r"),
 &"main_to_play": SubResource("Animation_l1s5h"),
 &"play_to_main": SubResource("Animation_fpiqi"),
+&"play_to_story": SubResource("Animation_8vivl"),
 &"story_hover_down": SubResource("Animation_celfk"),
 &"story_hover_up": SubResource("Animation_perap"),
+&"story_to_play": SubResource("Animation_jlg0n"),
 &"survival_hover_down": SubResource("Animation_q4dac"),
 &"survival_hover_up": SubResource("Animation_0bnas")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1fqy"]
 
 [node name="home" type="Control" unique_id=1345468186 node_paths=PackedStringArray("card_animations", "click_sound")]
 layout_mode = 3
@@ -211,6 +279,8 @@ theme = ExtResource("1_h7tmx")
 script = ExtResource("1_f338u")
 card_animations = NodePath("card_animations")
 click_sound = NodePath("AudioStreamPlayer2D")
+savefile_button = ExtResource("3_0bnas")
+savefile_path = "res://resources/savefiles"
 
 [node name="background" type="TileMapLayer" parent="." unique_id=1434713686]
 position = Vector2(144, 80)
@@ -363,11 +433,74 @@ libraries/ = SubResource("AnimationLibrary_q4dac")
 stream = ExtResource("6_celfk")
 volume_db = 20.0
 
+[node name="story_menu" type="MarginContainer" parent="." unique_id=2003620045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 312.0
+offset_right = 312.00024
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="story_menu" unique_id=1594084317]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="story_menu" unique_id=1801074884]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="story_menu/VBoxContainer" unique_id=1441893694]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+
+[node name="back_to_play" type="Button" parent="story_menu/VBoxContainer/MarginContainer" unique_id=853014067]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="story_menu/VBoxContainer" unique_id=166709307]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y1fqy")
+
+[node name="MarginContainer" type="MarginContainer" parent="story_menu/VBoxContainer/ScrollContainer" unique_id=848317952]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="story_menu/VBoxContainer/ScrollContainer/MarginContainer" unique_id=38107489]
+layout_mode = 2
+
+[node name="savefiles" type="VBoxContainer" parent="story_menu/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=122001029]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="savefile_adder" type="Button" parent="story_menu/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1783558224]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Add savefile"
+
 [connection signal="pressed" from="home_menu/PanelContainer/MarginContainer/VBoxContainer/play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="home_menu/PanelContainer/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="play_menu/PanelContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="gui_input" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_gui_input"]
 [connection signal="mouse_entered" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_mouse_entered"]
 [connection signal="mouse_exited" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_mouse_exited"]
+[connection signal="gui_input" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story" to="." method="_on_story_gui_input"]
 [connection signal="mouse_entered" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story" to="." method="_on_story_mouse_entered"]
 [connection signal="mouse_exited" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story" to="." method="_on_story_mouse_exited"]
+[connection signal="pressed" from="story_menu/VBoxContainer/MarginContainer/back_to_play" to="." method="_on_back_to_play_pressed"]
+[connection signal="pressed" from="story_menu/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/savefile_adder" to="." method="_on_savefile_adder_pressed"]

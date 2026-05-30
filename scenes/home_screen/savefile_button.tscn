@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ci7554v7eylc1"]
+
+[ext_resource type="Theme" uid="uid://bcxvvxolw3pwn" path="res://resources/themes/naked_buttons.tres" id="1_xw435"]
+
+[sub_resource type="GDScript" id="GDScript_xw435"]
+script/source = "extends PanelContainer
+
+@export var savefile: SaveFile
+@onready var button: Button = $HBoxContainer/savefile_button
+@onready var delete: Button = $HBoxContainer/delete
+@export var text: String
+
+func _on_pressed() -> void:
+	var level: Level = savefile.scene.instantiate()
+	level.savefile = savefile
+	get_tree().change_scene_to_node(level)
+
+func _on_delete() -> void:
+	DirAccess.remove_absolute(Global.savefile_path + \"/\" + str(savefile.id) + \".tres\")
+	
+
+func _ready() -> void:
+	button.text = \"savefile \" + text
+	button.pressed.connect(_on_pressed)
+	delete.pressed.connect(_on_delete)
+	delete.pressed.connect(queue_free)
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		button.text = \"savefile \" + text
+"
+
+[node name="PanelContainer" type="PanelContainer" unique_id=1661865060]
+offset_left = 146.0
+offset_right = 155.0
+offset_bottom = 48.0
+theme = ExtResource("1_xw435")
+script = SubResource("GDScript_xw435")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=598009953]
+layout_mode = 2
+
+[node name="savefile_button" type="Button" parent="HBoxContainer" unique_id=486895498]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "save file 0"
+
+[node name="delete" type="Button" parent="HBoxContainer" unique_id=797790647]
+layout_mode = 2
+text = "delete"

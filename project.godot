@@ -13,11 +13,15 @@ config_version=5
 config/name="shooter"
 run/main_scene="uid://cicn18bcru3vo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://de2u62nwc8n3b"
 
 [audio]
 
 buses/default_bus_layout=""
+
+[autoload]
+
+Global="*uid://d3fcwu8wuedtu"
 
 [display]
 

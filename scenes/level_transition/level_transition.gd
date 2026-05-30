@@ -10,6 +10,8 @@ extends Area2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var camera_boundry: Area2D = $camera_boundry
 
+signal transition(location: Node)
+
 enum directions{
 	UP = 0,
 	DOWN = 1,
@@ -36,7 +38,9 @@ func setup() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is Player:
-		get_tree().change_scene_to_packed(next_level)
+		var next_level_node := next_level.instantiate()
+		transition.emit(next_level_node)
+		get_tree().change_scene_to_node.call_deferred(next_level_node)
 
 func _ready() -> void:
 	setup()

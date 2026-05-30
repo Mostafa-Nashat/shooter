@@ -1,12 +1,15 @@
 [gd_scene format=4 uid="uid://bfyqxqpsophcp"]
 
-[ext_resource type="Script" uid="uid://bgy1255qg7itc" path="res://systems/level.gd" id="1_w6rfp"]
+[ext_resource type="Script" uid="uid://bgy1255qg7itc" path="res://systems/level/level.gd" id="1_w6rfp"]
 [ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="2_bkkoh"]
 [ext_resource type="TileSet" uid="uid://rpwolwunhida" path="res://resources/village_tiles.tres" id="3_2dd3o"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="3_pi3sq"]
 [ext_resource type="PackedScene" uid="uid://cn6u6paousibb" path="res://scenes/level_transition/level_transition.tscn" id="4_j6ieo"]
+[ext_resource type="AudioStream" uid="uid://buo7isn0khwbe" path="res://assets/audio/gun/revolver_shot.wav" id="5_0pokv"]
+[ext_resource type="Resource" uid="uid://fvngfbdu1mqf" path="res://resources/bullets/silver_bullet.tres" id="6_ghgob"]
 [ext_resource type="PackedScene" uid="uid://8netm2sxta6k" path="res://scenes/checkpoint/checkpoint.tscn" id="6_tdeme"]
 [ext_resource type="Script" uid="uid://c68wredrw3el" path="res://systems/player_detector.gd" id="7_8cj03"]
+[ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="7_vkwnd"]
 [ext_resource type="Script" uid="uid://bke7cmvbshg0t" path="res://systems/spawn/WaveSpawner.gd" id="8_56rxq"]
 [ext_resource type="Script" uid="uid://mfmux50yxmj3" path="res://systems/spawn/WaveData.gd" id="8_degl0"]
 [ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="9_ot54i"]
@@ -22,6 +25,20 @@
 [ext_resource type="PackedScene" uid="uid://b1cdvtxd1q7s3" path="res://scenes/story_mode/level_4.tscn" id="19_f7nn1"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_degl0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ncl1"]
+load_path = "res://.godot/imported/revolver.png-787f81594d48939ce25b1d72d5656ad8.ctex"
+
+[sub_resource type="Resource" id="Resource_0pokv"]
+resource_local_to_scene = true
+script = ExtResource("7_vkwnd")
+bullet = ExtResource("6_ghgob")
+cooldown = 0.15
+audio = ExtResource("5_0pokv")
+sprite = SubResource("CompressedTexture2D_0ncl1")
+offset = Vector2(6, 0)
+name = &"revolver"
+metadata/_custom_type_script = "uid://brrymp10nyswo"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_degl0"]
 size = Vector2(112, 20)
@@ -131,12 +148,12 @@ distribution = SubResource("Curve_rv6m7")
 setup = SubResource("Resource_ubq6r")
 metadata/_custom_type_script = "uid://mfmux50yxmj3"
 
-[node name="Level" type="Node2D" unique_id=1783995652 node_paths=PackedStringArray("ground_layer", "audio_player", "player")]
+[node name="Level" type="Node2D" unique_id=1783995652 node_paths=PackedStringArray("ground_layer", "audio_player", "level_transition")]
 y_sort_enabled = true
 script = ExtResource("1_w6rfp")
 ground_layer = NodePath("TileMapLayer")
 audio_player = NodePath("AudioStreamPlayer")
-player = NodePath("Player")
+level_transition = NodePath("level_transition")
 metadata/_custom_type_script = "uid://bgy1255qg7itc"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2085976002]
@@ -153,6 +170,7 @@ tile_set = ExtResource("3_2dd3o")
 
 [node name="Player" parent="." unique_id=1281965873 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_bkkoh")]
 position = Vector2(200, -16)
+gun_data = SubResource("Resource_0pokv")
 tilemap = NodePath("../TileMapLayer")
 
 [node name="checkpoint" parent="." unique_id=147452336 instance=ExtResource("6_tdeme")]

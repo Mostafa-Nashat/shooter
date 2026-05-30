@@ -12,8 +12,9 @@ var kill_count = 0
 @export var frag_max: int = 3
 @export var frag_count: int
 @export var MAX_HAND_SWING_SPEED: float = 90
-@export var blocks: Array[InventoryBlockData]
 @export var frag_throw_power: float
+@export var gun_data: Gun_data
+@export var sword_data: Sword_data
 
 @export_category("Dependencies")
 @export var tilemap: TileMapLayer
@@ -48,8 +49,28 @@ var weapon_being_used: bool = false
 @export var frag_list: BoxContainer
 @export var frag_texture: Texture2D
 
+func set_sword(data: Sword_data) -> void:
+	sword_data = data
+	sword.weapon = data
+	sword.sword = data
+	sword._setup()
+
+func set_gun(data: Gun_data) -> void:
+	gun_data = data
+	gun.gun = data
+	gun.weapon = data
+	gun._setup()
+	gun.update()
+	
+
 func _ready() -> void:
 	health.damaged.connect(func (_hp, _damager): hit_sound_player.play())
+	if sword:
+		sword.weapon = sword_data
+		sword.sword = sword_data
+	if gun:
+		gun.gun = gun_data
+		
 	ready.emit()
 
 func _physics_process(_delta: float) -> void:

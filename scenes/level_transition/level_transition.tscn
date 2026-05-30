@@ -11,11 +11,10 @@ size = Vector2(112, 10)
 script = ExtResource("1_8qvt7")
 length = 7
 direction = 2
-camera_zoom = null
 
 [node name="camera_boundry" parent="." unique_id=982043720 instance=ExtResource("2_ubemh")]
 length = 7
-camera_zoom = null
+camera_zoom = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1989837872]
 rotation = 1.5707964

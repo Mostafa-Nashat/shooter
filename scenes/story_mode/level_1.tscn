@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://b2c6aa03mouty"]
 
-[ext_resource type="Script" uid="uid://bgy1255qg7itc" path="res://systems/level.gd" id="1_7ld44"]
+[ext_resource type="Script" uid="uid://bgy1255qg7itc" path="res://systems/level/level.gd" id="1_7ld44"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="2_gh2l3"]
 [ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="3_5ho1r"]
 [ext_resource type="PackedScene" uid="uid://dnyu8qgl3en5r" path="res://scenes/sign/sign.tscn" id="4_5ho1r"]
@@ -21,12 +21,13 @@ radius = 32.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7tr2"]
 size = Vector2(20, 128)
 
-[node name="Level1" type="Node2D" unique_id=1274794448 node_paths=PackedStringArray("ground_layer", "audio_player", "player")]
+[node name="Level1" type="Node2D" unique_id=1274794448 node_paths=PackedStringArray("ground_layer", "audio_player", "player", "level_transition")]
 y_sort_enabled = true
 script = ExtResource("1_7ld44")
 ground_layer = NodePath("TileMapLayer")
 audio_player = NodePath("AudioStreamPlayer")
 player = NodePath("Player")
+level_transition = NodePath("level_transition")
 metadata/_custom_type_script = "uid://bgy1255qg7itc"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=112612817]
@@ -98,10 +99,8 @@ metadata/_custom_type_script = "uid://cixft37jp4nwl"
 
 [node name="Player" parent="." unique_id=1281965873 node_paths=PackedStringArray("tilemap") instance=ExtResource("3_5ho1r")]
 position = Vector2(162, 91)
+gun_data = null
 tilemap = NodePath("../TileMapLayer")
-
-[node name="Gun" parent="Player/r6/right_arm/weapons" parent_id_path=PackedInt32Array(1281965873, 971889367) index="0" unique_id=1419361158]
-weapon = null
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1813534066]
 position = Vector2(952, -128)
@@ -141,5 +140,3 @@ enabled = false
 [connection signal="entered" from="Area2D" to="enemy_grouper/blader2" method="enable"]
 [connection signal="entered" from="Area2D" to="enemy_grouper/blader" method="enable"]
 [connection signal="add_died" from="enemy_grouper" to="Gate" method="open"]
-
-[editable path="Player"]
