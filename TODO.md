@@ -1,9 +1,9 @@
 #TODO
 - add sound affects
-- add grenader
 - add leaderboard
 
 #Done
+--add-frager--
 --add-make-stun-system--
 --add-animations--
 --add-building-system-- 
