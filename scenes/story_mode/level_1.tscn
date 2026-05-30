@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="8_r7tr2"]
 [ext_resource type="Script" uid="uid://bvo10ywo2xvn7" path="res://systems/item/ItemDrop.gd" id="9_3vndq"]
 [ext_resource type="Script" uid="uid://c68wredrw3el" path="res://systems/player_detector.gd" id="10_3vndq"]
-[ext_resource type="PackedScene" uid="uid://bnx0xy701so2x" path="res://scenes/story_mode/level_2/level_2.tscn" id="10_4ljyd"]
+[ext_resource type="PackedScene" uid="uid://bnx0xy701so2x" path="res://scenes/story_mode/level_2.tscn" id="10_4ljyd"]
 [ext_resource type="PackedScene" uid="uid://dql060jf1v4j0" path="res://scenes/enemy_grouper.tscn" id="12_4ljyd"]
 [ext_resource type="PackedScene" uid="uid://bfjjimoniuida" path="res://scenes/gate.tscn" id="13_eyowy"]
 
