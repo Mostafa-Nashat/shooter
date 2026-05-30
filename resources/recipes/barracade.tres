@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_y7j5o"]
 script = ExtResource("1_j4q4s")
-count = 8
+count = 4
 data = ExtResource("2_8mea0")
 metadata/_custom_type_script = "uid://dtbpjctismtvf"
 
