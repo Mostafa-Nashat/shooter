@@ -73,6 +73,9 @@ func _ready() -> void:
 		
 	ready.emit()
 
+
+
+
 func _physics_process(_delta: float) -> void:
 	state.update()
 	move_and_slide()
