@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Gun_data" format=3 uid="uid://dto2j3lr7b6nh"]
+
+[ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="1_7vy5u"]
+[ext_resource type="Script" uid="uid://d3b3pdyp2qggm" path="res://systems/weapons/bullet_data.gd" id="1_yx5yj"]
+[ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="3_jddgh"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_je7p5"]
+size = Vector2(4, 2)
+
+[sub_resource type="Resource" id="Resource_fm80t"]
+script = ExtResource("1_yx5yj")
+sprite = SubResource("PlaceholderTexture2D_je7p5")
+damage = 1
+hitbox_size = Vector2(4, 2)
+velocity = Vector2(10, 0)
+offset = Vector2(6, -2)
+metadata/_custom_type_script = "uid://d3b3pdyp2qggm"
+
+[resource]
+script = ExtResource("1_7vy5u")
+bullet = SubResource("Resource_fm80t")
+cooldown = 0.3
+sprite = ExtResource("3_jddgh")
+offset = Vector2(4, 0)
+enabled = true
+metadata/_custom_type_script = "uid://brrymp10nyswo"

@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://w8l2khf6llpe"]
+
+[ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://b2037oeqgqbxe" path="res://scenes/player/player.gd" id="1_g2els"]
+[ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/revolver.tres" id="2_5gtgg"]
+[ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://scenes/player/arm.gd" id="3_lvxji"]
+[ext_resource type="Texture2D" uid="uid://bnuufbq6huxje" path="res://assets/arm.png" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_5gtgg"]
+[ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="5_75vfm"]
+[ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
+[ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="6_0owmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
+size = Vector2(8, 30)
+
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun")]
+script = ExtResource("1_g2els")
+sprite = NodePath("Sprite2D")
+ui_manager = NodePath("Camera2D/ui_manager")
+gun = NodePath("arm/weapon/Gun")
+gun_data = ExtResource("2_5gtgg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234457314]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_8afob")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1972263714]
+position = Vector2(0, -16)
+texture = ExtResource("1_3vyb7")
+
+[node name="arm" type="Node2D" parent="." unique_id=1060497596]
+position = Vector2(0, -16)
+script = ExtResource("3_lvxji")
+
+[node name="Sprite2D" type="Sprite2D" parent="arm" unique_id=247620096]
+position = Vector2(8, 0)
+rotation = 1.5707964
+texture = ExtResource("3_qhqgy")
+
+[node name="weapon" type="Node2D" parent="arm" unique_id=706339037]
+position = Vector2(14, 0)
+
+[node name="Gun" type="Node2D" parent="arm/weapon" unique_id=235296759]
+script = ExtResource("5_5gtgg")
+metadata/_custom_type_script = "uid://cjd0v4olditgc"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1419543297]
+top_level = true
+zoom = Vector2(4, 4)
+
+[node name="ui_manager" type="Node" parent="Camera2D" unique_id=665741506 node_paths=PackedStringArray("sword_sprite_display", "gun_sprite_display")]
+script = ExtResource("5_qek5x")
+sword_sprite_display = NodePath("weapons/sword_slot/Sprite2D")
+gun_sprite_display = NodePath("weapons/gun_slot/Sprite2D")
+
+[node name="weapons" type="Node2D" parent="Camera2D/ui_manager" unique_id=1666946258]
+position = Vector2(-136, 72)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/ui_manager/weapons" unique_id=1508858845]
+offset_left = -7.0
+offset_top = -6.0
+offset_right = 23.0
+offset_bottom = 7.0
+color = Color(0.18024005, 0.0408, 0.24, 1)
+
+[node name="sword_slot" type="Sprite2D" parent="Camera2D/ui_manager/weapons" unique_id=17082]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("5_75vfm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/ui_manager/weapons/sword_slot" unique_id=1608866401]
+z_as_relative = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="gun_slot" type="Sprite2D" parent="Camera2D/ui_manager/weapons" unique_id=1130350256]
+z_index = 1
+z_as_relative = false
+position = Vector2(16, 0)
+texture = ExtResource("6_0owmy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/ui_manager/weapons/gun_slot" unique_id=1992810707]
+z_as_relative = false
