@@ -3,50 +3,40 @@
 [ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b2037oeqgqbxe" path="res://scenes/player/player.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/revolver.tres" id="2_5gtgg"]
-[ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://scenes/player/arm.gd" id="3_lvxji"]
+[ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://bnuufbq6huxje" path="res://assets/arm.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="5_75vfm"]
 [ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
 [ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="6_0owmy"]
+[ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health_manager/health_manager.gd" id="10_h17s1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h17s1"]
+size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(8, 30)
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun")]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "health", "arm") groups=["player"]]
 script = ExtResource("1_g2els")
+SPEED = 100.0
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("Camera2D/ui_manager")
-gun = NodePath("arm/weapon/Gun")
+gun = NodePath("Arm/Gun")
 gun_data = ExtResource("2_5gtgg")
+health = NodePath("Health_manager")
+arm = NodePath("Arm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234457314]
-position = Vector2(0, -15)
-shape = SubResource("RectangleShape2D_8afob")
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_h17s1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1972263714]
 position = Vector2(0, -16)
 texture = ExtResource("1_3vyb7")
 
-[node name="arm" type="Node2D" parent="." unique_id=1060497596]
-position = Vector2(0, -16)
-script = ExtResource("3_lvxji")
-
-[node name="Sprite2D" type="Sprite2D" parent="arm" unique_id=247620096]
-position = Vector2(8, 0)
-rotation = 1.5707964
-texture = ExtResource("3_qhqgy")
-
-[node name="weapon" type="Node2D" parent="arm" unique_id=706339037]
-position = Vector2(14, 0)
-
-[node name="Gun" type="Node2D" parent="arm/weapon" unique_id=235296759]
-script = ExtResource("5_5gtgg")
-metadata/_custom_type_script = "uid://cjd0v4olditgc"
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1419543297]
 top_level = true
-zoom = Vector2(4, 4)
 
 [node name="ui_manager" type="Node" parent="Camera2D" unique_id=665741506 node_paths=PackedStringArray("sword_sprite_display", "gun_sprite_display")]
 script = ExtResource("5_qek5x")
@@ -81,3 +71,30 @@ texture = ExtResource("6_0owmy")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/ui_manager/weapons/gun_slot" unique_id=1992810707]
 z_as_relative = false
+
+[node name="Arm" type="Node2D" parent="." unique_id=432437784]
+position = Vector2(0, -16)
+script = ExtResource("3_lvxji")
+metadata/_custom_type_script = "uid://dlkn740mx7473"
+
+[node name="Sprite2D" type="Sprite2D" parent="Arm" unique_id=1269555103]
+position = Vector2(8, 0)
+rotation = 1.5707964
+texture = ExtResource("3_qhqgy")
+
+[node name="Gun" type="Node2D" parent="Arm" unique_id=2025370503]
+position = Vector2(14, 0)
+script = ExtResource("5_5gtgg")
+metadata/_custom_type_script = "uid://cjd0v4olditgc"
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=1154926686]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1958962438]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_8afob")
+
+[node name="Health_manager" type="Node" parent="." unique_id=51910132]
+script = ExtResource("10_h17s1")
+metadata/_custom_type_script = "uid://dwcjq42qu32h1"
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -9,8 +9,8 @@ func set_health(new_health: int) -> void:
 func get_health() -> int:
 	return health
 
-func damage(damage: int) -> bool:
-	health -= damage
+func damage(hitpoints: int) -> bool:
+	health -= hitpoints
 	if health <= 0:
 		return true
 	return false

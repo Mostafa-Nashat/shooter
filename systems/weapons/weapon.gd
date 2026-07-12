@@ -10,14 +10,26 @@ func start() -> void:
 	else:
 		visible = false
 
-func physics_update(delta: float) -> void:
+
+func update() -> void:
 	if weapon.enabled:
 		visible = true
-		_physics_update(delta)
+		_update() 
 	else:
 		visible = false
 
-func _physics_update(_delta: float) -> void:
+func use() -> void:
+	if weapon.enabled:
+		visible = true
+		_use()
+	else: 
+		visible = false
+	
+
+func _use() -> void:
+	pass
+
+func _update() -> void:
 	pass
 
 func _start() -> void:
