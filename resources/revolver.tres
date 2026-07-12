@@ -10,7 +10,7 @@ size = Vector2(4, 2)
 [sub_resource type="Resource" id="Resource_fm80t"]
 script = ExtResource("1_yx5yj")
 sprite = SubResource("PlaceholderTexture2D_je7p5")
-damage = 1
+damage = 2
 hitbox_size = Vector2(4, 2)
 velocity = Vector2(10, 0)
 offset = Vector2(-8, -3)

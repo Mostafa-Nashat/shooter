@@ -7,15 +7,13 @@ extends CharacterBody2D
 @export var ui_manager: UI_manager
 
 @export var gun: Gun
-@export var gun_data: Gun_data
 
 @export var health: Health_manager
 
 @export var arm: Arm
 
 func _ready() -> void:
-	gun.weapon = gun_data
-	ui_manager.set_gun_sprite(gun_data.sprite)
+	ui_manager.set_gun_sprite(gun.weapon.sprite)
 	gun.start()
 	health.set_health(5)
 

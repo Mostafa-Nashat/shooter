@@ -23,7 +23,6 @@ SPEED = 100.0
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("Camera2D/ui_manager")
 gun = NodePath("Arm/Gun")
-gun_data = ExtResource("2_5gtgg")
 health = NodePath("Health_manager")
 arm = NodePath("Arm")
 
@@ -85,6 +84,7 @@ texture = ExtResource("3_qhqgy")
 [node name="Gun" type="Node2D" parent="Arm" unique_id=2025370503]
 position = Vector2(14, 0)
 script = ExtResource("5_5gtgg")
+weapon = ExtResource("2_5gtgg")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=1154926686]
