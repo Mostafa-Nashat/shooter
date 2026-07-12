@@ -13,8 +13,9 @@ extends CharacterBody2D
 @export var arm: Arm
 
 func _ready() -> void:
-	ui_manager.set_gun_sprite(gun.weapon.sprite)
-	gun.start()
+	if gun.weapon:
+		ui_manager.set_gun_sprite(gun.weapon.sprite)
+		gun.start()
 	health.set_health(5)
 
 func _physics_process(_delta: float) -> void:

@@ -3,6 +3,8 @@ extends Node2D
 
 @export var weapon: Weapon_data
 
+@onready var enabled_on_start: bool = weapon.enabled
+
 func start() -> void:
 	if weapon.enabled:
 		visible = true
@@ -13,6 +15,9 @@ func start() -> void:
 
 func update() -> void:
 	if weapon.enabled:
+		if !enabled_on_start:
+			enabled_on_start = true
+			start()
 		visible = true
 		_update() 
 	else:

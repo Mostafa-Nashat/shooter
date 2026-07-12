@@ -1,5 +1,5 @@
 class_name UI_manager
-extends Node
+extends Node2D
 
 @export var sword_sprite_display: Sprite2D
 @export var gun_sprite_display: Sprite2D

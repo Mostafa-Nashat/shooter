@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://d3b3pdyp2qggm" path="res://systems/weapons/bullet_data.gd" id="1_yx5yj"]
 [ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="3_jddgh"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_je7p5"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yx5yj"]
 size = Vector2(4, 2)
 
-[sub_resource type="Resource" id="Resource_fm80t"]
+[sub_resource type="Resource" id="Resource_jddgh"]
 script = ExtResource("1_yx5yj")
-sprite = SubResource("PlaceholderTexture2D_je7p5")
+sprite = SubResource("PlaceholderTexture2D_yx5yj")
 damage = 2
 hitbox_size = Vector2(4, 2)
 velocity = Vector2(10, 0)
@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://d3b3pdyp2qggm"
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_7vy5u")
-bullet = SubResource("Resource_fm80t")
+bullet = SubResource("Resource_jddgh")
 cooldown = 0.3
 sprite = ExtResource("3_jddgh")
 offset = Vector2(18, 0)

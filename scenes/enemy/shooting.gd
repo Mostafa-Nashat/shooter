@@ -17,6 +17,7 @@ func _start():
 	enemy = state.node
 	player = get_player()
 	enemy.gun.start()
+	enemy.velocity = Vector2.ZERO
 	delay.start()
 
 func _update():
@@ -28,4 +29,7 @@ func _update():
 		return
 	delay.start()
 	enemy.gun.use()
+	var player_distance = player.global_position - enemy.global_position
+	if player_distance.length() > 120:
+		state.switch_state("chasing")
 	

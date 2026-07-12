@@ -5,50 +5,55 @@
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health_manager/health_manager.gd" id="3_40wdo"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="4_gl05p"]
 [ext_resource type="Script" uid="uid://bam3idqpwxo35" path="res://scenes/enemy/shooting.gd" id="5_gl05p"]
+[ext_resource type="Script" uid="uid://dm5mjb1lco8fk" path="res://scenes/enemy/chasing.gd" id="5_peoo5"]
 [ext_resource type="Texture2D" uid="uid://by1b8vn5w5rhx" path="res://assets/enemy_arm.png" id="6_cwlon"]
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="6_nbhyu"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="8_4efjx"]
 [ext_resource type="Script" uid="uid://d3b3pdyp2qggm" path="res://systems/weapons/bullet_data.gd" id="9_hvxgb"]
 [ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="10_peoo5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4efjx"]
+size = Vector2(9, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3pup"]
 size = Vector2(9, 30)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2f3il"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hvxgb"]
 size = Vector2(4, 2)
 
-[sub_resource type="Resource" id="Resource_dtxhd"]
+[sub_resource type="Resource" id="Resource_peoo5"]
 script = ExtResource("9_hvxgb")
-sprite = SubResource("PlaceholderTexture2D_2f3il")
-damage = 1
+sprite = SubResource("PlaceholderTexture2D_hvxgb")
+damage = 2
 hitbox_size = Vector2(4, 2)
 velocity = Vector2(10, 0)
 offset = Vector2(-8, -3)
 metadata/_custom_type_script = "uid://d3b3pdyp2qggm"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_so3kp"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2f3il"]
 load_path = "res://.godot/imported/revolver.png-787f81594d48939ce25b1d72d5656ad8.ctex"
 
-[sub_resource type="Resource" id="Resource_5woo5"]
+[sub_resource type="Resource" id="Resource_dtxhd"]
 resource_local_to_scene = true
 script = ExtResource("10_peoo5")
-bullet = SubResource("Resource_dtxhd")
+bullet = SubResource("Resource_peoo5")
 cooldown = 0.3
-sprite = SubResource("CompressedTexture2D_so3kp")
+sprite = SubResource("CompressedTexture2D_2f3il")
 offset = Vector2(18, 0)
 enabled = true
 metadata/_custom_type_script = "uid://brrymp10nyswo"
 
-[node name="enemy" type="CharacterBody2D" unique_id=2044543696 node_paths=PackedStringArray("health_manager", "state_machine", "arm", "gun")]
+[node name="enemy" type="CharacterBody2D" unique_id=2044543696 node_paths=PackedStringArray("health_manager", "state_machine", "arm", "gun", "navigator")]
 script = ExtResource("1_a3pup")
 health_manager = NodePath("health_manager")
 state_machine = NodePath("State_machine")
 arm = NodePath("Arm")
 gun = NodePath("Arm/Gun")
+navigator = NodePath("NavigationAgent2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1986899165]
-position = Vector2(0.5, -15)
-shape = SubResource("RectangleShape2D_a3pup")
+position = Vector2(0.5, -4)
+shape = SubResource("RectangleShape2D_4efjx")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=56139854]
 
@@ -67,6 +72,10 @@ script = ExtResource("3_40wdo")
 script = ExtResource("4_gl05p")
 node = NodePath("..")
 metadata/_custom_type_script = "uid://c1uh781vulfjr"
+
+[node name="chasing" type="Node" parent="State_machine" unique_id=172153266]
+script = ExtResource("5_peoo5")
+metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
 [node name="shooting" type="Node" parent="State_machine" unique_id=995760191]
 script = ExtResource("5_gl05p")
@@ -89,7 +98,9 @@ texture = ExtResource("6_cwlon")
 [node name="Gun" type="Node2D" parent="Arm" unique_id=2116267254]
 position = Vector2(14, 0)
 script = ExtResource("8_4efjx")
-weapon = SubResource("Resource_5woo5")
+weapon = SubResource("Resource_dtxhd")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=846431738]
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

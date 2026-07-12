@@ -18,8 +18,8 @@ func _start() -> void:
 	
 func _use() -> void:
 	if  cooldown_timer.is_stopped():
-		cooldown_timer.start()
-
+		cooldown_timer.start() 
+		
 		var bullet := Bullet.new()
 		bullet.bullet = weapon.bullet
 		bullet.rotation = global_rotation
