@@ -30,6 +30,8 @@ func update() -> void:
 
 func use() -> void:
 	if weapon.enabled:
+		if !enabled_on_start:
+			_start()
 		visible = true
 		_use()
 	else: 
