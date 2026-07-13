@@ -37,10 +37,11 @@ func _physics_process(_delta: float) -> void:
 	elif direction.x > 0:
 		sprite.flip_h = false
 	
-	if Input.is_action_just_pressed("shoot"):
-		use_weapon(gun)
-	if Input.is_action_just_pressed("swing"):
-		use_weapon(sword)
+	if arm_visibility_timer.is_stopped():
+		if Input.is_action_just_pressed("shoot"):
+			use_weapon(gun)
+		if Input.is_action_just_pressed("swing"):
+			use_weapon(sword)
 		
 	
 	move_and_slide()
