@@ -2,6 +2,7 @@ class_name Weapon
 extends Node2D
 
 @export var weapon: Weapon_data
+@export var sprite: Sprite2D
 
 var started: bool = false
 
@@ -21,11 +22,8 @@ func _ready() -> void:
 		visible = false
 
 func add_sprite(texture: Texture2D, offset: Vector2) -> void:
-	var sprite := Sprite2D.new()
 	sprite.texture = texture
 	sprite.position = offset
-	sprite.visible = true
-	add_child(sprite)
 
 func _physics_process(_delta: float) -> void:
 	if weapon.enabled:
