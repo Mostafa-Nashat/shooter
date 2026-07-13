@@ -23,7 +23,7 @@ func _ready() -> void:
 func add_sprite(texture: Texture2D, offset: Vector2) -> void:
 	var sprite := Sprite2D.new()
 	sprite.texture = texture
-	sprite.offset = offset
+	sprite.position = offset
 	sprite.visible = true
 	add_child(sprite)
 
@@ -39,17 +39,17 @@ func _physics_process(_delta: float) -> void:
 		started = true
 
 
-func use() -> void:
+func use(user: Node = null) -> void:
 	if weapon.enabled:
 		visible = true
-		_use()
+		_use(user)
 	else: 
 		visible = false
 	
 func _setup():
 	pass
 
-func _use() -> void:
+func _use(user: Node) -> void:
 	pass
 
 func _update() -> void:
