@@ -44,13 +44,14 @@ offset = Vector2(18, 0)
 enabled = true
 metadata/_custom_type_script = "uid://brrymp10nyswo"
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "health", "arm") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "health", "arm", "arm_visibility_timer") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("Camera2D/UI_manager")
 gun = NodePath("Arm/Gun")
 health = NodePath("HealthManager")
 arm = NodePath("Arm")
+arm_visibility_timer = NodePath("arm_visibility_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234457314]
 position = Vector2(0, -4)
@@ -125,5 +126,9 @@ texture = ExtResource("6_0owmy")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D/UI_manager/weapons/gun_slot" unique_id=1992810707]
 z_as_relative = false
+
+[node name="arm_visibility_timer" type="Timer" parent="." unique_id=866513851]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]

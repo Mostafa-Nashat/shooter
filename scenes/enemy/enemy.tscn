@@ -60,7 +60,6 @@ position = Vector2(1, -4)
 shape = SubResource("RectangleShape2D_4efjx")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=910567391 node_paths=PackedStringArray("health")]
-visible = false
 script = ExtResource("3_2f3il")
 health = NodePath("../HealthManager")
 metadata/_custom_type_script = "uid://d37tf3xi3bwr8"
