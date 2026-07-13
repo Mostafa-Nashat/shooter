@@ -12,6 +12,11 @@ func start() -> void:
 	else:
 		visible = false
 
+func add_sprite(texture: Texture2D, offset: Vector2):
+	var sprite := Sprite2D.new()
+	sprite.texture = texture
+	sprite.offset = offset
+	add_child(sprite)
 
 func update() -> void:
 	if weapon.enabled:
