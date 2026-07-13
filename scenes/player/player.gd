@@ -16,7 +16,7 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	if gun.weapon:
-		ui_manager.set_gun_sprite(gun.weapon.sprite)
+		ui_manager.add_weapon_display(gun.weapon.sprite)
 		gun.start()
 	health.set_health(5)
 

@@ -7,11 +7,13 @@
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://bnuufbq6huxje" path="res://assets/arm.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_5gtgg"]
-[ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="5_75vfm"]
 [ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
-[ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="6_0owmy"]
 [ext_resource type="Script" uid="uid://d3b3pdyp2qggm" path="res://systems/weapons/bullet_data.gd" id="6_je7p5"]
 [ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="7_fm80t"]
+[ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="11_ugbui"]
+[ext_resource type="Texture2D" uid="uid://bqdwob52bxdfh" path="res://assets/ui_0002.png" id="12_fcs02"]
+[ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="13_myrg7"]
+[ext_resource type="Texture2D" uid="uid://dxrhpoorojc8n" path="res://assets/ui_0004.png" id="14_kvlxm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h17s1"]
 size = Vector2(8, 8)
@@ -47,7 +49,7 @@ metadata/_custom_type_script = "uid://brrymp10nyswo"
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "health", "arm", "arm_visibility_timer") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
-ui_manager = NodePath("Camera2D/UI_manager")
+ui_manager = NodePath("UI_manager")
 gun = NodePath("Arm/Gun")
 health = NodePath("HealthManager")
 arm = NodePath("Arm")
@@ -91,41 +93,19 @@ weapon = SubResource("Resource_myrg7")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1419543297]
+rotation = -0.02658067
 
-[node name="UI_manager" type="Node2D" parent="Camera2D" unique_id=382332147 node_paths=PackedStringArray("sword_sprite_display", "gun_sprite_display")]
+[node name="UI_manager" type="Node2D" parent="." unique_id=382332147 node_paths=PackedStringArray("weapons")]
 script = ExtResource("5_qek5x")
-sword_sprite_display = NodePath("weapons/sword_slot/Sprite2D")
-gun_sprite_display = NodePath("weapons/gun_slot/Sprite2D")
+weapons = NodePath("weapons")
+left_frame_sprite = ExtResource("11_ugbui")
+middle_frame_sprite = ExtResource("12_fcs02")
+right_frame_sprite = ExtResource("13_myrg7")
+single_frame_sprite = ExtResource("14_kvlxm")
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
-[node name="weapons" type="Node2D" parent="Camera2D/UI_manager" unique_id=1666946258]
-position = Vector2(-136, 72)
-
-[node name="ColorRect" type="ColorRect" parent="Camera2D/UI_manager/weapons" unique_id=1508858845]
-offset_left = -7.0
-offset_top = -6.0
-offset_right = 23.0
-offset_bottom = 7.0
-color = Color(0.18024005, 0.0408, 0.24, 1)
-
-[node name="sword_slot" type="Sprite2D" parent="Camera2D/UI_manager/weapons" unique_id=17082]
-z_index = 1
-z_as_relative = false
-texture = ExtResource("5_75vfm")
-
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/UI_manager/weapons/sword_slot" unique_id=1608866401]
-z_as_relative = false
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="gun_slot" type="Sprite2D" parent="Camera2D/UI_manager/weapons" unique_id=1130350256]
-z_index = 1
-z_as_relative = false
-position = Vector2(16, 0)
-texture = ExtResource("6_0owmy")
-
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/UI_manager/weapons/gun_slot" unique_id=1992810707]
-z_as_relative = false
+[node name="weapons" type="Node2D" parent="UI_manager" unique_id=1666946258]
+position = Vector2(-135, 73)
 
 [node name="arm_visibility_timer" type="Timer" parent="." unique_id=866513851]
 wait_time = 0.5
