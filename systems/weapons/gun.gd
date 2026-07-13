@@ -4,10 +4,7 @@ extends Weapon
 var cooldown_timer: Timer
 
 func _start() -> void:
-	var sprite_node = Sprite2D.new()
-	sprite_node.texture = weapon.sprite
-	position = weapon.offset
-	add_child(sprite_node)
+	add_sprite(weapon.sprite, weapon.offset)
 	
 	var timer := Timer.new()
 	timer.wait_time = weapon.cooldown
