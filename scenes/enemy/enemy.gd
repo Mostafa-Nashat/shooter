@@ -1,9 +1,11 @@
 class_name Enemy
 extends CharacterBody2D
 
+@export var SPEED: float = 50 
+@export var MAX_HAND_SWING_SPEED: float = 20
+
 @export var health_manager: Health_manager
 @export var health: int = 2
-@export var SPEED: float = 50 
 @export var state_machine: State_machine 
 @export var arm: Arm
 @export var gun: Gun
@@ -16,11 +18,11 @@ func _ready() -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Bullet:
+		area.queue_free()
 		var bullet: Bullet = area
 		var is_dead := health_manager.damage(bullet.bullet.damage)
 		if is_dead:
 			queue_free()
-		area.queue_free()
 
 func _physics_process(_delta: float) -> void:
 	state_machine.update()

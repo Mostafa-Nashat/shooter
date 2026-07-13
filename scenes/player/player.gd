@@ -1,7 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-@export var SPEED: float = 60.0
+@export var SPEED: float = 120.0
+@export var MAX_HAND_SWING_SPEED: float = 20
 
 @export var sprite: Sprite2D
 @export var ui_manager: UI_manager
@@ -19,7 +20,7 @@ func _ready() -> void:
 	health.set_health(5)
 
 func _physics_process(_delta: float) -> void:
-	arm.look_at_target(20, get_global_mouse_position())
+	arm.look_at_target(get_global_mouse_position(), MAX_HAND_SWING_SPEED)
 	gun.update()
 	var direction := Input.get_vector("left", "right", "front", "back").normalized()
 	velocity = direction * SPEED

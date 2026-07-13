@@ -45,7 +45,6 @@ metadata/_custom_type_script = "uid://brrymp10nyswo"
 
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "health", "arm") groups=["player"]]
 script = ExtResource("1_g2els")
-SPEED = 120.0
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("Camera2D/UI_manager")
 gun = NodePath("Arm/Gun")
