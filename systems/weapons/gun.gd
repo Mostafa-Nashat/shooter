@@ -1,17 +1,17 @@
 class_name Gun
 extends Weapon
 
+
 var cooldown_timer: Timer
 
-func _start() -> void:
+func _setup() -> void:
 	add_sprite(weapon.sprite, weapon.offset)
-	
 	var timer := Timer.new()
 	timer.wait_time = weapon.cooldown
 	timer.autostart = false
 	timer.one_shot = true
-	add_child(timer)
 	cooldown_timer = timer
+	add_child(timer)
 	
 func _use() -> void:
 	if  cooldown_timer.is_stopped():

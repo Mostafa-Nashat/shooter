@@ -16,7 +16,6 @@ func get_player() -> Player:
 func _start():
 	enemy = state.node
 	player = get_player()
-	enemy.gun.start()
 	delay.start()
 	enemy.arm.visible = true
 
@@ -26,7 +25,6 @@ func _update():
 		return
 	enemy.velocity = Vector2.ZERO
 	enemy.arm.look_at_target(player.global_position, enemy.MAX_HAND_SWING_SPEED)
-	enemy.gun.update()
 	if !delay.is_stopped():
 		return
 	delay.start()

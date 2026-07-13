@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var ui_manager: UI_manager
 
 @export var gun: Gun
+@export var sword: Sword
 
 @export var health: HealthManager
 
@@ -17,7 +18,8 @@ extends CharacterBody2D
 func _ready() -> void:
 	if gun.weapon:
 		ui_manager.add_weapon_display(gun.weapon.sprite)
-		gun.start()
+	if sword.weapon:
+		ui_manager.add_weapon_display(sword.weapon.sprite)
 	health.set_health(5)
 
 func _physics_process(_delta: float) -> void:
@@ -30,19 +32,24 @@ func _physics_process(_delta: float) -> void:
 	else:
 		arm.visible = true
 	
-	gun.update()
-	
 	if direction.x < 0:
 		sprite.flip_h = true
 	elif direction.x > 0:
 		sprite.flip_h = false
 	
 	if Input.is_action_just_pressed("shoot"):
-		arm_visibility_timer.start()
-		gun.use()
+		use_weapon(gun)
+	if Input.is_action_just_pressed("swing"):
+		use_weapon(sword)
+		
 	
 	move_and_slide()
 
+func use_weapon(weapon: Weapon):
+	arm_visibility_timer.start()
+	weapon.enable_temp(arm_visibility_timer.wait_time)
+	weapon.use()
+	
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Bullet:

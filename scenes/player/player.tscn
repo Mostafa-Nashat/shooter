@@ -10,8 +10,11 @@
 [ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
 [ext_resource type="Script" uid="uid://d3b3pdyp2qggm" path="res://systems/weapons/bullet_data.gd" id="6_je7p5"]
 [ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="7_fm80t"]
+[ext_resource type="Script" uid="uid://e4xsevke2hor" path="res://systems/weapons/sword.gd" id="10_kvlxm"]
+[ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="11_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="11_ugbui"]
 [ext_resource type="Texture2D" uid="uid://bqdwob52bxdfh" path="res://assets/ui_0002.png" id="12_fcs02"]
+[ext_resource type="Texture2D" uid="uid://by1b8vn5w5rhx" path="res://assets/enemy_arm.png" id="12_lgqa7"]
 [ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="13_myrg7"]
 [ext_resource type="Texture2D" uid="uid://dxrhpoorojc8n" path="res://assets/ui_0004.png" id="14_kvlxm"]
 
@@ -42,15 +45,21 @@ script = ExtResource("7_fm80t")
 bullet = SubResource("Resource_ugbui")
 cooldown = 0.3
 sprite = SubResource("CompressedTexture2D_fcs02")
-offset = Vector2(18, 0)
-enabled = true
+offset = Vector2(6, 0)
 metadata/_custom_type_script = "uid://brrymp10nyswo"
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "health", "arm", "arm_visibility_timer") groups=["player"]]
+[sub_resource type="Resource" id="Resource_kvlxm"]
+script = ExtResource("11_uf5tr")
+sprite = ExtResource("12_lgqa7")
+offset = Vector2(16, -6)
+metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
+
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "health", "arm", "arm_visibility_timer") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("UI_manager")
 gun = NodePath("Arm/Gun")
+sword = NodePath("Arm/Sword")
 health = NodePath("HealthManager")
 arm = NodePath("Arm")
 arm_visibility_timer = NodePath("arm_visibility_timer")
@@ -91,6 +100,11 @@ position = Vector2(14, 0)
 script = ExtResource("5_5gtgg")
 weapon = SubResource("Resource_myrg7")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
+
+[node name="Sword" type="Node2D" parent="Arm" unique_id=1780340482]
+script = ExtResource("10_kvlxm")
+weapon = SubResource("Resource_kvlxm")
+metadata/_custom_type_script = "uid://e4xsevke2hor"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1419543297]
 rotation = -0.02658067

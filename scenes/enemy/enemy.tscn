@@ -40,7 +40,8 @@ script = ExtResource("10_peoo5")
 bullet = SubResource("Resource_peoo5")
 cooldown = 0.3
 sprite = SubResource("CompressedTexture2D_2f3il")
-offset = Vector2(18, 0)
+offset = Vector2(6, 0)
+enabled = true
 metadata/_custom_type_script = "uid://brrymp10nyswo"
 
 [node name="enemy" type="CharacterBody2D" unique_id=2044543696 node_paths=PackedStringArray("health_manager", "state_machine", "arm", "gun", "navigator")]
