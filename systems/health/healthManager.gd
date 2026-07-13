@@ -1,16 +1,17 @@
-class_name Health_manager
+class_name HealthManager
 extends Node
 
-var health: int
+var health: float
+
+signal died
 
 func set_health(new_health: int) -> void:
 	health = new_health
 
-func get_health() -> int:
+func get_health() -> float:
 	return health
 
-func damage(hitpoints: int) -> bool:
+func damage(hitpoints: float):
 	health -= hitpoints
 	if health <= 0:
-		return true
-	return false
+		died.emit()

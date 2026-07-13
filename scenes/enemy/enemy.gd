@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var SPEED: float = 50 
 @export var MAX_HAND_SWING_SPEED: float = 20
 
-@export var health_manager: Health_manager
+@export var health_manager: HealthManager
 @export var health: int = 2
 @export var state_machine: State_machine 
 @export var arm: Arm
@@ -16,14 +16,11 @@ func _ready() -> void:
 	state_machine.default_state("chasing")
 	
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area is Bullet:
-		area.queue_free()
-		var bullet: Bullet = area
-		var is_dead := health_manager.damage(bullet.bullet.damage)
-		if is_dead:
-			queue_free()
-
 func _physics_process(_delta: float) -> void:
 	state_machine.update()
 	move_and_slide()
+
+
+func _on_died() -> void:
+	print("died")
+	queue_free()

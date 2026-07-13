@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://c8itbckqghsw1" path="res://assets/enemy.png" id="1_4a83h"]
 [ext_resource type="Script" uid="uid://cbcd77fsrhwsn" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
-[ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health_manager/health_manager.gd" id="3_40wdo"]
+[ext_resource type="Script" uid="uid://d37tf3xi3bwr8" path="res://systems/health/hurtbox.gd" id="3_2f3il"]
+[ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="4_dtxhd"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="4_gl05p"]
 [ext_resource type="Script" uid="uid://bam3idqpwxo35" path="res://scenes/enemy/shooting.gd" id="5_gl05p"]
 [ext_resource type="Script" uid="uid://dm5mjb1lco8fk" path="res://scenes/enemy/chasing.gd" id="5_peoo5"]
@@ -44,7 +45,7 @@ metadata/_custom_type_script = "uid://brrymp10nyswo"
 
 [node name="enemy" type="CharacterBody2D" unique_id=2044543696 node_paths=PackedStringArray("health_manager", "state_machine", "arm", "gun", "navigator")]
 script = ExtResource("1_a3pup")
-health_manager = NodePath("health_manager")
+health_manager = NodePath("HealthManager")
 state_machine = NodePath("State_machine")
 arm = NodePath("Arm")
 gun = NodePath("Arm/Gun")
@@ -58,15 +59,19 @@ texture = ExtResource("1_4a83h")
 position = Vector2(1, -4)
 shape = SubResource("RectangleShape2D_4efjx")
 
-[node name="hurtbox" type="Area2D" parent="." unique_id=56139854]
+[node name="hurtbox" type="Area2D" parent="." unique_id=910567391 node_paths=PackedStringArray("health")]
 visible = false
+script = ExtResource("3_2f3il")
+health = NodePath("../HealthManager")
+metadata/_custom_type_script = "uid://d37tf3xi3bwr8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=112019400]
 position = Vector2(0.5, -15)
 shape = SubResource("RectangleShape2D_a3pup")
 
-[node name="health_manager" type="Node" parent="." unique_id=1292696787]
-script = ExtResource("3_40wdo")
+[node name="HealthManager" type="Node" parent="." unique_id=1192468210]
+script = ExtResource("4_dtxhd")
+metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="State_machine" type="Node" parent="." unique_id=2143524409 node_paths=PackedStringArray("node")]
 script = ExtResource("4_gl05p")
@@ -105,3 +110,4 @@ metadata/_custom_type_script = "uid://cjd0v4olditgc"
 avoidance_enabled = true
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="died" from="HealthManager" to="." method="_on_died"]

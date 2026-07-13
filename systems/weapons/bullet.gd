@@ -32,7 +32,13 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if despawn_timer.is_stopped():
+		queue_free()
 	move_local_x(bullet.velocity.x)
 	move_local_y(bullet.velocity.y)
-	if despawn_timer.is_stopped():
+	for area in get_overlapping_areas():
+		if !(area is Hurtbox):
+			return
+		var hurtbox: Hurtbox = area
+		hurtbox.health.damage(bullet.damage)
 		queue_free()

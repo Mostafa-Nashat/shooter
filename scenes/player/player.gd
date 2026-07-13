@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 @export var gun: Gun
 
-@export var health: Health_manager
+@export var health: HealthManager
 
 @export var arm: Arm
 
@@ -39,9 +39,7 @@ func _physics_process(_delta: float) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		var bullet: Bullet = area
-		var is_dead := health.damage(bullet.bullet.damage)
-		if is_dead:
-			die()
+		health.damage(bullet.bullet.damage)
 
-func die() -> void:
+func _on_died() -> void:
 	get_tree().change_scene_to_file("res://scenes/home_screen/home_screen.tscn")
