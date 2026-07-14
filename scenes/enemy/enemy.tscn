@@ -112,5 +112,4 @@ metadata/_custom_type_script = "uid://cjd0v4olditgc"
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=846431738]
 avoidance_enabled = true
 
-[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
