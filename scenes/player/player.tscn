@@ -55,7 +55,6 @@ size = Vector2(5, 16)
 script = ExtResource("11_uf5tr")
 sword_shape = SubResource("RectangleShape2D_uf5tr")
 damage = 5
-cooldown = 0.75
 sprite = ExtResource("12_lgqa7")
 offset = Vector2(16, -6)
 metadata/_custom_type_script = "uid://rvnmd2ew1c6k"

@@ -23,4 +23,4 @@ func _use(_user: Node) -> void:
 		bullet.rotation = global_rotation
 		bullet.position = to_global(position + weapon.bullet.offset)
 		get_tree().root.add_child(bullet)
-	
+	await  get_tree().create_timer(0.2).timeout

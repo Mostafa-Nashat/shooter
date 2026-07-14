@@ -37,4 +37,3 @@ func _on_hit(area: Area2D):
 	if area is Hurtbox:
 		var hurtbox = area
 		hurtbox.health.damage(sword.damage)
-		print("hit")

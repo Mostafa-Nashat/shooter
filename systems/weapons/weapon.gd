@@ -4,6 +4,8 @@ extends Node2D
 @export var weapon: Weapon_data
 @export var sprite: Sprite2D
 
+signal done_using
+
 var started: bool = false
 
 func enable_temp(time: float):
@@ -40,7 +42,8 @@ func _physics_process(_delta: float) -> void:
 func use(user: Node = null) -> void:
 	if weapon.enabled:
 		visible = true
-		_use(user)
+		await _use(user)
+		done_using.emit()
 	else: 
 		visible = false
 	

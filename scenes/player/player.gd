@@ -15,7 +15,10 @@ extends CharacterBody2D
 @export var arm: Arm
 @export var arm_visibility_timer: Timer
 
+var weapon_being_used: bool = false
+
 func _ready() -> void:
+	arm.visible = false
 	if gun.weapon:
 		ui_manager.add_weapon_display(gun.weapon.sprite)
 	if sword.weapon:
@@ -27,29 +30,30 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * SPEED
 	
 	arm.look_at_target(get_global_mouse_position(), MAX_HAND_SWING_SPEED)
-	if arm_visibility_timer.is_stopped():
-		arm.visible = false
-	else:
-		arm.visible = true
 	
 	if direction.x < 0:
 		sprite.flip_h = true
 	elif direction.x > 0:
 		sprite.flip_h = false
 	
-	if arm_visibility_timer.is_stopped():
+	if !weapon_being_used:
 		if Input.is_action_just_pressed("shoot"):
 			use_weapon(gun)
 		if Input.is_action_just_pressed("swing"):
 			use_weapon(sword)
-		
+			
 	
 	move_and_slide()
 
 func use_weapon(weapon: Weapon):
-	arm_visibility_timer.start()
-	weapon.enable_temp(arm_visibility_timer.wait_time)
+	weapon_being_used = true
+	arm.visible = true
+	weapon.weapon.enabled = true
 	weapon.use()
+	await weapon.done_using
+	weapon.weapon.enabled = false
+	arm.visible = false
+	weapon_being_used = false
 	
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

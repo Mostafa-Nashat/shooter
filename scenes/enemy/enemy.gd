@@ -22,5 +22,4 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_died() -> void:
-	print("died")
 	queue_free()
