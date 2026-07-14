@@ -1,12 +1,15 @@
 class_name UI_manager
 extends Node2D
 
+@export_group("weapons")
 @export var weapons: Node2D
 @export var left_frame_sprite: Texture2D
 @export var middle_frame_sprite: Texture2D
 @export var right_frame_sprite: Texture2D
 @export var single_frame_sprite: Texture2D
 @export var frame_size: Vector2 = Vector2(16, 16)
+@export_group("health")
+@export var health: float
 
 var number_of_weapon_frames: int = 0
 
