@@ -9,7 +9,9 @@ extends Node2D
 @export var single_frame_sprite: Texture2D
 @export var frame_size: Vector2 = Vector2(16, 16)
 @export_group("health")
-@export var health: float
+@export var health_bar: Node2D
+@export var heart_texture: Texture2D
+@export var heart_distance: float
 
 var number_of_weapon_frames: int = 0
 
@@ -47,3 +49,11 @@ func add_weapon_display(sprite: Texture2D) -> void:
 	frame.position.x = number_of_weapon_frames * frame_size.x
 	weapons.add_child(frame)
 	number_of_weapon_frames += 1
+
+
+func add_hearts(health: int):
+	for index in range(health):
+		var heart_sprite := Sprite2D.new()
+		heart_sprite.texture = heart_texture
+		heart_sprite.position.x = index * heart_distance
+		health_bar.add_child(heart_sprite)

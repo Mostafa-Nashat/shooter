@@ -23,6 +23,7 @@ func _ready() -> void:
 		ui_manager.add_weapon_display(gun.weapon.sprite)
 	if sword.weapon:
 		ui_manager.add_weapon_display(sword.weapon.sprite)
+	ui_manager.add_hearts(5)
 	health.set_health(5)
 
 func _physics_process(_delta: float) -> void:

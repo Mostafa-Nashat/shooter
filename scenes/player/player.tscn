@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="13_myrg7"]
 [ext_resource type="Texture2D" uid="uid://dxrhpoorojc8n" path="res://assets/ui_0004.png" id="14_kvlxm"]
 [ext_resource type="Script" uid="uid://bpsh5p35yjjgw" path="res://systems/helper_camera/helper_camera.gd" id="17_kvlxm"]
+[ext_resource type="Texture2D" uid="uid://iqw2df0mk3x2" path="res://assets/heart.png" id="17_uf5tr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h17s1"]
 size = Vector2(8, 8)
@@ -149,17 +150,23 @@ position = Vector2(14, -6)
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_kvlxm")
 
-[node name="UI_manager" type="Node2D" parent="." unique_id=382332147 node_paths=PackedStringArray("weapons")]
+[node name="UI_manager" type="Node2D" parent="." unique_id=382332147 node_paths=PackedStringArray("weapons", "health_bar")]
 script = ExtResource("5_qek5x")
 weapons = NodePath("weapons")
 left_frame_sprite = ExtResource("11_ugbui")
 middle_frame_sprite = ExtResource("12_fcs02")
 right_frame_sprite = ExtResource("13_myrg7")
 single_frame_sprite = ExtResource("14_kvlxm")
+health_bar = NodePath("health")
+heart_texture = ExtResource("17_uf5tr")
+heart_distance = 10.0
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
 [node name="weapons" type="Node2D" parent="UI_manager" unique_id=1666946258]
 position = Vector2(-135, 73)
+
+[node name="health" type="Node2D" parent="UI_manager" unique_id=551496572]
+position = Vector2(-137, -73)
 
 [node name="arm_visibility_timer" type="Timer" parent="." unique_id=866513851]
 wait_time = 0.5
