@@ -12,6 +12,7 @@ extends Node2D
 @export var health_bar: Node2D
 @export var heart_texture: Texture2D
 @export var heart_distance: float
+@export var health: HealthManager
 
 var number_of_weapon_frames: int = 0
 
@@ -50,10 +51,33 @@ func add_weapon_display(sprite: Texture2D) -> void:
 	weapons.add_child(frame)
 	number_of_weapon_frames += 1
 
+func _ready() -> void:
+	if health:
+		add_hearts(int(health.health))
+
+func _process(delta: float) -> void:
+	update_hearts(int(health.health))
+
+func update_hearts(health: int):
+	var number_of_hearts := health_bar.get_child_count()
+	if number_of_hearts == health:
+		return
+	if number_of_hearts < health:
+		add_hearts(health - number_of_hearts)
+	if number_of_hearts > health:
+		remove_hearts(number_of_hearts - health)
+
+func remove_hearts(damage: int):
+	var children := health_bar.get_children()
+	print(damage)
+	for index in range(damage):
+		var node: Node = children.pop_back()
+		health_bar.remove_child(node)
 
 func add_hearts(health: int):
 	for index in range(health):
+		var number_of_hearts = health_bar.get_child_count()
 		var heart_sprite := Sprite2D.new()
 		heart_sprite.texture = heart_texture
-		heart_sprite.position.x = index * heart_distance
+		heart_sprite.position.x = (index + number_of_hearts) * heart_distance
 		health_bar.add_child(heart_sprite)
