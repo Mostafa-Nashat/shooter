@@ -55,12 +55,50 @@ size = Vector2(5, 16)
 script = ExtResource("11_uf5tr")
 sword_shape = SubResource("RectangleShape2D_uf5tr")
 damage = 5
+cooldown = 10.0
 sprite = ExtResource("12_lgqa7")
 offset = Vector2(16, -6)
 metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvlxm"]
 size = Vector2(5, 16)
+
+[sub_resource type="Animation" id="Animation_kvlxm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uf5tr"]
+resource_name = "swing"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.134658, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -1.8325958, 1.8325958]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lgqa7"]
+_data = {
+&"RESET": SubResource("Animation_kvlxm"),
+&"swing": SubResource("Animation_uf5tr")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "health", "arm", "arm_visibility_timer") groups=["player"]]
 script = ExtResource("1_g2els")
@@ -99,6 +137,7 @@ texture = ExtResource("1_3vyb7")
 position = Vector2(0, -16)
 script = ExtResource("3_lvxji")
 metadata/_custom_type_script = "uid://dlkn740mx7473"
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Arm" unique_id=1269555103]
 position = Vector2(8, 0)
@@ -114,10 +153,11 @@ metadata/_custom_type_script = "uid://cjd0v4olditgc"
 
 [node name="Sprite2D" type="Sprite2D" parent="Arm/Gun" unique_id=4509749]
 
-[node name="Sword" type="Node2D" parent="Arm" unique_id=1780340482 node_paths=PackedStringArray("hitbox", "sprite")]
+[node name="Sword" type="Node2D" parent="Arm" unique_id=1780340482 node_paths=PackedStringArray("hitbox", "swing_animation", "sprite")]
 script = ExtResource("10_kvlxm")
 hitbox = NodePath("Area2D")
 player_friendly = true
+swing_animation = NodePath("../../sword_animations")
 weapon = SubResource("Resource_kvlxm")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://e4xsevke2hor"
@@ -151,5 +191,8 @@ position = Vector2(-135, 73)
 [node name="arm_visibility_timer" type="Timer" parent="." unique_id=866513851]
 wait_time = 0.5
 one_shot = true
+
+[node name="sword_animations" type="AnimationPlayer" parent="." unique_id=2000689211]
+libraries/ = SubResource("AnimationLibrary_lgqa7")
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]

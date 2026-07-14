@@ -4,6 +4,7 @@ extends Weapon
 var sword: Sword_data
 @export var hitbox: Area2D
 @export var player_friendly: bool
+@export var swing_animation: AnimationPlayer
 
 func setup_hitbox() -> void:
 	for child in hitbox.get_children():
@@ -30,7 +31,8 @@ func _setup() -> void:
 
 func _use(_user: Node) -> void:
 	hitbox.monitoring = true
-	await get_tree().create_timer(sword.cooldown).timeout
+	swing_animation.play("swing")
+	await swing_animation.animation_finished
 	hitbox.monitoring = false
 
 func _on_hit(area: Area2D):

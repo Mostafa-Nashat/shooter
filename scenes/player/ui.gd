@@ -31,7 +31,8 @@ func add_weapon_display(sprite: Texture2D) -> void:
 		frame.texture = right_frame_sprite
 		correct_first_weapon_frame()
 	else:
-		correct_middle_weapon_frames()
+		correct_middle_weapon_frames() 
+		
 		frame.texture = right_frame_sprite
 	var icon := Sprite2D.new()
 	icon.texture = sprite

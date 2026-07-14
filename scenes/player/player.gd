@@ -32,20 +32,22 @@ func _physics_process(_delta: float) -> void:
 	arm.look_at_target(get_global_mouse_position(), MAX_HAND_SWING_SPEED)
 	
 	if direction.x < 0:
-		sprite.flip_h = true
+		transform.x = Vector2(-1, 0)
+		ui_manager.transform.x = Vector2(-1, 0)
 	elif direction.x > 0:
-		sprite.flip_h = false
+		transform.x = Vector2(1, 0)
+		ui_manager.transform.x = Vector2(1, 0)
 	
 	if !weapon_being_used:
 		if Input.is_action_just_pressed("shoot"):
-			use_weapon(gun)
+			use_weapon(gun, 0.2)
 		if Input.is_action_just_pressed("swing"):
-			use_weapon(sword)
+			use_weapon(sword, 0.2)
 			
 	
 	move_and_slide()
 
-func use_weapon(weapon: Weapon):
+func use_weapon(weapon: Weapon, cooldown: float):
 	weapon_being_used = true
 	arm.visible = true
 	weapon.weapon.enabled = true
@@ -53,7 +55,9 @@ func use_weapon(weapon: Weapon):
 	await weapon.done_using
 	weapon.weapon.enabled = false
 	arm.visible = false
+	await get_tree().create_timer(cooldown).timeout
 	weapon_being_used = false
+	
 	
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
