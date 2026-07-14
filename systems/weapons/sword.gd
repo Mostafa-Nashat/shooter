@@ -13,7 +13,7 @@ func add_hitbox() -> void:
 	hitbox.add_child(colidershape)
 	add_child(hitbox)
 
-func _start() -> void:
+func _setup() -> void:
 	if !(weapon is Sword_data):
 		return
 	sword = weapon
