@@ -95,16 +95,22 @@ position = Vector2(8, 0)
 rotation = 1.5707964
 texture = ExtResource("3_qhqgy")
 
-[node name="Gun" type="Node2D" parent="Arm" unique_id=2025370503]
+[node name="Gun" type="Node2D" parent="Arm" unique_id=2025370503 node_paths=PackedStringArray("sprite")]
 position = Vector2(14, 0)
 script = ExtResource("5_5gtgg")
 weapon = SubResource("Resource_myrg7")
+sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
 
-[node name="Sword" type="Node2D" parent="Arm" unique_id=1780340482]
+[node name="Sprite2D" type="Sprite2D" parent="Arm/Gun" unique_id=4509749]
+
+[node name="Sword" type="Node2D" parent="Arm" unique_id=1780340482 node_paths=PackedStringArray("sprite")]
 script = ExtResource("10_kvlxm")
 weapon = SubResource("Resource_kvlxm")
+sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://e4xsevke2hor"
+
+[node name="Sprite2D" type="Sprite2D" parent="Arm/Sword" unique_id=1801647862]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1419543297]
 rotation = -0.02658067

@@ -20,5 +20,5 @@ func _start() -> void:
 	add_hitbox()
 	add_sprite(weapon.sprite, weapon.offset)
 
-func _use() -> void:
+func _use(_user: Node) -> void:
 	pass

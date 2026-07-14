@@ -100,11 +100,14 @@ position = Vector2(8, 0)
 rotation = 1.5707964
 texture = ExtResource("6_cwlon")
 
-[node name="Gun" type="Node2D" parent="Arm" unique_id=2116267254]
+[node name="Gun" type="Node2D" parent="Arm" unique_id=2116267254 node_paths=PackedStringArray("sprite")]
 position = Vector2(14, 0)
 script = ExtResource("8_4efjx")
 weapon = SubResource("Resource_dtxhd")
+sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
+
+[node name="Sprite2D" type="Sprite2D" parent="Arm/Gun" unique_id=508512580]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=846431738]
 avoidance_enabled = true

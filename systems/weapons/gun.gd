@@ -13,7 +13,7 @@ func _setup() -> void:
 	cooldown_timer = timer
 	add_child(timer)
 	
-func _use() -> void:
+func _use(_user: Node) -> void:
 	if  cooldown_timer.is_stopped():
 		cooldown_timer.start() 
 		
