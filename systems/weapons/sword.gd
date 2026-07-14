@@ -13,6 +13,7 @@ func setup_hitbox() -> void:
 	hitbox.position = sword.offset
 
 func _setup() -> void:
+	hitbox.monitoring = false
 	hitbox.area_entered.connect(_on_hit)
 	if !(weapon is Sword_data):
 		return
@@ -21,7 +22,9 @@ func _setup() -> void:
 	setup_hitbox()
 
 func _use(_user: Node) -> void:
-	pass
+	hitbox.monitoring = true
+	await get_tree().create_timer(sword.cooldown).timeout
+	hitbox.monitoring = false
 
 func _on_hit(area: Area2D):
 	if area is Hurtbox:
