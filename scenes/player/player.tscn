@@ -159,7 +159,7 @@ right_frame_sprite = ExtResource("13_myrg7")
 single_frame_sprite = ExtResource("14_kvlxm")
 health_bar = NodePath("health")
 heart_texture = ExtResource("17_uf5tr")
-heart_distance = 8.0
+heart_distance = 6.0
 health = NodePath("../HealthManager")
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
