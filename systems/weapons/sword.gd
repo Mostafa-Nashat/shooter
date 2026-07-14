@@ -3,6 +3,7 @@ extends Weapon
 
 var sword: Sword_data
 @export var hitbox: Area2D
+@export var player_friendly: bool
 
 func setup_hitbox() -> void:
 	for child in hitbox.get_children():
@@ -20,6 +21,12 @@ func _setup() -> void:
 	sword = weapon
 	add_sprite(weapon.sprite, weapon.offset)
 	setup_hitbox()
+	if player_friendly:
+		hitbox.set_collision_mask_value(1, true)
+		hitbox.set_collision_mask_value(2, false)
+	else:
+		hitbox.set_collision_mask_value(1, false)
+		hitbox.set_collision_mask_value(2, true)
 
 func _use(_user: Node) -> void:
 	hitbox.monitoring = true

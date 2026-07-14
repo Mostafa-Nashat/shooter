@@ -55,6 +55,7 @@ size = Vector2(5, 16)
 script = ExtResource("11_uf5tr")
 sword_shape = SubResource("RectangleShape2D_uf5tr")
 damage = 5
+cooldown = 0.75
 sprite = ExtResource("12_lgqa7")
 offset = Vector2(16, -6)
 metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
@@ -77,6 +78,8 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_h17s1")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=147277381 node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2_fm80t")
 health = NodePath("../HealthManager")
 metadata/_custom_type_script = "uid://d37tf3xi3bwr8"
@@ -115,6 +118,7 @@ metadata/_custom_type_script = "uid://cjd0v4olditgc"
 [node name="Sword" type="Node2D" parent="Arm" unique_id=1780340482 node_paths=PackedStringArray("hitbox", "sprite")]
 script = ExtResource("10_kvlxm")
 hitbox = NodePath("Area2D")
+player_friendly = true
 weapon = SubResource("Resource_kvlxm")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://e4xsevke2hor"

@@ -18,6 +18,7 @@ func _use(_user: Node) -> void:
 		cooldown_timer.start() 
 		
 		var bullet := Bullet.new()
+		bullet.set_collision_mask_value(2, true)
 		bullet.bullet = weapon.bullet
 		bullet.rotation = global_rotation
 		bullet.position = to_global(position + weapon.bullet.offset)
