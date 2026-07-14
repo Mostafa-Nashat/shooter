@@ -12,7 +12,7 @@ script = ExtResource("1_yx5yj")
 sprite = SubResource("PlaceholderTexture2D_yx5yj")
 damage = 2
 hitbox_size = Vector2(4, 2)
-velocity = Vector2(10, 0)
+velocity = Vector2(5, 0)
 offset = Vector2(-8, -3)
 metadata/_custom_type_script = "uid://d3b3pdyp2qggm"
 
@@ -22,6 +22,6 @@ script = ExtResource("1_7vy5u")
 bullet = SubResource("Resource_jddgh")
 cooldown = 0.3
 sprite = ExtResource("3_jddgh")
-offset = Vector2(18, 0)
+offset = Vector2(6, 0)
 enabled = true
 metadata/_custom_type_script = "uid://brrymp10nyswo"

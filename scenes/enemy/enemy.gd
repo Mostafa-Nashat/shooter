@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var arm: Arm
 @export var gun: Gun
 @export var navigator: NavigationAgent2D
+@export var shooting_cooldown: float = 0.75
 
 func _ready() -> void:
 	health_manager.set_health(health)

@@ -26,5 +26,5 @@ func _update() -> void:
 		return
 	
 	go_to(player.global_position, enemy.SPEED)
-	if enemy.navigator.distance_to_target() < 50:
+	if enemy.navigator.distance_to_target() < 80:
 		state.switch_state("shooting")

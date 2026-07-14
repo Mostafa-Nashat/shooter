@@ -30,5 +30,5 @@ func _update():
 	delay.start()
 	enemy.gun.use()
 	var player_distance = player.global_position - enemy.global_position
-	if player_distance.length() > 70:
+	if player_distance.length() > 90:
 		state.switch_state("chasing")
