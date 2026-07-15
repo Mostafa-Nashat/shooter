@@ -6,6 +6,9 @@ var sword: Sword_data
 @export var player_friendly: bool
 @export var swing_animation: AnimationPlayer
 
+signal hit
+signal kill
+
 func setup_hitbox() -> void:
 	for child in hitbox.get_children():
 		hitbox.remove_child(child)
@@ -37,5 +40,10 @@ func _use(_user: Node) -> void:
 
 func _on_hit(area: Area2D):
 	if area is Hurtbox:
+		hit.emit()
 		var hurtbox = area
+		hurtbox.health.died.connect(_on_kill)
 		hurtbox.health.damage(sword.damage)
+
+func _on_kill():
+	kill.emit()

@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export var gun: Gun
 @export var sword: Sword
 @export var camera: Camera2D
+@export var bullet_count: int
+@export var bullet_max: int = 6
 
 @export var arm: Arm
 
@@ -37,8 +39,9 @@ func _physics_process(_delta: float) -> void:
 		ui_manager.transform.x = Vector2(1, 0)
 	
 	if !weapon_being_used:
-		if Input.is_action_just_pressed("shoot"):
+		if Input.is_action_just_pressed("shoot") and bullet_count > 0:
 			use_weapon(gun, 0.0)
+			bullet_count -= 1
 		if Input.is_action_just_pressed("swing"):
 			use_weapon(sword, 0.2)
 			
@@ -58,3 +61,7 @@ func use_weapon(weapon: Weapon, cooldown: float):
 
 func _on_died() -> void:
 	get_tree().change_scene_to_file("res://scenes/home_screen/home_screen.tscn")
+
+func _on_sword_kill() -> void:
+	bullet_count += 1
+	bullet_count = clamp(bullet_count, 0 , bullet_max)
