@@ -1,13 +1,11 @@
 [gd_resource type="Resource" script_class="Bullet_data" format=3 uid="uid://fvngfbdu1mqf"]
 
 [ext_resource type="Script" uid="uid://d3b3pdyp2qggm" path="res://systems/weapons/bullet_data.gd" id="1_4yohi"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yx5yj"]
-size = Vector2(4, 2)
+[ext_resource type="Texture2D" uid="uid://bp5bibthhrgv" path="res://assets/silver_bullet.png" id="2_qkhu2"]
 
 [resource]
 script = ExtResource("1_4yohi")
-sprite = SubResource("PlaceholderTexture2D_yx5yj")
+sprite = ExtResource("2_qkhu2")
 damage = 2
 hitbox_size = Vector2(4, 2)
 velocity = Vector2(5, 0)
