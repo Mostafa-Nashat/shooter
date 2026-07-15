@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 @export var gun: Gun
 @export var sword: Sword
+@export var camera: Camera2D
 
 @export var arm: Arm
 @export var arm_visibility_timer: Timer

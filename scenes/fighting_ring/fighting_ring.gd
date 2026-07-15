@@ -1,45 +1,46 @@
 extends Node2D
 
-@export var ground: TileMapLayer
+@export var spawners: Node2D
+@export var spawn_time: float = 5.0
 @export var player: Player
-@export var spawn_radius_range: Vector2
-@export var spawn_timer: float = 5.0
+@onready var camera: Camera2D = player.camera
 
 var enemy: PackedScene = preload("res://scenes/enemy/enemy.tscn")
 
-func start_timer(time: float, callback: Callable):
-	get_tree().create_timer(time, false).timeout.connect(callback)
+func start_timer(callback: Callable) -> void:
+	get_tree().create_timer(spawn_time).timeout.connect(callback)
 
-func _ready() -> void: 
-	start_timer(spawn_timer, spawn_enemy)
+func spawner_logic(spawner: Area2D) -> bool:
+	for area in spawner.get_overlapping_areas():
+		if area.get_collision_layer_value(4):
+			return false
+	for body in spawner.get_overlapping_bodies():
+		return false
+	spawn_enemy(spawner.position)
+	return true
+	
 
-func calculate_enenmy_position(enemy_node: Enemy):
-	var x_ratio := randf_range(0, 1)
-	var y_ratio := 1 - x_ratio
-	var spawn_radius := randf_range(spawn_radius_range.x, spawn_radius_range.y)
-	enemy_node.position.x = player.position.x + (spawn_radius * x_ratio)
-	enemy_node.position.y = player.position.y + (spawn_radius * y_ratio)
+func sort_by_distance(a: Area2D, b: Area2D):
+	var distance_a: float = abs(player.global_position - a.global_position).length()
+	var distance_b: float = abs(player.global_position - b.global_position).length()
+	if distance_a < distance_b:
+		return true
+	return false
 
-func spawn_enemy(recursion_index: int = 0) -> void:
-	if recursion_index > 5:
-		print("recursion")
-		start_timer(spawn_timer, spawn_enemy)
-		return
-		
+func spawn_enemy(position: Vector2) -> void:
 	var enemy_node: Enemy = enemy.instantiate()
-	calculate_enenmy_position(enemy_node)
-	var enemy_tile_position = Vector2i(
-		enemy_node.position.x / ground.tile_set.tile_size.x,
-		enemy_node.position.y / ground.tile_set.tile_size.y
-	)
-	var used_cells := ground.get_surrounding_cells(enemy_tile_position)
-	for cell in used_cells:
-		var cell_data := ground.get_cell_tile_data(cell)
-		if !cell_data:
-			continue
-		if cell_data.get_collision_polygons_count(0) != 0:
-			continue
-		add_child(enemy_node)
-		start_timer(spawn_timer, spawn_enemy)
-		return 
-	spawn_enemy(recursion_index + 1) 
+	enemy_node.position = position
+	add_child(enemy_node)
+
+func spawn_enemy_attempt() -> void:
+	var children = spawners.get_children()
+	children.sort_custom(sort_by_distance)
+	for node in spawners.get_children():
+		var spawner: Area2D = node
+		var valid: bool = spawner_logic(spawner)
+		if valid:
+			break
+	start_timer(spawn_enemy_attempt)
+	
+func _ready() -> void:
+	start_timer(spawn_enemy_attempt)

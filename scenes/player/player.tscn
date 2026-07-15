@@ -77,12 +77,13 @@ _data = {
 &"swing": SubResource("Animation_uf5tr")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "arm", "arm_visibility_timer") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "camera", "arm", "arm_visibility_timer") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("UI_manager")
 gun = NodePath("Arm/Gun")
 sword = NodePath("Arm/Sword")
+camera = NodePath("HelperCamera2D")
 arm = NodePath("Arm")
 arm_visibility_timer = NodePath("arm_visibility_timer")
 
@@ -176,9 +177,14 @@ one_shot = true
 [node name="sword_animations" type="AnimationPlayer" parent="." unique_id=2000689211]
 libraries/ = SubResource("AnimationLibrary_lgqa7")
 
-[node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871]
+[node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
 zoom = Vector2(4, 4)
 script = ExtResource("17_kvlxm")
+hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
+
+[node name="Area2D" type="Area2D" parent="HelperCamera2D" unique_id=597165037]
+collision_layer = 8
+collision_mask = 0
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
