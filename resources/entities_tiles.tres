@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" format=3 uid="uid://lnqcdomtsef3"]
+
+[ext_resource type="PackedScene" uid="uid://b1gonnyh5w5ih" path="res://scenes/enemy/enemy.tscn" id="1_ymgiu"]
+[ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="2_85mel"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lrqlo"]
+scenes/1/scene = ExtResource("1_ymgiu")
+scenes/2/scene = ExtResource("2_85mel")
+
+[resource]
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetScenesCollectionSource_lrqlo")

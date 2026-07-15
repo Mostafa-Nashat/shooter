@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if !weapon_being_used:
 		if Input.is_action_just_pressed("shoot"):
-			use_weapon(gun, 0.2)
+			use_weapon(gun, 0.0)
 		if Input.is_action_just_pressed("swing"):
 			use_weapon(sword, 0.2)
 			
