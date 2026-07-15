@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://by1b8vn5w5rhx" path="res://assets/enemy_arm.png" id="6_cwlon"]
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="6_nbhyu"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="8_4efjx"]
-[ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/revolver.tres" id="12_2f3il"]
+[ext_resource type="Resource" uid="uid://dffbxoqxn8j1k" path="res://resources/enemy_revolver.tres" id="11_peoo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4efjx"]
 size = Vector2(10, 8)
@@ -77,7 +77,7 @@ texture = ExtResource("6_cwlon")
 [node name="Gun" type="Node2D" parent="Arm" unique_id=2116267254 node_paths=PackedStringArray("sprite")]
 position = Vector2(14, 0)
 script = ExtResource("8_4efjx")
-weapon = ExtResource("12_2f3il")
+weapon = ExtResource("11_peoo5")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
 

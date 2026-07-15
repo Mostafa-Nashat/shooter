@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bnuufbq6huxje" path="res://assets/arm.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
-[ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/revolver.tres" id="8_myrg7"]
+[ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/player_revolver.tres" id="8_uf5tr"]
 [ext_resource type="Script" uid="uid://e4xsevke2hor" path="res://systems/weapons/sword.gd" id="10_kvlxm"]
 [ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="11_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="11_ugbui"]
@@ -124,7 +124,7 @@ texture = ExtResource("3_qhqgy")
 [node name="Gun" type="Node2D" parent="Arm" unique_id=2025370503 node_paths=PackedStringArray("sprite")]
 position = Vector2(14, 0)
 script = ExtResource("5_5gtgg")
-weapon = ExtResource("8_myrg7")
+weapon = ExtResource("8_uf5tr")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
 

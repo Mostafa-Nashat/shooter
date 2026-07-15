@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Gun_data" format=3 uid="uid://dto2j3lr7b6nh"]
 
 [ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="1_7vy5u"]
-[ext_resource type="Resource" uid="uid://ehkfom1spf5l" path="res://resources/copper_bullet.tres" id="1_yx5yj"]
+[ext_resource type="Resource" uid="uid://fvngfbdu1mqf" path="res://resources/silver_bullet.tres" id="1_yx5yj"]
 [ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="3_jddgh"]
 
 [resource]

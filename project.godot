@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="shooter"
-run/main_scene="uid://djjtu61o0mssl"
+run/main_scene="uid://cicn18bcru3vo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
