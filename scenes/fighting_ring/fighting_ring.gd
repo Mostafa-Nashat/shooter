@@ -4,8 +4,8 @@ extends Node2D
 @export var enemies: Node2D
 @export var player: Player
 @onready var camera: Camera2D = player.camera
-@export_range(3.0, 1.0, 0.1, "or_greater", "prefer_slider") var spawn_delay: float
-@export_range(3.0, 1.0, 0.1, "or_greater", "prefer_slider") var wave_delay: float
+@export_range(3.0, 5.0, 0.1, "or_greater", "prefer_slider") var spawn_delay: float = 3.0
+@export_range(1.0, 100.0, 0.1, "or_greater", "prefer_slider") var wave_delay: float = 3.0
 
 var wave := 1
 var enemy_count := 0
@@ -71,6 +71,8 @@ func _on_enemy_died():
 	enemy_count -= 1
 	if enemy_count > 0:
 		return
+	print(wave_delay)
+	await get_tree().create_timer(wave_delay).timeout
 	wave += 1
 	spawn_enemy_attempt(wave)
 	 
