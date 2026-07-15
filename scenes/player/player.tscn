@@ -77,13 +77,12 @@ _data = {
 &"swing": SubResource("Animation_uf5tr")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "health", "arm", "arm_visibility_timer") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "arm", "arm_visibility_timer") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("UI_manager")
 gun = NodePath("Arm/Gun")
 sword = NodePath("Arm/Sword")
-health = NodePath("HealthManager")
 arm = NodePath("Arm")
 arm_visibility_timer = NodePath("arm_visibility_timer")
 
@@ -104,6 +103,7 @@ shape = SubResource("RectangleShape2D_8afob")
 
 [node name="HealthManager" type="Node" parent="." unique_id=937521712]
 script = ExtResource("3_gx1jg")
+health = 5.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1972263714]

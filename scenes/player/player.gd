@@ -10,8 +10,6 @@ extends CharacterBody2D
 @export var gun: Gun
 @export var sword: Sword
 
-@export var health: HealthManager
-
 @export var arm: Arm
 @export var arm_visibility_timer: Timer
 
@@ -23,7 +21,6 @@ func _ready() -> void:
 		ui_manager.add_weapon_display(gun.weapon.sprite)
 	if sword.weapon:
 		ui_manager.add_weapon_display(sword.weapon.sprite)
-	health.set_health(5)
 
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "front", "back").normalized()
@@ -57,13 +54,6 @@ func use_weapon(weapon: Weapon, cooldown: float):
 	arm.visible = false
 	await get_tree().create_timer(cooldown).timeout
 	weapon_being_used = false
-	
-	
-
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area is Bullet:
-		var bullet: Bullet = area
-		health.damage(bullet.bullet.damage)
 
 func _on_died() -> void:
 	get_tree().change_scene_to_file("res://scenes/home_screen/home_screen.tscn")

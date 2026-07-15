@@ -1,7 +1,7 @@
 class_name HealthManager
 extends Node
 
-var health: float
+@export var health: float
 
 signal died
 

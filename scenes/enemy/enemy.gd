@@ -4,8 +4,6 @@ extends CharacterBody2D
 @export var SPEED: float = 50 
 @export var MAX_HAND_SWING_SPEED: float = 20
 
-@export var health_manager: HealthManager
-@export var health: int = 2
 @export var state_machine: State_machine 
 @export var arm: Arm
 @export var gun: Gun
@@ -13,7 +11,6 @@ extends CharacterBody2D
 @export var shooting_cooldown: float = 0.75
 
 func _ready() -> void:
-	health_manager.set_health(health)
 	state_machine.default_state("chasing")
 	
 

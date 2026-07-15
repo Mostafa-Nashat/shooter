@@ -18,9 +18,8 @@ size = Vector2(10, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3pup"]
 size = Vector2(9, 30)
 
-[node name="enemy" type="CharacterBody2D" unique_id=2044543696 node_paths=PackedStringArray("health_manager", "state_machine", "arm", "gun", "navigator")]
+[node name="enemy" type="CharacterBody2D" unique_id=2044543696 node_paths=PackedStringArray("state_machine", "arm", "gun", "navigator")]
 script = ExtResource("1_a3pup")
-health_manager = NodePath("HealthManager")
 state_machine = NodePath("State_machine")
 arm = NodePath("Arm")
 gun = NodePath("Arm/Gun")
@@ -45,6 +44,7 @@ shape = SubResource("RectangleShape2D_a3pup")
 
 [node name="HealthManager" type="Node" parent="." unique_id=1192468210]
 script = ExtResource("4_dtxhd")
+health = 2.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="State_machine" type="Node" parent="." unique_id=2143524409 node_paths=PackedStringArray("node")]
