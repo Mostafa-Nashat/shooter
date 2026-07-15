@@ -13,6 +13,11 @@ extends Node2D
 @export var heart_texture: Texture2D
 @export var heart_distance: float
 @export var health: HealthManager
+@export_group("bullets")
+@export var bullets: Node2D
+@export var bullet_texture: Texture2D
+@export var bullet_distance: float
+@export var player: Player
 
 var number_of_weapon_frames: int = 0
 
@@ -57,6 +62,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	update_hearts(int(health.health))
+	set_bullets(player.bullet_count)
 
 func update_hearts(health: int):
 	var number_of_hearts := health_bar.get_child_count()
@@ -80,3 +86,25 @@ func add_hearts(health: int):
 		heart_sprite.texture = heart_texture
 		heart_sprite.position.x = (index + number_of_hearts) * heart_distance
 		health_bar.add_child(heart_sprite)
+
+func add_bullets(count: int):
+	var number_of_bullet_icons := bullets.get_child_count()
+	for index in range(count):
+		var sprite := Sprite2D.new()
+		sprite.texture = bullet_texture
+		sprite.position.x = bullet_distance * (number_of_bullet_icons + index)
+		sprite.rotation_degrees = 90
+		bullets.add_child(sprite)
+
+func set_bullets(bullet_count: int):
+	var number_of_bullet_icons = bullets.get_child_count()
+	if number_of_bullet_icons == bullet_count:
+		return
+	if number_of_bullet_icons > bullet_count:
+		var children := bullets.get_children()
+		for index in range(number_of_bullet_icons - bullet_count):
+			var child: Node2D = children.pop_back()
+			bullets.remove_child(child)
+		return
+	if bullet_count > number_of_bullet_icons:
+		add_bullets(bullet_count - number_of_bullet_icons)

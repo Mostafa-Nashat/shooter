@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var SPEED: float = 120.0
-@export var MAX_HAND_SWING_SPEED: float = 20
+@export var MAX_HAND_SWING_SPEED: float = 90
 
 @export var sprite: Sprite2D
 @export var ui_manager: UI_manager
@@ -40,8 +40,8 @@ func _physics_process(_delta: float) -> void:
 	
 	if !weapon_being_used:
 		if Input.is_action_just_pressed("shoot") and bullet_count > 0:
-			use_weapon(gun, 0.0)
 			bullet_count -= 1
+			use_weapon(gun, 0.0)
 		if Input.is_action_just_pressed("swing"):
 			use_weapon(sword, 0.2)
 			
