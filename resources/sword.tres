@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Sword_data" format=3 uid="uid://hiurog48n3ab"]
+
+[ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="1_dcagp"]
+[ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/sword.png" id="2_taahv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf5tr"]
+size = Vector2(5, 16)
+
+[resource]
+script = ExtResource("1_dcagp")
+sword_shape = SubResource("RectangleShape2D_uf5tr")
+damage = 5
+cooldown = 10.0
+sprite = ExtResource("2_taahv")
+offset = Vector2(16, -6)
+metadata/_custom_type_script = "uid://rvnmd2ew1c6k"

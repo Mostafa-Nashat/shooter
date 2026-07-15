@@ -10,10 +10,10 @@
 [ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
 [ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/player_revolver.tres" id="8_uf5tr"]
 [ext_resource type="Script" uid="uid://e4xsevke2hor" path="res://systems/weapons/sword.gd" id="10_kvlxm"]
-[ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="11_uf5tr"]
+[ext_resource type="Resource" uid="uid://hiurog48n3ab" path="res://resources/sword.tres" id="10_lgqa7"]
+[ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/sword.png" id="11_8ydkj"]
 [ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="11_ugbui"]
 [ext_resource type="Texture2D" uid="uid://bqdwob52bxdfh" path="res://assets/ui_0002.png" id="12_fcs02"]
-[ext_resource type="Texture2D" uid="uid://by1b8vn5w5rhx" path="res://assets/enemy_arm.png" id="12_lgqa7"]
 [ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="13_myrg7"]
 [ext_resource type="Texture2D" uid="uid://dxrhpoorojc8n" path="res://assets/ui_0004.png" id="14_kvlxm"]
 [ext_resource type="Script" uid="uid://bpsh5p35yjjgw" path="res://systems/helper_camera/helper_camera.gd" id="17_kvlxm"]
@@ -25,18 +25,6 @@ size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8afob"]
 size = Vector2(8, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf5tr"]
-size = Vector2(5, 16)
-
-[sub_resource type="Resource" id="Resource_kvlxm"]
-script = ExtResource("11_uf5tr")
-sword_shape = SubResource("RectangleShape2D_uf5tr")
-damage = 5
-cooldown = 10.0
-sprite = ExtResource("12_lgqa7")
-offset = Vector2(16, -6)
-metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvlxm"]
 size = Vector2(5, 16)
@@ -58,7 +46,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_uf5tr"]
 resource_name = "swing"
-length = 0.25
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -136,13 +124,13 @@ script = ExtResource("10_kvlxm")
 hitbox = NodePath("Area2D")
 player_friendly = true
 swing_animation = NodePath("../../sword_animations")
-weapon = SubResource("Resource_kvlxm")
+weapon = ExtResource("10_lgqa7")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://e4xsevke2hor"
 
 [node name="Sprite2D" type="Sprite2D" parent="Arm/Sword" unique_id=1801647862]
 position = Vector2(14, -6)
-texture = ExtResource("12_lgqa7")
+texture = ExtResource("11_8ydkj")
 
 [node name="Area2D" type="Area2D" parent="Arm/Sword" unique_id=1319940175]
 position = Vector2(14, -6)
