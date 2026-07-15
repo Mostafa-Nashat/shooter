@@ -36,7 +36,9 @@ func _physics_process(_delta: float) -> void:
 		queue_free()
 	move_local_x(bullet.velocity.x)
 	move_local_y(bullet.velocity.y)
-	for area in get_overlapping_areas():
+	area_entered.connect(_on_hit)
+
+func _on_hit(area: Area2D):
 		if !(area is Hurtbox):
 			return
 		var hurtbox: Hurtbox = area
