@@ -12,7 +12,6 @@ extends CharacterBody2D
 @export var camera: Camera2D
 
 @export var arm: Arm
-@export var arm_visibility_timer: Timer
 
 var weapon_being_used: bool = false
 

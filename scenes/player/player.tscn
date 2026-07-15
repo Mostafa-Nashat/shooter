@@ -77,7 +77,7 @@ _data = {
 &"swing": SubResource("Animation_uf5tr")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "camera", "arm", "arm_visibility_timer") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "camera", "arm") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("UI_manager")
@@ -85,7 +85,6 @@ gun = NodePath("Arm/Gun")
 sword = NodePath("Arm/Sword")
 camera = NodePath("HelperCamera2D")
 arm = NodePath("Arm")
-arm_visibility_timer = NodePath("arm_visibility_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234457314]
 position = Vector2(0, -4)
@@ -169,10 +168,6 @@ position = Vector2(-184, 101)
 
 [node name="health" type="Node2D" parent="UI_manager" unique_id=551496572]
 position = Vector2(-183, -97)
-
-[node name="arm_visibility_timer" type="Timer" parent="." unique_id=866513851]
-wait_time = 0.5
-one_shot = true
 
 [node name="sword_animations" type="AnimationPlayer" parent="." unique_id=2000689211]
 libraries/ = SubResource("AnimationLibrary_lgqa7")
