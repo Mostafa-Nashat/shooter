@@ -22,6 +22,7 @@ func _ready() -> void:
 		ui_manager.add_weapon_display(gun.weapon.sprite)
 	if sword.weapon:
 		ui_manager.add_weapon_display(sword.weapon.sprite)
+	ready.emit()
 
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("left", "right", "front", "back").normalized()

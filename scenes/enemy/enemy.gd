@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export var navigator: NavigationAgent2D
 @export var shooting_cooldown: float = 0.75
 
+signal died
+
 func _ready() -> void:
 	state_machine.default_state("chasing")
 	
@@ -21,3 +23,4 @@ func _physics_process(_delta: float) -> void:
 
 func _on_died() -> void:
 	queue_free()
+	died.emit()

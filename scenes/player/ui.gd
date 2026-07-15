@@ -69,7 +69,6 @@ func update_hearts(health: int):
 
 func remove_hearts(damage: int):
 	var children := health_bar.get_children()
-	print(damage)
 	for index in range(damage):
 		var node: Node = children.pop_back()
 		health_bar.remove_child(node)
