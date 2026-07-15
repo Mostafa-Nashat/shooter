@@ -46,7 +46,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_uf5tr"]
 resource_name = "swing"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -111,6 +111,7 @@ rotation = 1.5707964
 texture = ExtResource("3_qhqgy")
 
 [node name="Gun" type="Node2D" parent="Arm" unique_id=2025370503 node_paths=PackedStringArray("sprite")]
+visible = false
 position = Vector2(14, 0)
 script = ExtResource("5_5gtgg")
 weapon = ExtResource("8_uf5tr")
@@ -120,6 +121,7 @@ metadata/_custom_type_script = "uid://cjd0v4olditgc"
 [node name="Sprite2D" type="Sprite2D" parent="Arm/Gun" unique_id=4509749]
 
 [node name="Sword" type="Node2D" parent="Arm" unique_id=1780340482 node_paths=PackedStringArray("hitbox", "swing_animation", "sprite")]
+visible = false
 script = ExtResource("10_kvlxm")
 hitbox = NodePath("Area2D")
 player_friendly = true

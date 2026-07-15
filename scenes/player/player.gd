@@ -43,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 			bullet_count -= 1
 			use_weapon(gun, 0.0)
 		if Input.is_action_just_pressed("swing"):
-			use_weapon(sword, 0.2)
+			use_weapon(sword, 0.0)
 			
 	
 	move_and_slide()
