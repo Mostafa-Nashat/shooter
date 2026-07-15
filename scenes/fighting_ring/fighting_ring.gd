@@ -48,8 +48,6 @@ func spawn_enemy_attempt(number: int) -> void:
 			valid_spawners.append(spawner)
 	if len(valid_spawners) == 0:
 		return
-	print("number: ", number)
-	print("valid_spawners:", len(valid_spawners))
 	if number > len(valid_spawners):
 		for spawner in valid_spawners:
 			spawn_enemy(spawner.position)
@@ -71,7 +69,6 @@ func _on_enemy_died():
 	enemy_count -= 1
 	if enemy_count > 0:
 		return
-	print(wave_delay)
 	await get_tree().create_timer(wave_delay).timeout
 	wave += 1
 	spawn_enemy_attempt(wave)
