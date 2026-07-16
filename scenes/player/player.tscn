@@ -22,6 +22,18 @@
 [ext_resource type="Script" uid="uid://bqreayvencq2r" path="res://scenes/player/ground.gd" id="20_3j4b4"]
 [ext_resource type="Script" uid="uid://dq12a4gn41062" path="res://scenes/player/dashing.gd" id="21_3j4b4"]
 
+[sub_resource type="Curve" id="Curve_3j4b4"]
+_data = [Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yj68g"]
+curve = SubResource("Curve_3j4b4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3j4b4"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_yj68g")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h17s1"]
 size = Vector2(8, 8)
 
@@ -107,6 +119,12 @@ sword = NodePath("Arm/Sword")
 camera = NodePath("HelperCamera2D")
 arm = NodePath("Arm")
 state = NodePath("State_machine")
+
+[node name="fade" type="GPUParticles2D" parent="." unique_id=945222172]
+position = Vector2(0, -16)
+texture = ExtResource("1_3vyb7")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_3j4b4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234457314]
 position = Vector2(0, -4)
@@ -307,9 +325,10 @@ metadata/_custom_type_script = "uid://c1uh781vulfjr"
 script = ExtResource("20_3j4b4")
 metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
-[node name="dash" type="Node" parent="State_machine" unique_id=1534976998 node_paths=PackedStringArray("timer")]
+[node name="dash" type="Node" parent="State_machine" unique_id=1534976998 node_paths=PackedStringArray("timer", "fade_affect")]
 script = ExtResource("21_3j4b4")
 timer = NodePath("dash_length")
+fade_affect = NodePath("../../fade")
 metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
 [node name="dash_length" type="Timer" parent="State_machine/dash" unique_id=1610641087]
