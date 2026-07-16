@@ -16,6 +16,10 @@ func _start():
 	enemy.arm.visible = false
 	enemy.arm.rotation_degrees = 0
 
+func get_next_direction() -> Vector2:
+	var direction := (enemy.navigator.get_next_path_position() - enemy.global_position).normalized()
+	return direction
+
 func go_to(target: Vector2, speed: float) -> void:
 	enemy.navigator.target_position = target
 	var velocity_direction := (enemy.navigator.get_next_path_position() - enemy.global_position).normalized()
@@ -24,6 +28,12 @@ func go_to(target: Vector2, speed: float) -> void:
 func _update() -> void:
 	if !player:
 		return
+	var direction = get_next_direction()
+	if direction.x < 0:
+		enemy.transform.x = Vector2(-1, 0)
+	elif direction.x > 0:
+		enemy.transform.x = Vector2(1, 0)
+		
 	
 	go_to(player.global_position, enemy.SPEED)
 	if enemy.navigator.distance_to_target() < 80:
