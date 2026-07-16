@@ -11,7 +11,7 @@ var direction: Vector2
 
 func _start():
 	player = state.node
-	var direction := Input.get_vector("left", "right", "front", "back").normalized()
+	direction = Input.get_vector("left", "right", "front", "back").normalized()
 	if direction == Vector2.ZERO:
 		direction = Vector2.LEFT
 	timer.start()
