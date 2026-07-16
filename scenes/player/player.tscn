@@ -18,6 +18,9 @@
 [ext_resource type="Script" uid="uid://bpsh5p35yjjgw" path="res://systems/helper_camera/helper_camera.gd" id="17_kvlxm"]
 [ext_resource type="Texture2D" uid="uid://iqw2df0mk3x2" path="res://assets/heart.png" id="17_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://bp5bibthhrgv" path="res://assets/silver_bullet.png" id="18_lgqa7"]
+[ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="19_8ydkj"]
+[ext_resource type="Script" uid="uid://bqreayvencq2r" path="res://scenes/player/ground.gd" id="20_3j4b4"]
+[ext_resource type="Script" uid="uid://dq12a4gn41062" path="res://scenes/player/dashing.gd" id="21_3j4b4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h17s1"]
 size = Vector2(8, 8)
@@ -68,7 +71,7 @@ _data = {
 [sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
 atlas = ExtResource("11_8ydkj")
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "camera", "arm") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "camera", "arm", "state") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 ui_manager = NodePath("UI_manager")
@@ -76,6 +79,7 @@ gun = NodePath("Arm/Gun")
 sword = NodePath("Arm/Sword")
 camera = NodePath("HelperCamera2D")
 arm = NodePath("Arm")
+state = NodePath("State_machine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234457314]
 position = Vector2(0, -4)
@@ -197,6 +201,24 @@ offset_right = -112.0
 offset_bottom = -64.0
 size_flags_horizontal = 0
 size_flags_vertical = 2
+
+[node name="State_machine" type="Node" parent="." unique_id=1205984589 node_paths=PackedStringArray("node")]
+script = ExtResource("19_8ydkj")
+node = NodePath("..")
+metadata/_custom_type_script = "uid://c1uh781vulfjr"
+
+[node name="ground" type="Node" parent="State_machine" unique_id=18855138]
+script = ExtResource("20_3j4b4")
+metadata/_custom_type_script = "uid://bt1l7q6it3d82"
+
+[node name="dash" type="Node" parent="State_machine" unique_id=1534976998 node_paths=PackedStringArray("timer")]
+script = ExtResource("21_3j4b4")
+timer = NodePath("dash_length")
+metadata/_custom_type_script = "uid://bt1l7q6it3d82"
+
+[node name="dash_length" type="Timer" parent="State_machine/dash" unique_id=1610641087]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
 [connection signal="kill" from="Arm/Sword" to="." method="_on_sword_kill"]

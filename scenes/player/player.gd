@@ -11,13 +11,16 @@ extends CharacterBody2D
 @export var sword: Sword
 @export var camera: Camera2D
 @export var bullet_count: int
+var kill_count = 0
 @export var bullet_max: int = 6
-
 @export var arm: Arm
+@export var state: State_machine
 
 var weapon_being_used: bool = false
+@export var dash_timer: Timer
 
 func _ready() -> void:
+	state.default_state("ground")
 	arm.visible = false
 	if sword.weapon:
 		var offset = Vector2(4.0, 0)
@@ -27,26 +30,7 @@ func _ready() -> void:
 	ready.emit()
 
 func _physics_process(_delta: float) -> void:
-	var direction := Input.get_vector("left", "right", "front", "back").normalized()
-	velocity = direction * SPEED
-	
-	arm.look_at_target(get_global_mouse_position(), MAX_HAND_SWING_SPEED)
-	
-	if direction.x < 0:
-		transform.x = Vector2(-1, 0)
-		ui_manager.transform.x = Vector2(-1, 0)
-	elif direction.x > 0:
-		transform.x = Vector2(1, 0)
-		ui_manager.transform.x = Vector2(1, 0)
-	
-	if !weapon_being_used:
-		if Input.is_action_just_pressed("shoot") and bullet_count > 0:
-			bullet_count -= 1
-			use_weapon(gun, 0.0)
-		if Input.is_action_just_pressed("swing"):
-			use_weapon(sword, 0.0)
-			
-	
+	state.update()
 	move_and_slide()
 
 func use_weapon(weapon: Weapon, cooldown: float):
@@ -64,5 +48,16 @@ func _on_died() -> void:
 	get_tree().change_scene_to_file("res://scenes/home_screen/home_screen.tscn")
 
 func _on_sword_kill() -> void:
-	bullet_count += 1
+	kill_count += 1
+	if (kill_count % 2) == 0:
+		kill_count = 0
+		bullet_count += 1
 	bullet_count = clamp(bullet_count, 0 , bullet_max)
+
+func allow_weapon_control() -> void:
+	if !weapon_being_used:
+		if Input.is_action_just_pressed("shoot") and bullet_count > 0:
+			bullet_count -= 1
+			use_weapon(gun, 0.0)
+		if Input.is_action_just_pressed("swing"):
+			use_weapon(sword, 0.0)
