@@ -2,109 +2,71 @@ class_name UI_manager
 extends Node2D
 
 @export_group("weapons")
-@export var weapons: Node2D
-@export var left_frame_sprite: Texture2D
-@export var middle_frame_sprite: Texture2D
-@export var right_frame_sprite: Texture2D
-@export var single_frame_sprite: Texture2D
-@export var frame_size: Vector2 = Vector2(16, 16)
-@export_group("health")
-@export var health_bar: Node2D
+@export var weapons_container: BoxContainer
+@export var left_frame: Texture2D
+@export var center_frame: Texture2D
+@export var right_frame: Texture2D
+@export var single_frame: Texture2D
+@export_group("hearts") 
+@export var hearts_container: BoxContainer
 @export var heart_texture: Texture2D
-@export var heart_distance: float
-@export var health: HealthManager
+@export var health_manager: HealthManager
 @export_group("bullets")
-@export var bullets: Node2D
+@export var bullet_container: BoxContainer
 @export var bullet_texture: Texture2D
-@export var bullet_distance: float
 @export var player: Player
 
-var number_of_weapon_frames: int = 0
+func correct_first_frame():
+	var first_frame: TextureRect = weapons_container.get_child(0)
+	first_frame.texture = left_frame
 
-func correct_first_weapon_frame() -> void:
-	var nodes: Array[Node] = weapons.get_children()
-	var first_frame: Sprite2D = nodes[0]
-	first_frame.texture = left_frame_sprite
+func correct_middle_frames(number_of_frames):
+	for index in range(1, number_of_frames):
+		var middle_frame: TextureRect = weapons_container.get_child(index)
+		middle_frame.texture = center_frame
 
-func correct_middle_weapon_frames() -> void:
-	var nodes: Array[Node] = weapons.get_children()
-	for index in len(nodes):
-		if index == 0:
-			continue
-		var frame: Sprite2D = nodes[index]
-		frame.texture = middle_frame_sprite
-
-func add_weapon_display(sprite: Texture2D) -> void:
-	var frame := Sprite2D.new()
-	if number_of_weapon_frames == 0:
-		frame.texture = single_frame_sprite
-	elif number_of_weapon_frames == 1:
-		frame.texture = right_frame_sprite
-		correct_first_weapon_frame()
+func add_weapon(texture: Texture, offset: Vector2 = Vector2.ZERO):
+	var number_of_frames := weapons_container.get_child_count()
+	var frame := TextureRect.new()
+	print("num: ", number_of_frames)
+	if number_of_frames == 0:
+		frame.texture = single_frame
+	elif number_of_frames == 1:
+		correct_first_frame()
+		frame.texture = right_frame
 	else:
-		correct_middle_weapon_frames() 
-		
-		frame.texture = right_frame_sprite
-	var icon := Sprite2D.new()
-	icon.texture = sprite
-	icon.region_enabled = true
-	icon.region_rect.size = frame_size
+		correct_middle_frames(number_of_frames)
+		frame.texture = right_frame
+	frame.z_index = 1
+	var icon := TextureRect.new()
+	var atlas_texture := AtlasTexture.new()
+	atlas_texture.atlas = texture
+	
+	atlas_texture.margin = Rect2(offset, Vector2.ZERO)
+	atlas_texture.region = Rect2(Vector2.ZERO, atlas_texture.get_size() +  offset)
+	icon.texture = atlas_texture
+	icon.z_index = 0
 	icon.z_as_relative = false
 	frame.add_child(icon)
-	frame.z_index = 1
-	frame.position.x = number_of_weapon_frames * frame_size.x
-	weapons.add_child(frame)
-	number_of_weapon_frames += 1
+	weapons_container.add_child(frame)
 
-func _ready() -> void:
-	if health:
-		add_hearts(int(health.health))
-
-func _process(delta: float) -> void:
-	update_hearts(int(health.health))
-	set_bullets(player.bullet_count)
-
-func update_hearts(health: int):
-	var number_of_hearts := health_bar.get_child_count()
-	if number_of_hearts == health:
+func set_items_in_box(count: int, texture: Texture2D, box: BoxContainer):
+	var number_of_items := box.get_child_count()
+	if count == number_of_items:
 		return
-	if number_of_hearts < health:
-		add_hearts(health - number_of_hearts)
-	if number_of_hearts > health:
-		remove_hearts(number_of_hearts - health)
+	if count < number_of_items:
+		var items := box.get_children()
+		for index in range(number_of_items - count):
+			var item: Node = items.pop_back()
+			box.remove_child(item)
+	if count > number_of_items:
+		for index in range(count - number_of_items):
+			var item_texture := TextureRect.new()
+			item_texture.texture = texture
+			item_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			box.add_child(item_texture)
 
-func remove_hearts(damage: int):
-	var children := health_bar.get_children()
-	for index in range(damage):
-		var node: Node = children.pop_back()
-		health_bar.remove_child(node)
-
-func add_hearts(health: int):
-	for index in range(health):
-		var number_of_hearts = health_bar.get_child_count()
-		var heart_sprite := Sprite2D.new()
-		heart_sprite.texture = heart_texture
-		heart_sprite.position.x = (index + number_of_hearts) * heart_distance
-		health_bar.add_child(heart_sprite)
-
-func add_bullets(count: int):
-	var number_of_bullet_icons := bullets.get_child_count()
-	for index in range(count):
-		var sprite := Sprite2D.new()
-		sprite.texture = bullet_texture
-		sprite.position.x = bullet_distance * (number_of_bullet_icons + index)
-		sprite.rotation_degrees = 90
-		bullets.add_child(sprite)
-
-func set_bullets(bullet_count: int):
-	var number_of_bullet_icons = bullets.get_child_count()
-	if number_of_bullet_icons == bullet_count:
-		return
-	if number_of_bullet_icons > bullet_count:
-		var children := bullets.get_children()
-		for index in range(number_of_bullet_icons - bullet_count):
-			var child: Node2D = children.pop_back()
-			bullets.remove_child(child)
-		return
-	if bullet_count > number_of_bullet_icons:
-		add_bullets(bullet_count - number_of_bullet_icons)
+func _process(_delta: float) -> void:
+	set_items_in_box(int(health_manager.health), heart_texture, hearts_container)
+	set_items_in_box(player.bullet_count, bullet_texture, bullet_container)
+	

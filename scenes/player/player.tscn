@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="11_ugbui"]
 [ext_resource type="Texture2D" uid="uid://bqdwob52bxdfh" path="res://assets/ui_0002.png" id="12_fcs02"]
 [ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="13_myrg7"]
-[ext_resource type="Texture2D" uid="uid://dxrhpoorojc8n" path="res://assets/ui_0004.png" id="14_kvlxm"]
 [ext_resource type="Script" uid="uid://bpsh5p35yjjgw" path="res://systems/helper_camera/helper_camera.gd" id="17_kvlxm"]
 [ext_resource type="Texture2D" uid="uid://iqw2df0mk3x2" path="res://assets/heart.png" id="17_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://bp5bibthhrgv" path="res://assets/silver_bullet.png" id="18_lgqa7"]
@@ -65,6 +64,9 @@ _data = {
 &"RESET": SubResource("Animation_kvlxm"),
 &"swing": SubResource("Animation_uf5tr")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
+atlas = ExtResource("11_8ydkj")
 
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "camera", "arm") groups=["player"]]
 script = ExtResource("1_g2els")
@@ -141,32 +143,6 @@ position = Vector2(14, -6)
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_kvlxm")
 
-[node name="UI_manager" type="Node2D" parent="." unique_id=382332147 node_paths=PackedStringArray("weapons", "health_bar", "health", "bullets", "player")]
-script = ExtResource("5_qek5x")
-weapons = NodePath("weapons")
-left_frame_sprite = ExtResource("11_ugbui")
-middle_frame_sprite = ExtResource("12_fcs02")
-right_frame_sprite = ExtResource("13_myrg7")
-single_frame_sprite = ExtResource("14_kvlxm")
-health_bar = NodePath("health")
-heart_texture = ExtResource("17_uf5tr")
-heart_distance = 6.0
-health = NodePath("../HealthManager")
-bullets = NodePath("bullets")
-bullet_texture = ExtResource("18_lgqa7")
-bullet_distance = 8.0
-player = NodePath("..")
-metadata/_custom_type_script = "uid://ch5tr6awtfhui"
-
-[node name="weapons" type="Node2D" parent="UI_manager" unique_id=1666946258]
-position = Vector2(-151, 79)
-
-[node name="health" type="Node2D" parent="UI_manager" unique_id=551496572]
-position = Vector2(-150, -79)
-
-[node name="bullets" type="Node2D" parent="UI_manager" unique_id=1433537836]
-position = Vector2(-149, -58)
-
 [node name="sword_animations" type="AnimationPlayer" parent="." unique_id=2000689211]
 libraries/ = SubResource("AnimationLibrary_lgqa7")
 
@@ -178,6 +154,49 @@ metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
 [node name="Area2D" type="Area2D" parent="HelperCamera2D" unique_id=597165037]
 collision_layer = 8
 collision_mask = 8
+
+[node name="UI_manager" type="Node2D" parent="." unique_id=774705366 node_paths=PackedStringArray("weapons_container", "hearts_container", "health_manager", "bullet_container", "player")]
+script = ExtResource("5_qek5x")
+weapons_container = NodePath("weapons")
+left_frame = ExtResource("11_ugbui")
+center_frame = ExtResource("12_fcs02")
+right_frame = ExtResource("13_myrg7")
+single_frame = SubResource("AtlasTexture_myrg7")
+hearts_container = NodePath("hearts")
+heart_texture = ExtResource("17_uf5tr")
+health_manager = NodePath("../HealthManager")
+bullet_container = NodePath("bullets")
+bullet_texture = ExtResource("18_lgqa7")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://ch5tr6awtfhui"
+
+[node name="weapons" type="HBoxContainer" parent="UI_manager" unique_id=424867819]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = 88.0
+offset_right = -154.0
+offset_bottom = 88.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="hearts" type="HBoxContainer" parent="UI_manager" unique_id=1452900962]
+offset_left = -152.0
+offset_top = -80.0
+offset_right = -112.0
+offset_bottom = -72.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="bullets" type="HBoxContainer" parent="UI_manager" unique_id=1382746959]
+offset_left = -152.0
+offset_top = -72.0
+offset_right = -112.0
+offset_bottom = -64.0
+size_flags_horizontal = 0
+size_flags_vertical = 2
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
 [connection signal="kill" from="Arm/Sword" to="." method="_on_sword_kill"]

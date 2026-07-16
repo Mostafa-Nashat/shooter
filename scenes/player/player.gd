@@ -19,10 +19,11 @@ var weapon_being_used: bool = false
 
 func _ready() -> void:
 	arm.visible = false
-	if gun.weapon:
-		ui_manager.add_weapon_display(gun.weapon.sprite)
 	if sword.weapon:
-		ui_manager.add_weapon_display(sword.weapon.sprite)
+		var offset = Vector2(4.0, 0)
+		ui_manager.add_weapon(sword.weapon.sprite, offset)
+	if gun.weapon:
+		ui_manager.add_weapon(gun.weapon.sprite)
 	ready.emit()
 
 func _physics_process(_delta: float) -> void:

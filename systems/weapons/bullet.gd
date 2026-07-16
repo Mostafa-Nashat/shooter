@@ -29,6 +29,7 @@ func _ready() -> void:
 	add_hitbox()
 	add_sprite()
 	add_despawn_timer()
+	area_entered.connect(_on_hit)
 
 
 func _physics_process(_delta: float) -> void:
@@ -36,7 +37,6 @@ func _physics_process(_delta: float) -> void:
 		queue_free()
 	move_local_x(bullet.velocity.x)
 	move_local_y(bullet.velocity.y)
-	area_entered.connect(_on_hit)
 
 func _on_hit(area: Area2D):
 		if !(area is Hurtbox):
