@@ -159,21 +159,19 @@ player = NodePath("..")
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
 [node name="weapons" type="Node2D" parent="UI_manager" unique_id=1666946258]
-position = Vector2(-184, 101)
+position = Vector2(-151, 79)
 
 [node name="health" type="Node2D" parent="UI_manager" unique_id=551496572]
-position = Vector2(-183, -97)
+position = Vector2(-150, -79)
 
 [node name="bullets" type="Node2D" parent="UI_manager" unique_id=1433537836]
-position = Vector2(-183, -79)
+position = Vector2(-149, -58)
 
 [node name="sword_animations" type="AnimationPlayer" parent="." unique_id=2000689211]
 libraries/ = SubResource("AnimationLibrary_lgqa7")
 
 [node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
-zoom = Vector2(3, 3)
 script = ExtResource("17_kvlxm")
-intended_zoom = Vector2(0.75, 0.75)
 hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
 
