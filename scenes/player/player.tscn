@@ -71,6 +71,37 @@ _data = {
 [sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
 atlas = ExtResource("11_8ydkj")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnsyf"]
+bg_color = Color(0.3106171, 0.31061712, 0.310617, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yj68g"]
+anti_aliasing = false
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioxgp"]
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.04, 0.04, 0.04, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3j4b4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j4b4"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "health", "gun", "sword", "camera", "arm", "state") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
@@ -160,7 +191,7 @@ metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
 collision_layer = 8
 collision_mask = 8
 
-[node name="UI_manager" type="Control" parent="HelperCamera2D" unique_id=1658084473 node_paths=PackedStringArray("weapons_container", "hearts_container", "bullet_container")]
+[node name="UI_manager" type="Control" parent="HelperCamera2D" unique_id=1658084473 node_paths=PackedStringArray("weapons_container", "hearts_container", "bullet_container", "stamina")]
 physics_interpolation_mode = 0
 layout_mode = 3
 anchors_preset = 0
@@ -178,6 +209,7 @@ hearts_container = NodePath("hearts")
 heart_texture = ExtResource("17_uf5tr")
 bullet_container = NodePath("bullets")
 bullet_texture = ExtResource("18_lgqa7")
+stamina = NodePath("stamina")
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
 [node name="weapons" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=424867819]
@@ -210,6 +242,68 @@ offset_right = 48.0
 offset_bottom = 20.0
 size_flags_horizontal = 0
 size_flags_vertical = 2
+
+[node name="stamina" type="ProgressBar" parent="HelperCamera2D/UI_manager" unique_id=934204273]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -18.0
+offset_right = 32.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_cnsyf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yj68g")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="VSeparator" type="VSeparator" parent="HelperCamera2D/UI_manager/stamina" unique_id=701225848]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -3.0
+offset_right = 26.0
+offset_bottom = 3.0
+grow_vertical = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_ioxgp")
+
+[node name="VSeparator2" type="VSeparator" parent="HelperCamera2D/UI_manager/stamina" unique_id=940340573]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 39.0
+offset_top = -3.0
+offset_right = 49.0
+offset_bottom = 3.0
+grow_vertical = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_ioxgp")
+
+[node name="border_overlay" type="ProgressBar" parent="HelperCamera2D/UI_manager/stamina" unique_id=2104556579]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -8.0
+offset_right = 34.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_3j4b4")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_3j4b4")
+max_value = 300.0
+value = 300.0
+show_percentage = false
 
 [node name="State_machine" type="Node" parent="." unique_id=1205984589 node_paths=PackedStringArray("node")]
 script = ExtResource("19_8ydkj")

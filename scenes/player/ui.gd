@@ -14,6 +14,8 @@ extends Control
 @export_group("bullets")
 @export var bullet_container: BoxContainer
 @export var bullet_texture: Texture2D
+@export_group("stamina")
+@export var stamina: ProgressBar
 
 func correct_first_frame():
 	var first_frame: TextureRect = weapons_container.get_child(0)
@@ -63,6 +65,9 @@ func set_items_in_box(count: int, texture: Texture2D, box: BoxContainer):
 			item_texture.texture = texture
 			item_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			box.add_child(item_texture)
+
+func set_progress_bar(value: float, bar: ProgressBar):
+	bar.value = value
 
 func _ready() -> void:
 	size.x = ProjectSettings.get_setting("display/window/size/viewport_width")
