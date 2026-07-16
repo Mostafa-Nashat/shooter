@@ -122,6 +122,7 @@ state = NodePath("State_machine")
 
 [node name="fade" type="GPUParticles2D" parent="." unique_id=945222172]
 position = Vector2(0, -16)
+emitting = false
 texture = ExtResource("1_3vyb7")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_3j4b4")
@@ -204,7 +205,7 @@ metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
 collision_layer = 8
 collision_mask = 8
 
-[node name="UI_manager" type="Control" parent="HelperCamera2D" unique_id=1658084473 node_paths=PackedStringArray("weapons_container", "hearts_container", "bullet_container", "stamina")]
+[node name="UI_manager" type="Control" parent="HelperCamera2D" unique_id=1658084473 node_paths=PackedStringArray("camera", "weapons_container", "hearts_container", "bullet_container", "stamina")]
 physics_interpolation_mode = 0
 layout_mode = 3
 anchors_preset = 0
@@ -213,6 +214,7 @@ offset_top = -90.0
 offset_right = 160.0
 offset_bottom = 90.0
 script = ExtResource("5_qek5x")
+camera = NodePath("..")
 weapons_container = NodePath("weapons")
 left_frame = ExtResource("11_ugbui")
 center_frame = ExtResource("12_fcs02")

@@ -2,6 +2,7 @@
 class_name UI_manager
 extends Control
 
+@export var camera: Camera2D
 @export_group("weapons")
 @export var weapons_container: BoxContainer
 @export var left_frame: Texture2D
