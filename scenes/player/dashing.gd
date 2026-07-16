@@ -18,6 +18,7 @@ func _start():
 func _update():
 	player.arm.look_at_target(player.get_global_mouse_position(), player.MAX_HAND_SWING_SPEED)
 	player.allow_weapon_control()
+	player.show_hud_elements()
 	if timer.is_stopped():
 		state.switch_state("ground")
 		return

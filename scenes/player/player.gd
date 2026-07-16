@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @export var sprite: Sprite2D
 @export var ui_manager: UI_manager
+@export var health: HealthManager
 
 @export var gun: Gun
 @export var sword: Sword
@@ -17,7 +18,6 @@ var kill_count = 0
 @export var state: State_machine
 
 var weapon_being_used: bool = false
-@export var dash_timer: Timer
 
 func _ready() -> void:
 	state.default_state("ground")
@@ -61,3 +61,7 @@ func allow_weapon_control() -> void:
 			use_weapon(gun, 0.0)
 		if Input.is_action_just_pressed("swing"):
 			use_weapon(sword, 0.0)
+
+func show_hud_elements() -> void:
+	ui_manager.set_items_in_box(int(health.health), ui_manager.heart_texture, ui_manager.hearts_container)
+	ui_manager.set_items_in_box(bullet_count, ui_manager.bullet_texture, ui_manager.bullet_container)

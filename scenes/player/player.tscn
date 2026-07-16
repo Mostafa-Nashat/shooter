@@ -71,10 +71,11 @@ _data = {
 [sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
 atlas = ExtResource("11_8ydkj")
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "gun", "sword", "camera", "arm", "state") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "health", "gun", "sword", "camera", "arm", "state") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
-ui_manager = NodePath("UI_manager")
+ui_manager = NodePath("HelperCamera2D/UI_manager")
+health = NodePath("HealthManager")
 gun = NodePath("Arm/Gun")
 sword = NodePath("Arm/Sword")
 camera = NodePath("HelperCamera2D")
@@ -159,7 +160,14 @@ metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
 collision_layer = 8
 collision_mask = 8
 
-[node name="UI_manager" type="Node2D" parent="." unique_id=774705366 node_paths=PackedStringArray("weapons_container", "hearts_container", "health_manager", "bullet_container", "player")]
+[node name="UI_manager" type="Control" parent="HelperCamera2D" unique_id=1658084473 node_paths=PackedStringArray("weapons_container", "hearts_container", "bullet_container")]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
 script = ExtResource("5_qek5x")
 weapons_container = NodePath("weapons")
 left_frame = ExtResource("11_ugbui")
@@ -168,37 +176,38 @@ right_frame = ExtResource("13_myrg7")
 single_frame = SubResource("AtlasTexture_myrg7")
 hearts_container = NodePath("hearts")
 heart_texture = ExtResource("17_uf5tr")
-health_manager = NodePath("../HealthManager")
 bullet_container = NodePath("bullets")
 bullet_texture = ExtResource("18_lgqa7")
-player = NodePath("..")
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
-[node name="weapons" type="HBoxContainer" parent="UI_manager" unique_id=424867819]
+[node name="weapons" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=424867819]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -154.0
-offset_top = 88.0
-offset_right = -154.0
-offset_bottom = 88.0
+offset_left = 8.0
+offset_top = -10.0
+offset_right = 8.0
+offset_bottom = -10.0
 grow_vertical = 0
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="hearts" type="HBoxContainer" parent="UI_manager" unique_id=1452900962]
-offset_left = -152.0
-offset_top = -80.0
-offset_right = -112.0
-offset_bottom = -72.0
+[node name="hearts" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=1452900962]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 48.0
+offset_bottom = 10.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="bullets" type="HBoxContainer" parent="UI_manager" unique_id=1382746959]
-offset_left = -152.0
-offset_top = -72.0
-offset_right = -112.0
-offset_bottom = -64.0
+[node name="bullets" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=1382746959]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 20.0
 size_flags_horizontal = 0
 size_flags_vertical = 2
 

@@ -1,5 +1,6 @@
+@tool
 class_name UI_manager
-extends Node2D
+extends Control
 
 @export_group("weapons")
 @export var weapons_container: BoxContainer
@@ -10,11 +11,9 @@ extends Node2D
 @export_group("hearts") 
 @export var hearts_container: BoxContainer
 @export var heart_texture: Texture2D
-@export var health_manager: HealthManager
 @export_group("bullets")
 @export var bullet_container: BoxContainer
 @export var bullet_texture: Texture2D
-@export var player: Player
 
 func correct_first_frame():
 	var first_frame: TextureRect = weapons_container.get_child(0)
@@ -65,7 +64,8 @@ func set_items_in_box(count: int, texture: Texture2D, box: BoxContainer):
 			item_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			box.add_child(item_texture)
 
-func _process(_delta: float) -> void:
-	set_items_in_box(int(health_manager.health), heart_texture, hearts_container)
-	set_items_in_box(player.bullet_count, bullet_texture, bullet_container)
-	
+func _ready() -> void:
+	size.x = ProjectSettings.get_setting("display/window/size/viewport_width")
+	size.y = ProjectSettings.get_setting("display/window/size/viewport_height")
+	position.x = -size.x / 2
+	position.y = -size.y / 2
