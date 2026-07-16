@@ -28,7 +28,6 @@ func correct_middle_frames(number_of_frames):
 func add_weapon(texture: Texture, offset: Vector2 = Vector2.ZERO):
 	var number_of_frames := weapons_container.get_child_count()
 	var frame := TextureRect.new()
-	print("num: ", number_of_frames)
 	if number_of_frames == 0:
 		frame.texture = single_frame
 	elif number_of_frames == 1:
