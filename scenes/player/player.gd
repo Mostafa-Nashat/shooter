@@ -5,7 +5,6 @@ extends CharacterBody2D
 @export var MAX_HAND_SWING_SPEED: float = 90
 
 @export var sprite: Sprite2D
-@export var ui_manager: UI_manager
 @export var health: HealthManager
 
 @export var gun: Gun
@@ -19,14 +18,33 @@ var kill_count = 0
 
 var weapon_being_used: bool = false
 
+@export_group("HUD")
+@export var hud: UI_manager
+@export var weapons: BoxContainer
+@export var weapon_frames: Frames
+@export var bullets: BoxContainer
+@export var bullet_texture: Texture2D
+@export var hearts: BoxContainer
+@export var heart_texture: Texture2D
+@export var stamina: ProgressBar
+
+func add_weapon_frame(weapon: Weapon, offset) -> void:
+	hud.add_weapon(
+		weapons,
+		weapon.weapon.sprite,
+		weapon_frames,
+		offset
+	)
+
 func _ready() -> void:
 	state.default_state("ground")
 	arm.visible = false
 	if sword.weapon:
 		var offset = Vector2(4.0, 0)
-		ui_manager.add_weapon(sword.weapon.sprite, offset)
+		add_weapon_frame(sword, offset)
 	if gun.weapon:
-		ui_manager.add_weapon(gun.weapon.sprite)
+		var offset = Vector2.ZERO
+		add_weapon_frame(gun, offset)
 	ready.emit()
 
 func _physics_process(_delta: float) -> void:
@@ -63,5 +81,5 @@ func allow_weapon_control() -> void:
 			use_weapon(sword, 0.0)
 
 func show_hud_elements() -> void:
-	ui_manager.set_items_in_box(int(health.health), ui_manager.heart_texture, ui_manager.hearts_container)
-	ui_manager.set_items_in_box(bullet_count, ui_manager.bullet_texture, ui_manager.bullet_container)
+	hud.set_items_in_box(int(health.health), heart_texture, hearts)
+	hud.set_items_in_box(bullet_count, bullet_texture, bullets)

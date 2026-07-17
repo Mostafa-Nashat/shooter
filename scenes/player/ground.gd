@@ -12,7 +12,7 @@ func _start():
 	player = state.node
 
 func set_data_ui() -> void:
-	player.ui_manager.set_progress_bar(dash_stamina, player.ui_manager.stamina)
+	player.hud.set_progress_bar(dash_stamina, player.stamina)
 	
 
 func _update():

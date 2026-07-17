@@ -1,4 +1,3 @@
-@tool
 class_name UI_manager
 extends Control
 
