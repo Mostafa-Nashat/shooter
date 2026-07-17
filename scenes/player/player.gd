@@ -40,7 +40,6 @@ func add_weapon_frame(weapon: Weapon, offset) -> void:
 	)
 
 func _ready() -> void:
-	state.default_state("ground")
 	arm.visible = false
 	if sword.weapon:
 		var offset = Vector2(4.0, 0)

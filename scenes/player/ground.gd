@@ -25,7 +25,7 @@ func _update():
 	var direction := Input.get_vector("left", "right", "front", "back").normalized()
 	player.velocity = direction * player.SPEED
 	
-	if !player.sword or !player.sword.weapon or !player.sword.swing_animation.is_playing():
+	if !player.sword or !player.sword.weapon or !player.sword.animation_player.is_playing():
 		player.arm.look_at_target(player.get_global_mouse_position(), player.MAX_HAND_SWING_SPEED)
 	
 	if direction.x < 0:

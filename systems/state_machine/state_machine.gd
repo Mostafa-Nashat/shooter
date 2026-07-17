@@ -2,6 +2,7 @@ class_name State_machine
 extends Node
 
 @export var node: Node
+@export var default_state: State
 
 var states: Array[State]
 var current_state: State
@@ -10,13 +11,8 @@ func _ready() -> void:
 	for child in get_children(false):
 		if child is State:
 			states.append(child)
-
-func default_state(state_name: String):
-	for state in states:
-		if state.name == state_name:
-			state._start()
-			current_state = state
-
+	default_state._start()
+	current_state = default_state
 func update():
 	current_state._update()
 

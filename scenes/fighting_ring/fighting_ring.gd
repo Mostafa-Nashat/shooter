@@ -15,7 +15,7 @@ var wave_label: Label = preload("res://scenes/fighting_ring/wave_label.tscn").in
 var wave := 1
 var enemy_count := 0
 
-var enemy: PackedScene = preload("res://scenes/enemy/enemy.tscn")
+var enemy: PackedScene = preload("res://scenes/blader/blader.tscn")
 
 func spawner_logic(spawner: Area2D) -> bool:
 	await wait_physics_frame(1)

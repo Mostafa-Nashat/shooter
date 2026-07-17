@@ -1,7 +1,8 @@
 [gd_scene format=4 uid="uid://djjtu61o0mssl"]
 
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="1_lrqlo"]
-[ext_resource type="TileSet" uid="uid://lnqcdomtsef3" path="res://resources/entities_tiles.tres" id="2_twpsu"]
+[ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="2_lrqlo"]
+[ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="3_sqa0i"]
 
 [node name="root" type="Node2D" unique_id=864890305]
 
@@ -11,7 +12,9 @@ tile_map_data = PackedByteArray("AADs/wkAAAAAAAIAAADs/woAAAAAAAMAAADs/wsAAAAAAAM
 tile_set = ExtResource("1_lrqlo")
 y_sort_origin = -1
 
-[node name="entitys" type="TileMapLayer" parent="." unique_id=583799867]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AADu/wwAAAAAAAAAAgA=")
-tile_set = ExtResource("2_twpsu")
+[node name="Player" parent="." unique_id=1281965873 instance=ExtResource("2_lrqlo")]
+position = Vector2(-206, 194)
+
+[node name="blader" parent="." unique_id=1531731814 instance=ExtResource("3_sqa0i")]
+position = Vector2(285, 193)
+attack_radius = 30.0

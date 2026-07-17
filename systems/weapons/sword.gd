@@ -4,7 +4,9 @@ extends Weapon
 var sword: Sword_data
 @export var hitbox: Area2D
 @export var player_friendly: bool
-@export var swing_animation: AnimationPlayer
+@export var animation_player: AnimationPlayer
+var library_name: String = "sword"
+
 
 signal hit
 signal kill
@@ -33,9 +35,9 @@ func _setup() -> void:
 		hitbox.set_collision_mask_value(2, true)
 
 func _use(_user: Node) -> void:
-	hitbox.monitoring = true
-	swing_animation.play("swing")
-	await swing_animation.animation_finished
+	animation_player.play("sword_animations/swing")
+	await animation_player.animation_finished
+	animation_player.play("sword_animations/RESET")
 	hitbox.monitoring = false
 
 func _on_hit(area: Area2D):
