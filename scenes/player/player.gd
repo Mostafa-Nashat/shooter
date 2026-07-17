@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal died
+
 @export var SPEED: float = 120.0
 @export var MAX_HAND_SWING_SPEED: float = 90
 
@@ -64,7 +66,7 @@ func use_weapon(weapon: Weapon, cooldown: float):
 	weapon_being_used = false
 
 func _on_died() -> void:
-	get_tree().change_scene_to_file("res://scenes/home_screen/home_screen.tscn")
+	died.emit()
 
 func _on_sword_kill() -> void:
 	kill_count += 1

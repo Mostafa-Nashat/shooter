@@ -7,7 +7,10 @@ extends Node2D
 @export_range(3.0, 5.0, 0.1, "or_greater", "prefer_slider") var spawn_delay: float = 3.0
 @export_range(1.0, 100.0, 0.1, "or_greater", "prefer_slider") var wave_delay: float = 3.0
 @export var enemy_number_prefix: String = "Enemies left: "
-var enemy_number_label: Label
+@export var wave_prefix: String = "Wave: "
+var enemy_number_label: Label = preload("res://scenes/fighting_ring/enemy_count_label.tscn").instantiate()
+var wave_label: Label = preload("res://scenes/fighting_ring/wave_label.tscn").instantiate()
+
 
 var wave := 1
 var enemy_count := 0
@@ -64,11 +67,12 @@ func wait_physics_frame(count: int) -> void:
 		await get_tree().create_timer(get_physics_process_delta_time()).timeout
 
 func _ready() -> void:
-	enemy_number_label = preload("res://scenes/fighting_ring/enemy_count_label.tscn").instantiate()
 	await wait_physics_frame(2)
 	await spawn_enemy_attempt(wave)
 	enemy_number_label.text = enemy_number_prefix + str(enemy_count)
+	wave_label.text = wave_prefix + str(wave)
 	player.hud.add_child(enemy_number_label)
+	player.hud.add_child(wave_label)
 	
 
 func _on_enemy_died():
@@ -77,8 +81,16 @@ func _on_enemy_died():
 	if enemy_count > 0:
 		return
 	enemy_number_label.visible = false
-	await get_tree().create_timer(wave_delay).timeout
 	wave += 1
+	wave_label.text = wave_prefix + str(wave)
+	await get_tree().create_timer(wave_delay).timeout
 	await spawn_enemy_attempt(wave)
 	enemy_number_label.text = enemy_number_prefix + str(enemy_count)
 	enemy_number_label.visible = true
+
+var death_screen := preload("res://scenes/survival_death_screen/survival_death_screen.tscn")
+
+func _on_player_died() -> void:
+	var death_screen_node :=  death_screen.instantiate()
+	death_screen_node.died_on_wave = wave
+	get_tree().change_scene_to_node(death_screen_node)
