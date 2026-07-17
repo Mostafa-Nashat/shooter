@@ -30,10 +30,10 @@ func _update():
 	
 	if direction.x < 0:
 		player.transform.x = Vector2(-1, 0)
-		player.camera.transform.x = Vector2(-1, 0)
+		player.deflipper.transform.x = Vector2(-1, 0)
 	elif direction.x > 0:
 		player.transform.x = Vector2(1, 0)
-		player.camera.transform.x = Vector2(1, 0)
+		player.deflipper.transform.x = Vector2(1, 0)
 	
 	player.allow_weapon_control()
 	player.show_hud_elements()

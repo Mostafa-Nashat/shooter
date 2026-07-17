@@ -6,6 +6,8 @@ extends Node2D
 @onready var camera: Camera2D = player.camera
 @export_range(3.0, 5.0, 0.1, "or_greater", "prefer_slider") var spawn_delay: float = 3.0
 @export_range(1.0, 100.0, 0.1, "or_greater", "prefer_slider") var wave_delay: float = 3.0
+@export var enemy_number_prefix: String = "Enemies left: "
+var enemy_number_label: Label
 
 var wave := 1
 var enemy_count := 0
@@ -62,14 +64,21 @@ func wait_physics_frame(count: int) -> void:
 		await get_tree().create_timer(get_physics_process_delta_time()).timeout
 
 func _ready() -> void:
+	enemy_number_label = preload("res://scenes/fighting_ring/enemy_count_label.tscn").instantiate()
 	await wait_physics_frame(2)
-	spawn_enemy_attempt(wave)
+	await spawn_enemy_attempt(wave)
+	enemy_number_label.text = enemy_number_prefix + str(enemy_count)
+	player.hud.add_child(enemy_number_label)
+	
 
 func _on_enemy_died():
 	enemy_count -= 1
+	enemy_number_label.text = enemy_number_prefix + str(enemy_count)
 	if enemy_count > 0:
 		return
+	enemy_number_label.visible = false
 	await get_tree().create_timer(wave_delay).timeout
 	wave += 1
-	spawn_enemy_attempt(wave)
-	 
+	await spawn_enemy_attempt(wave)
+	enemy_number_label.text = enemy_number_prefix + str(enemy_count)
+	enemy_number_label.visible = true

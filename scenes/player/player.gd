@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var gun: Gun
 @export var sword: Sword
 @export var camera: Camera2D
+@export var deflipper: Node2D
 @export var bullet_count: int
 var kill_count = 0
 @export var bullet_max: int = 6

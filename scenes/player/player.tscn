@@ -121,23 +121,24 @@ border_width_left = 1
 border_width_right = 1
 border_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "health", "gun", "sword", "camera", "arm", "state", "hud", "weapons", "bullets", "hearts", "stamina") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "health", "gun", "sword", "camera", "deflipper", "arm", "state", "hud", "weapons", "bullets", "hearts", "stamina") groups=["player"]]
 script = ExtResource("1_g2els")
 sprite = NodePath("Sprite2D")
 health = NodePath("HealthManager")
 gun = NodePath("Arm/Gun")
 sword = NodePath("Arm/Sword")
 camera = NodePath("HelperCamera2D")
+deflipper = NodePath("deflipper")
 arm = NodePath("Arm")
 state = NodePath("State_machine")
-hud = NodePath("HelperCamera2D/UI_manager")
-weapons = NodePath("HelperCamera2D/UI_manager/weapons")
+hud = NodePath("deflipper/UI_manager")
+weapons = NodePath("deflipper/UI_manager/weapons")
 weapon_frames = SubResource("Resource_uniwh")
-bullets = NodePath("HelperCamera2D/UI_manager/bullets")
+bullets = NodePath("deflipper/UI_manager/bullets")
 bullet_texture = ExtResource("18_lgqa7")
-hearts = NodePath("HelperCamera2D/UI_manager/hearts")
+hearts = NodePath("deflipper/UI_manager/hearts")
 heart_texture = ExtResource("17_uf5tr")
-stamina = NodePath("HelperCamera2D/UI_manager/stamina")
+stamina = NodePath("deflipper/UI_manager/stamina")
 
 [node name="fade" type="GPUParticles2D" parent="." unique_id=945222172]
 position = Vector2(0, -16)
@@ -216,6 +217,7 @@ shape = SubResource("RectangleShape2D_kvlxm")
 libraries/ = SubResource("AnimationLibrary_lgqa7")
 
 [node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("17_kvlxm")
 hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
@@ -223,96 +225,6 @@ metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
 [node name="Area2D" type="Area2D" parent="HelperCamera2D" unique_id=597165037]
 collision_layer = 8
 collision_mask = 8
-
-[node name="UI_manager" type="Control" parent="HelperCamera2D" unique_id=1658084473]
-physics_interpolation_mode = 0
-layout_mode = 3
-anchors_preset = 0
-offset_left = -160.0
-offset_top = -90.0
-offset_right = 160.0
-offset_bottom = 90.0
-script = ExtResource("5_qek5x")
-metadata/_custom_type_script = "uid://ch5tr6awtfhui"
-
-[node name="weapons" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=1697385864]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -16.0
-offset_right = 40.0
-grow_vertical = 0
-
-[node name="hearts" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=1109428181]
-layout_mode = 1
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 48.0
-offset_bottom = 20.0
-
-[node name="bullets" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=60222458]
-layout_mode = 1
-offset_left = 8.0
-offset_top = 20.0
-offset_right = 48.0
-offset_bottom = 28.0
-
-[node name="stamina" type="ProgressBar" parent="HelperCamera2D/UI_manager" unique_id=362170671]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -14.0
-offset_right = 48.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_ioxgp")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cnsyf")
-max_value = 300.0
-value = 300.0
-show_percentage = false
-
-[node name="overlay" type="ProgressBar" parent="HelperCamera2D/UI_manager/stamina" unique_id=1546252090]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -3.0
-offset_right = 48.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_007i1")
-max_value = 300.0
-show_percentage = false
-
-[node name="VSeparator" type="VSeparator" parent="HelperCamera2D/UI_manager/stamina/overlay" unique_id=653704912]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.6666667
-anchor_right = 0.6666667
-offset_left = -3.0
-offset_right = 3.0
-offset_bottom = 6.0
-grow_horizontal = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_6cv16")
-metadata/_edit_use_anchors_ = true
-
-[node name="VSeparator2" type="VSeparator" parent="HelperCamera2D/UI_manager/stamina/overlay" unique_id=1529876588]
-layout_mode = 0
-offset_left = 29.0
-offset_right = 35.0
-offset_bottom = 6.0
-theme_override_styles/separator = SubResource("StyleBoxFlat_j4nxn")
-metadata/_edit_use_anchors_ = true
 
 [node name="State_machine" type="Node" parent="." unique_id=1205984589 node_paths=PackedStringArray("node")]
 script = ExtResource("19_8ydkj")
@@ -332,6 +244,100 @@ metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 [node name="dash_length" type="Timer" parent="State_machine/dash" unique_id=1610641087]
 wait_time = 0.2
 one_shot = true
+
+[node name="deflipper" type="Node2D" parent="." unique_id=243122078]
+
+[node name="UI_manager" type="Control" parent="deflipper" unique_id=1658084473]
+physics_interpolation_mode = 0
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = -120.0
+offset_top = -67.5
+offset_right = 200.0
+offset_bottom = 112.5
+script = ExtResource("5_qek5x")
+metadata/_custom_type_script = "uid://ch5tr6awtfhui"
+
+[node name="weapons" type="HBoxContainer" parent="deflipper/UI_manager" unique_id=1697385864]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="hearts" type="HBoxContainer" parent="deflipper/UI_manager" unique_id=1109428181]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 48.0
+offset_bottom = 20.0
+
+[node name="bullets" type="HBoxContainer" parent="deflipper/UI_manager" unique_id=60222458]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 48.0
+offset_bottom = 28.0
+
+[node name="stamina" type="ProgressBar" parent="deflipper/UI_manager" unique_id=362170671]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -14.0
+offset_right = 48.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_ioxgp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cnsyf")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="overlay" type="ProgressBar" parent="deflipper/UI_manager/stamina" unique_id=1546252090]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -3.0
+offset_right = 48.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_007i1")
+max_value = 300.0
+show_percentage = false
+
+[node name="VSeparator" type="VSeparator" parent="deflipper/UI_manager/stamina/overlay" unique_id=653704912]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6666667
+anchor_right = 0.6666667
+offset_left = -3.0
+offset_right = 3.0
+offset_bottom = 6.0
+grow_horizontal = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_6cv16")
+metadata/_edit_use_anchors_ = true
+
+[node name="VSeparator2" type="VSeparator" parent="deflipper/UI_manager/stamina/overlay" unique_id=1529876588]
+layout_mode = 0
+offset_left = 29.0
+offset_right = 35.0
+offset_bottom = 6.0
+theme_override_styles/separator = SubResource("StyleBoxFlat_j4nxn")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
 [connection signal="kill" from="Arm/Sword" to="." method="_on_sword_kill"]
