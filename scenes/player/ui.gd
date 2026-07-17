@@ -2,42 +2,32 @@
 class_name UI_manager
 extends Control
 
-@export var camera: Camera2D
-@export_group("weapons")
-@export var weapons_container: BoxContainer
-@export var left_frame: Texture2D
-@export var center_frame: Texture2D
-@export var right_frame: Texture2D
-@export var single_frame: Texture2D
-@export_group("hearts") 
-@export var hearts_container: BoxContainer
-@export var heart_texture: Texture2D
-@export_group("bullets")
-@export var bullet_container: BoxContainer
-@export var bullet_texture: Texture2D
-@export_group("stamina")
-@export var stamina: ProgressBar
-
-func correct_first_frame():
-	var first_frame: TextureRect = weapons_container.get_child(0)
+func correct_first_frame(container: BoxContainer, left_frame: Texture2D):
+	var first_frame: TextureRect = container.get_child(0)
 	first_frame.texture = left_frame
 
-func correct_middle_frames(number_of_frames):
+func correct_middle_frames(container: BoxContainer, center_frame: Texture2D):
+	var number_of_frames: int = container.get_child_count()
 	for index in range(1, number_of_frames):
-		var middle_frame: TextureRect = weapons_container.get_child(index)
+		var middle_frame: TextureRect = container.get_child(index)
 		middle_frame.texture = center_frame
 
-func add_weapon(texture: Texture, offset: Vector2 = Vector2.ZERO):
-	var number_of_frames := weapons_container.get_child_count()
+func add_weapon(
+	container: BoxContainer,
+ 	texture: Texture,
+	frames: Frames,
+	offset: Vector2 = Vector2.ZERO,
+	):
+	var number_of_frames := container.get_child_count()
 	var frame := TextureRect.new()
 	if number_of_frames == 0:
-		frame.texture = single_frame
+		frame.texture = frames.single
 	elif number_of_frames == 1:
-		correct_first_frame()
-		frame.texture = right_frame
+		correct_first_frame(container, frames.left)
+		frame.texture = frames.right
 	else:
-		correct_middle_frames(number_of_frames)
-		frame.texture = right_frame
+		correct_middle_frames(container, frames.center)
+		frame.texture = frames.right
 	frame.z_index = 1
 	var icon := TextureRect.new()
 	var atlas_texture := AtlasTexture.new()
@@ -49,7 +39,7 @@ func add_weapon(texture: Texture, offset: Vector2 = Vector2.ZERO):
 	icon.z_index = 0
 	icon.z_as_relative = false
 	frame.add_child(icon)
-	weapons_container.add_child(frame)
+	container.add_child(frame)
 
 func set_items_in_box(count: int, texture: Texture2D, box: BoxContainer):
 	var number_of_items := box.get_child_count()

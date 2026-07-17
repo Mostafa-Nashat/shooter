@@ -15,12 +15,17 @@
 [ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="11_ugbui"]
 [ext_resource type="Texture2D" uid="uid://bqdwob52bxdfh" path="res://assets/ui_0002.png" id="12_fcs02"]
 [ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="13_myrg7"]
+[ext_resource type="Texture2D" uid="uid://cjvy10ww4fyob" path="res://icon.svg" id="14_yj68g"]
 [ext_resource type="Script" uid="uid://bpsh5p35yjjgw" path="res://systems/helper_camera/helper_camera.gd" id="17_kvlxm"]
 [ext_resource type="Texture2D" uid="uid://iqw2df0mk3x2" path="res://assets/heart.png" id="17_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://bp5bibthhrgv" path="res://assets/silver_bullet.png" id="18_lgqa7"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="19_8ydkj"]
 [ext_resource type="Script" uid="uid://bqreayvencq2r" path="res://scenes/player/ground.gd" id="20_3j4b4"]
+[ext_resource type="PackedScene" uid="uid://gdqnyxrj3cme" path="res://scenes/ui/weapons.tscn" id="20_6cv16"]
 [ext_resource type="Script" uid="uid://dq12a4gn41062" path="res://scenes/player/dashing.gd" id="21_3j4b4"]
+[ext_resource type="PackedScene" uid="uid://ynerxbjlleot" path="res://scenes/ui/hearts.tscn" id="21_j4nxn"]
+[ext_resource type="PackedScene" uid="uid://10icvkhqwfeq" path="res://scenes/ui/bullets.tscn" id="22_28m0y"]
+[ext_resource type="PackedScene" uid="uid://cawl70std0gro" path="res://scenes/ui/stamina.tscn" id="23_uniwh"]
 
 [sub_resource type="Curve" id="Curve_3j4b4"]
 _data = [Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 0), 0.0, 0.0, 0, 0]
@@ -82,32 +87,6 @@ _data = {
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
 atlas = ExtResource("11_8ydkj")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3j4b4"]
-bg_color = Color(0.6, 0.234, 0.234, 1)
-border_color = Color(0.039215688, 0.039215688, 0.039215688, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioxgp"]
-border_width_left = 1
-border_width_right = 1
-border_color = Color(0.04, 0.04, 0.04, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnsyf"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.039215688, 0.039215688, 0.039215688, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-anti_aliasing = false
 
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("sprite", "ui_manager", "health", "gun", "sword", "camera", "arm", "state") groups=["player"]]
 script = ExtResource("1_g2els")
@@ -214,6 +193,7 @@ offset_top = -90.0
 offset_right = 160.0
 offset_bottom = 90.0
 script = ExtResource("5_qek5x")
+texture = ExtResource("14_yj68g")
 camera = NodePath("..")
 weapons_container = NodePath("weapons")
 left_frame = ExtResource("11_ugbui")
@@ -227,96 +207,46 @@ bullet_texture = ExtResource("18_lgqa7")
 stamina = NodePath("stamina")
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
-[node name="weapons" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=424867819]
+[node name="weapons" parent="HelperCamera2D/UI_manager" unique_id=404735675 instance=ExtResource("20_6cv16")]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -10.0
-offset_right = 8.0
-offset_bottom = -10.0
-grow_vertical = 0
-theme_override_constants/separation = 0
-alignment = 1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
 
-[node name="hearts" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=1452900962]
+[node name="hearts" parent="HelperCamera2D/UI_manager" unique_id=1545222947 instance=ExtResource("21_j4nxn")]
 layout_mode = 1
-offset_left = 8.0
-offset_top = 2.0
-offset_right = 48.0
-offset_bottom = 10.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.055555556
+anchor_right = 0.025
+anchor_bottom = 0.055555556
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
 
-[node name="bullets" type="HBoxContainer" parent="HelperCamera2D/UI_manager" unique_id=1382746959]
+[node name="bullets" parent="HelperCamera2D/UI_manager" unique_id=1662237812 instance=ExtResource("22_28m0y")]
 layout_mode = 1
-offset_left = 8.0
-offset_top = 12.0
-offset_right = 48.0
-offset_bottom = 20.0
-size_flags_horizontal = 0
-size_flags_vertical = 2
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.1
+anchor_right = 0.025
+anchor_bottom = 0.1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
 
-[node name="stamina" type="ProgressBar" parent="HelperCamera2D/UI_manager" unique_id=934204273]
+[node name="stamina" parent="HelperCamera2D/UI_manager" unique_id=1144961391 instance=ExtResource("23_uniwh")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -18.0
-offset_right = 32.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_3j4b4")
-max_value = 300.0
-value = 300.0
-show_percentage = false
-
-[node name="VSeparator" type="VSeparator" parent="HelperCamera2D/UI_manager/stamina" unique_id=701225848]
-z_index = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 16.0
-offset_top = -3.0
-offset_right = 26.0
-offset_bottom = 3.0
-grow_vertical = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_ioxgp")
-
-[node name="VSeparator2" type="VSeparator" parent="HelperCamera2D/UI_manager/stamina" unique_id=940340573]
-z_index = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 39.0
-offset_top = -3.0
-offset_right = 49.0
-offset_bottom = 3.0
-grow_vertical = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_ioxgp")
-
-[node name="border_overlay" type="ProgressBar" parent="HelperCamera2D/UI_manager/stamina" unique_id=1253590196]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -3.0
-offset_right = 32.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_cnsyf")
-show_percentage = false
+anchors_preset = -1
+anchor_top = 0.9
+anchor_bottom = 0.9
+metadata/_edit_use_anchors_ = true
 
 [node name="State_machine" type="Node" parent="." unique_id=1205984589 node_paths=PackedStringArray("node")]
 script = ExtResource("19_8ydkj")
