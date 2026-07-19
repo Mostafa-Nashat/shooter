@@ -19,10 +19,11 @@ func _ready() -> void:
 	set_collision_mask_value(4, true)
 	set_collision_mask_value(1, false)
 	set_collision_layer_value(1, false)
-	area_entered.connect(func(): on_camera = true)
-	area_exited.connect(func(): on_camera = false)
+	area_entered.connect(func(_area): on_camera = true)
+	area_exited.connect(func(_area): on_camera = false)
 
-func spawn(parent: Node2D, child: Enemy):
-	child.died.connect(enemy_died.emit)
-	child.global_position = global_position
-	parent.add_child(child)
+func spawn(parent: Node2D, child: PackedScene):
+	var enemy: Enemy = child.instantiate()
+	enemy.died.connect(enemy_died.emit)
+	enemy.global_position = global_position
+	parent.add_child.call_deferred(enemy)
