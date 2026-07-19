@@ -27,7 +27,6 @@ func spawn() -> void:
 	for data in wave_data:
 		var interpolcation := 1 - pow(0.8, wave)
 		var number :=int(data.distribution.sample(interpolcation))
-		print(number," ", data.enemy)
 		await spawn_composer.spawn_off_camera(
 			parent,
 			data.enemy,
@@ -36,7 +35,6 @@ func spawn() -> void:
 		)
 		enemy_count += number
 		await  get_tree().create_timer(wave_delay).timeout
-	print("wave: ", wave)
 	
 
 func _auto_continue():
