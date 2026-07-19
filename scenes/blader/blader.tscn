@@ -35,7 +35,6 @@ metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
 size = Vector2(4, 16)
 
 [node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health")]
-collision_mask = 0
 script = ExtResource("1_5ipyw")
 sword = NodePath("Arm/Sword")
 attack_radius = 40.0

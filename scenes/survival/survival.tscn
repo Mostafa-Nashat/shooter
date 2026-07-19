@@ -49,7 +49,6 @@ tile_set = ExtResource("1_rpllv")
 
 [node name="SpawnComposer" type="Node" parent="." unique_id=1631985996]
 script = ExtResource("5_3lrja")
-recursive_delay = 1.0
 metadata/_custom_type_script = "uid://cc5ittxgx1eoh"
 
 [node name="Enemy_Spawner" type="Area2D" parent="SpawnComposer" unique_id=252476782]

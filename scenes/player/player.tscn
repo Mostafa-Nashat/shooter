@@ -204,6 +204,7 @@ libraries/sword_animations = ExtResource("19_cnsyf")
 
 [node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
 scale = Vector2(0.75, 0.75)
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("17_kvlxm")
 hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://bpsh5p35yjjgw"

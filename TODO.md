@@ -1,6 +1,6 @@
 #TODO
-- add make stun system
 - add item system
+- add make stun system
 - add crafting system
 - add animations
 - add sound affects

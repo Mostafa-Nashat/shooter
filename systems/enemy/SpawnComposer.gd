@@ -2,7 +2,7 @@ class_name SpawnComposer
 extends Node
 
 var spawners: Array[Enemy_Spawner]
-@export var recursive_delay: float = 3.0
+@export var recursive_delay: float = 1.0
 
 signal enemy_died
 
@@ -33,9 +33,7 @@ func spawn_off_camera(
 			spawner.spawn(parent, enemy)
 		await get_tree().create_timer(recursive_delay).timeout
 		var enemies_left := number - len(valid_spawners)
-		
 		await spawn_off_camera(parent, enemy, enemies_left, closest_to)
-		print("recurse: ", number, " ", enemy, " ") 
 	else:
 		for index in number:
 			var spawner: Enemy_Spawner = valid_spawners[index]
