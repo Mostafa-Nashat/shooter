@@ -1,7 +1,7 @@
 extends State
 
 
-var enemy: Enemy
+var enemy: Gunner
 
 func get_player() -> Player:
 	var player_node: Player = get_tree().get_first_node_in_group("player")
@@ -36,5 +36,5 @@ func _update() -> void:
 		
 	
 	go_to(player.global_position, enemy.SPEED)
-	if enemy.navigator.distance_to_target() < 80:
+	if enemy.navigator.distance_to_target() < enemy.shooting_radius:
 		state.switch_state("shooting")

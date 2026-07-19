@@ -19,8 +19,12 @@ size = Vector2(10, 8)
 size = Vector2(10, 28.5)
 
 [node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health")]
+collision_mask = 0
 script = ExtResource("1_hl2eg")
+shooting_cooldown = 2.0
 gun = NodePath("Arm/Gun")
+shooting_radius = 50.0
+chasing_radius = 200.0
 state_machine = NodePath("State_machine")
 arm = NodePath("Arm")
 navigator = NodePath("NavigationAgent2D")
@@ -80,7 +84,7 @@ script = ExtResource("8_cgbon")
 metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
 [node name="delay" type="Timer" parent="State_machine/shooting" unique_id=1500216192]
-wait_time = 0.75
+wait_time = 2.0
 one_shot = true
 
 [node name="HealthManager" type="Node" parent="State_machine" unique_id=1612107428]

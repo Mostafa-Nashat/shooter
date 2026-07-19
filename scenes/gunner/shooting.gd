@@ -1,6 +1,6 @@
 extends State
 
-var enemy: Enemy
+var enemy: Gunner
 var player: Player
 
 func get_player() -> Player:
@@ -15,6 +15,7 @@ func get_player() -> Player:
 
 func _start():
 	enemy = state.node
+	delay.wait_time = enemy.shooting_cooldown
 	player = get_player()
 	delay.start()
 	enemy.arm.visible = true
@@ -30,5 +31,5 @@ func _update():
 	delay.start()
 	enemy.gun.use()
 	var player_distance = player.global_position - enemy.global_position
-	if player_distance.length() > 90:
+	if player_distance.length() > enemy.chasing_radius:
 		state.switch_state("chasing")

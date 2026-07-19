@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c68jmupx28oma"]
+
+[ext_resource type="Script" uid="uid://csm6o1fa12mro" path="res://scenes/survival/survival_hud.gd" id="1_0e0tp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jesgf"]
+font_size = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_0e0tp"]
+font_size = 6
+
+[node name="Control" type="Control" unique_id=417521430 node_paths=PackedStringArray("enemy_counter", "wave_counter")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0e0tp")
+enemy_counter = NodePath("enemy_counter")
+wave_counter = NodePath("wave")
+
+[node name="enemy_counter" type="Label" parent="." unique_id=1917621448]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98125
+anchor_top = 1.0444444
+anchor_right = 0.98125
+anchor_bottom = 1.0444444
+offset_left = -50.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "enemies left: "
+label_settings = SubResource("LabelSettings_jesgf")
+metadata/_edit_use_anchors_ = true
+
+[node name="wave" type="Label" parent="." unique_id=80366109]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9625
+anchor_top = 1.0
+anchor_right = 0.9625
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Wave: "
+label_settings = SubResource("LabelSettings_0e0tp")
+metadata/_edit_use_anchors_ = true

@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://tfml6rbfelrm"]
 
+[ext_resource type="Script" uid="uid://cl4gqdyunakkb" path="res://scenes/survival/survival.gd" id="1_p2oe2"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="1_rpllv"]
 [ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="2_abumj"]
 [ext_resource type="Script" uid="uid://c5mtacxfjj0ws" path="res://systems/enemy/spawner.gd" id="3_abumj"]
@@ -9,33 +10,34 @@
 [ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="7_ohsek"]
 [ext_resource type="PackedScene" uid="uid://dn1ywnankmule" path="res://scenes/gunner/gunner.tscn" id="8_0ganr"]
 
-[sub_resource type="Curve" id="Curve_1mxgb"]
-_limits = [0.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 20), 22.101168, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_p2oe2"]
+_limits = [4.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 30), 65.128006, 0.0, 0, 0]
 point_count = 2
-metadata/_snap_enabled = true
 
-[sub_resource type="Resource" id="Resource_4oq61"]
-script = ExtResource("6_p2oe2")
-enemy = ExtResource("8_0ganr")
-distribution = SubResource("Curve_1mxgb")
-metadata/_custom_type_script = "uid://mfmux50yxmj3"
-
-[sub_resource type="Curve" id="Curve_4oq61"]
-_limits = [0.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7, 16), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
-point_count = 3
-metadata/_snap_enabled = true
-
-[sub_resource type="Resource" id="Resource_p2oe2"]
+[sub_resource type="Resource" id="Resource_ohsek"]
 script = ExtResource("6_p2oe2")
 enemy = ExtResource("7_ohsek")
-distribution = SubResource("Curve_4oq61")
+distribution = SubResource("Curve_p2oe2")
 metadata/_custom_type_script = "uid://mfmux50yxmj3"
 
-[node name="survival" type="Node2D" unique_id=1399230750]
+[sub_resource type="Curve" id="Curve_0ganr"]
+_limits = [2.0, 15.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_6cf1l"]
+script = ExtResource("6_p2oe2")
+enemy = ExtResource("8_0ganr")
+distribution = SubResource("Curve_0ganr")
+metadata/_custom_type_script = "uid://mfmux50yxmj3"
+
+[node name="survival" type="Node2D" unique_id=1399230750 node_paths=PackedStringArray("wave_spawner", "player")]
 z_as_relative = false
 y_sort_enabled = true
+script = ExtResource("1_p2oe2")
+wave_spawner = NodePath("WaveSpawner")
+player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2041624490]
 z_index = -1
@@ -47,6 +49,7 @@ tile_set = ExtResource("1_rpllv")
 
 [node name="SpawnComposer" type="Node" parent="." unique_id=1631985996]
 script = ExtResource("5_3lrja")
+recursive_delay = 1.0
 metadata/_custom_type_script = "uid://cc5ittxgx1eoh"
 
 [node name="Enemy_Spawner" type="Area2D" parent="SpawnComposer" unique_id=252476782]
@@ -63,12 +66,36 @@ collision_mask = 8
 script = ExtResource("3_abumj")
 metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
 
+[node name="Enemy_Spawner3" type="Area2D" parent="SpawnComposer" unique_id=2007809304]
+position = Vector2(122, 22)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_abumj")
+metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
+
+[node name="Enemy_Spawner4" type="Area2D" parent="SpawnComposer" unique_id=2105898872]
+position = Vector2(-90, 91)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_abumj")
+metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
+
+[node name="Enemy_Spawner5" type="Area2D" parent="SpawnComposer" unique_id=1480376]
+position = Vector2(-81, -52)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_abumj")
+metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
+
 [node name="WaveSpawner" type="Node" parent="." unique_id=707876410 node_paths=PackedStringArray("spawn_composer", "parent", "player")]
 script = ExtResource("5_4oq61")
 spawn_composer = NodePath("../SpawnComposer")
-wave_data = Array[ExtResource("6_p2oe2")]([SubResource("Resource_4oq61"), SubResource("Resource_p2oe2")])
+wave_data = Array[ExtResource("6_p2oe2")]([SubResource("Resource_ohsek"), SubResource("Resource_6cf1l")])
 parent = NodePath("..")
 player = NodePath("../Player")
 autostart = true
 auto_continue = true
+auto_continue_cooldown = 5.0
 metadata/_custom_type_script = "uid://bke7cmvbshg0t"
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]

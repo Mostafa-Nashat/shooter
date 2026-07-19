@@ -5,7 +5,7 @@ extends Control
 @export var died_on_wave_prefix: String = "You died on wave "
 
 func _on_again_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/fighting_ring/fighting_ring.tscn")
+	get_tree().change_scene_to_file("res://scenes/survival/survival.tscn")
 
 func _on_home_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/home_screen/home_screen.tscn")

@@ -7,13 +7,13 @@ extends CharacterBody2D
 @export var arm: Arm
 @export var navigator: NavigationAgent2D
 @export var health: HealthManager
+@export var collision_offset := 60
 
 signal died
 
 func _ready() -> void:
 	health.died.connect(_on_died)
 	
-
 func _physics_process(_delta: float) -> void:
 	state_machine.update()
 	move_and_slide()

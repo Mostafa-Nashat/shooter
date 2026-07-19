@@ -2,7 +2,7 @@ class_name SpawnComposer
 extends Node
 
 var spawners: Array[Enemy_Spawner]
-@export var recursive_delay: float = 1.0
+@export var recursive_delay: float = 3.0
 
 signal enemy_died
 
@@ -12,8 +12,8 @@ func _ready() -> void:
 			spawners.append(child)
 			child.enemy_died.connect(enemy_died.emit)
 
-func _spawner_off_camera(spawner: Enemy_Spawner):
-	return !spawner.on_camera
+func _valid(spawner: Enemy_Spawner):
+	return !spawner.on_camera and spawner.overlapping_bodies == 0
 
 func _sort_by_closest(target: Node2D, a: Node2D, b: Node2D):
 	var target_distance_a = abs(a.global_position - target.global_position)
@@ -26,15 +26,17 @@ func spawn_off_camera(
 	number: int,
 	closest_to: Node2D
 	):
-	var valid_spawners := spawners.filter(_spawner_off_camera)
+	var valid_spawners := spawners.filter(_valid)
 	valid_spawners.sort_custom(_sort_by_closest.bind(closest_to))
 	if number > len(valid_spawners):
 		for spawner in valid_spawners:
 			spawner.spawn(parent, enemy)
 		await get_tree().create_timer(recursive_delay).timeout
 		var enemies_left := number - len(valid_spawners)
-		spawn_off_camera(parent, enemy, enemies_left, closest_to)
+		
+		await spawn_off_camera(parent, enemy, enemies_left, closest_to)
+		print("recurse: ", number, " ", enemy, " ") 
 	else:
 		for index in number:
 			var spawner: Enemy_Spawner = valid_spawners[index]
-			spawner.spawn(parent, enemy)
+			await spawner.spawn(parent, enemy)
