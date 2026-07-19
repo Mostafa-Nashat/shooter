@@ -7,3 +7,4 @@ extends Resource
 @export var velocity: Vector2
 @export var despawn_time: float = 3.0
 @export var offset: Vector2
+@export var player_freindly: bool

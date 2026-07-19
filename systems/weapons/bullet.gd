@@ -26,6 +26,11 @@ func add_despawn_timer() -> void:
 	despawn_timer = timer
 
 func _ready() -> void:
+	if bullet.player_freindly:
+		set_collision_mask_value(1, true)
+	else:
+		set_collision_mask_value(1, false)
+		set_collision_mask_value(2, true)
 	add_hitbox()
 	add_sprite()
 	add_despawn_timer()
