@@ -396,6 +396,8 @@ script = ExtResource("25_007i1")
 metadata/_custom_type_script = "uid://qhgmmhpoci1n"
 
 [node name="ItemTaker" type="Area2D" parent="." unique_id=1400688395]
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("30_iqsei")
 metadata/_custom_type_script = "uid://dr7ds6bn67p80"
 
