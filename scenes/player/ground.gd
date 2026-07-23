@@ -22,7 +22,8 @@ func _update():
 		dash_stamina += stamina_revovery_per_secound * get_physics_process_delta_time()
 		set_data_ui()
 	
-	
+	if Input.is_action_just_pressed("inventory"):
+		state.switch_state("craft")
 
 	
 

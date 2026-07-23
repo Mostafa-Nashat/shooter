@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://clf7erby3l0wn" path="res://systems/FallbackRayCast2D/FallbackRayCast2D.gd" id="22_uniwh"]
 [ext_resource type="Script" uid="uid://se4eio0temhk" path="res://scenes/player/build.gd" id="24_6cv16"]
 [ext_resource type="Script" uid="uid://qhgmmhpoci1n" path="res://systems/build/TileBuilder.gd" id="25_007i1"]
+[ext_resource type="Script" uid="uid://cgvijb7vhbgw1" path="res://scenes/player/craft.gd" id="28_tffgl"]
 [ext_resource type="Script" uid="uid://dr7ds6bn67p80" path="res://systems/item/ItemTaker.gd" id="30_iqsei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqsei"]
@@ -136,7 +137,7 @@ border_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
 size = Vector2(11, 30)
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "sprite", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "sprite", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block", "inventory", "inventory_grid") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
 MAX_HAND_SWING_SPEED = 20.0
@@ -160,6 +161,8 @@ hearts = NodePath("CanvasLayer/UI_manager/hearts")
 heart_texture = ExtResource("17_uf5tr")
 stamina = NodePath("CanvasLayer/UI_manager/stamina")
 selected_block = NodePath("CanvasLayer/UI_manager/selected_block")
+inventory = NodePath("CanvasLayer/UI_manager/Panel")
+inventory_grid = NodePath("CanvasLayer/UI_manager/Panel/GridContainer")
 
 [node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
 scale = Vector2(0.75, 0.75)
@@ -285,6 +288,10 @@ one_shot = true
 script = ExtResource("24_6cv16")
 metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
+[node name="craft" type="Node" parent="State_machine" unique_id=463561991]
+script = ExtResource("28_tffgl")
+metadata/_custom_type_script = "uid://bt1l7q6it3d82"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=589034154]
 
 [node name="UI_manager" type="Control" parent="CanvasLayer" unique_id=1658084473]
@@ -387,9 +394,29 @@ anchor_top = 0.88900006
 anchor_right = 0.15
 anchor_bottom = 0.97800004
 offset_top = -0.020004272
-offset_bottom = -0.040008545
+offset_bottom = -0.040039063
 grow_vertical = 0
 stretch_mode = 4
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI_manager" unique_id=719913307]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI_manager/Panel" unique_id=765188776]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
 
 [node name="TileBuilder" type="Node" parent="." unique_id=1247591526]
 script = ExtResource("25_007i1")

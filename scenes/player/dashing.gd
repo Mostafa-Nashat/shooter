@@ -40,4 +40,3 @@ func _update():
 		)
 		state.switch_state("ground")
 		return
-	

@@ -54,6 +54,8 @@ func _start():
 func _update():
 	if Input.is_action_just_pressed("combat"):
 		state.switch_state("ground")
+	if Input.is_action_just_pressed("inventory"):
+		state.switch_state("craft")
 	player.allow_movement_control()
 	player.arm.look_at_target(player.get_global_mouse_position(), player.MAX_HAND_SWING_SPEED)
 	

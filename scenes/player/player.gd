@@ -36,6 +36,8 @@ var weapon_being_used: bool = false
 @export var heart_texture: Texture2D
 @export var stamina: ProgressBar
 @export var selected_block: TextureRect
+@export var inventory: Panel
+@export var inventory_grid: GridContainer
 
 func add_weapon_frame(weapon: Weapon, offset) -> void:
 	hud.add_weapon(
