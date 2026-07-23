@@ -136,7 +136,7 @@ border_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
 size = Vector2(11, 30)
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "sprite", "health", "gun", "sword", "camera", "arm", "state", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "sprite", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
 MAX_HAND_SWING_SPEED = 20.0
@@ -150,6 +150,7 @@ sword = NodePath("Arm/weapons/Sword")
 camera = NodePath("HelperCamera2D")
 arm = NodePath("Arm")
 state = NodePath("State_machine")
+item_taker = NodePath("ItemTaker")
 hud = NodePath("CanvasLayer/UI_manager")
 weapons = NodePath("CanvasLayer/UI_manager/weapons")
 weapon_frames = SubResource("Resource_uniwh")

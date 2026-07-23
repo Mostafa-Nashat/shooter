@@ -1,7 +1,9 @@
+@tool
 class_name Item
 extends RigidBody2D
 
 @export var data: ItemData
+@export var count: int
 @export var sprite: Sprite2D
 @export var collision_shape: CollisionShape2D
 
