@@ -22,6 +22,7 @@ var kill_count = 0
 @export var camera: Camera2D
 @export var arm: Arm
 @export var state: State_machine
+@export var item_taker: ItemTaker
 
 var weapon_being_used: bool = false
 

@@ -19,6 +19,7 @@ size = Vector2(10, 8)
 size = Vector2(10, 28.5)
 
 [node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health")]
+motion_mode = 1
 script = ExtResource("1_hl2eg")
 shooting_cooldown = 2.0
 gun = NodePath("Arm/Gun")

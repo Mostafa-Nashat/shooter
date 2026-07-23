@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://clf7erby3l0wn" path="res://systems/FallbackRayCast2D/FallbackRayCast2D.gd" id="22_uniwh"]
 [ext_resource type="Script" uid="uid://se4eio0temhk" path="res://scenes/player/build.gd" id="24_6cv16"]
 [ext_resource type="Script" uid="uid://qhgmmhpoci1n" path="res://systems/build/TileBuilder.gd" id="25_007i1"]
+[ext_resource type="Script" uid="uid://dr7ds6bn67p80" path="res://systems/item/ItemTaker.gd" id="30_iqsei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqsei"]
 size = Vector2(16, 16)
@@ -132,9 +133,12 @@ border_width_left = 1
 border_width_right = 1
 border_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
+size = Vector2(11, 30)
+
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "sprite", "health", "gun", "sword", "camera", "arm", "state", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block") groups=["player"]]
+motion_mode = 1
 script = ExtResource("1_g2els")
-bullet_count = 2
 MAX_HAND_SWING_SPEED = 20.0
 blocks = Array[ExtResource("2_28m0y")]([SubResource("Resource_tffgl"), SubResource("Resource_5mf0n")])
 build_ray = NodePath("Arm/FallbackRayCast2D")
@@ -389,6 +393,14 @@ stretch_mode = 4
 [node name="TileBuilder" type="Node" parent="." unique_id=1247591526]
 script = ExtResource("25_007i1")
 metadata/_custom_type_script = "uid://qhgmmhpoci1n"
+
+[node name="ItemTaker" type="Area2D" parent="." unique_id=1400688395]
+script = ExtResource("30_iqsei")
+metadata/_custom_type_script = "uid://dr7ds6bn67p80"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemTaker" unique_id=194863607]
+position = Vector2(0.5, -15)
+shape = SubResource("RectangleShape2D_tffgl")
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
 [connection signal="kill" from="Arm/weapons/Sword" to="." method="_on_sword_kill"]
