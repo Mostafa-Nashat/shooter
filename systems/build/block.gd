@@ -27,7 +27,6 @@ func place_if_valid() -> void:
 	for body in space_state.intersect_shape(physics_shape_query_params):
 		if body["collider"] is StaticBody2D:
 			continue
-		print("YES YES YES")
 		queue_free()
 		return
 	sprite.texture = data.texture
