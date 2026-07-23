@@ -10,6 +10,7 @@ func _on_dash_stamina_timer_timout():
 
 func _start():
 	player = state.node
+	player.inventory.visible = false
 
 func set_data_ui() -> void:
 	player.hud.set_progress_bar(dash_stamina, player.stamina)

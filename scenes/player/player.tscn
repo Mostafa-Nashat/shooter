@@ -134,6 +134,12 @@ border_width_left = 1
 border_width_right = 1
 border_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tffgl"]
+bg_color = Color(0.08, 0.08, 0.08, 0.8666667)
+
+[sub_resource type="Theme" id="Theme_tffgl"]
+default_font_size = 6
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
 size = Vector2(11, 30)
 
@@ -162,7 +168,7 @@ heart_texture = ExtResource("17_uf5tr")
 stamina = NodePath("CanvasLayer/UI_manager/stamina")
 selected_block = NodePath("CanvasLayer/UI_manager/selected_block")
 inventory = NodePath("CanvasLayer/UI_manager/Panel")
-inventory_grid = NodePath("CanvasLayer/UI_manager/Panel/GridContainer")
+inventory_grid = NodePath("CanvasLayer/UI_manager/Panel/MarginContainer/GridContainer")
 
 [node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
 scale = Vector2(0.75, 0.75)
@@ -399,7 +405,6 @@ grow_vertical = 0
 stretch_mode = 4
 
 [node name="Panel" type="Panel" parent="CanvasLayer/UI_manager" unique_id=719913307]
-visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 1
 anchors_preset = -1
@@ -408,14 +413,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tffgl")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI_manager/Panel" unique_id=765188776]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI_manager/Panel" unique_id=40925868]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI_manager/Panel/MarginContainer" unique_id=765188776]
+layout_mode = 2
+theme = SubResource("Theme_tffgl")
 columns = 2
 
 [node name="TileBuilder" type="Node" parent="." unique_id=1247591526]
