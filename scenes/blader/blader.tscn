@@ -36,7 +36,7 @@ size = Vector2(4, 16)
 
 [node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health")]
 script = ExtResource("1_5ipyw")
-sword = NodePath("Arm/Sword")
+sword = NodePath("Arm/weapons/Sword")
 attack_radius = 40.0
 state_machine = NodePath("State_machine")
 arm = NodePath("Arm")
@@ -76,22 +76,25 @@ position = Vector2(8, 0)
 rotation = 1.5707964
 texture = ExtResource("6_x8a40")
 
-[node name="Sword" type="Node2D" parent="Arm" unique_id=1998251897 node_paths=PackedStringArray("hitbox", "animation_player", "sprite")]
+[node name="weapons" type="Node2D" parent="Arm" unique_id=140028175]
+
+[node name="Sword" type="Node2D" parent="Arm/weapons" unique_id=1998251897 node_paths=PackedStringArray("hitbox", "animation_player", "sprite")]
 script = ExtResource("7_5ipyw")
 hitbox = NodePath("Area2D")
-animation_player = NodePath("../../AnimationPlayer")
+animation_player = NodePath("../../../AnimationPlayer")
 weapon = SubResource("Resource_5ipyw")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://e4xsevke2hor"
 
-[node name="Area2D" type="Area2D" parent="Arm/Sword" unique_id=975272198]
+[node name="Area2D" type="Area2D" parent="Arm/weapons/Sword" unique_id=975272198]
+collision_mask = 3
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arm/Sword/Area2D" unique_id=224737363]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arm/weapons/Sword/Area2D" unique_id=224737363]
 position = Vector2(13, -6)
 shape = SubResource("RectangleShape2D_nrkbr")
 
-[node name="Sprite2D" type="Sprite2D" parent="Arm/Sword" unique_id=58287317]
+[node name="Sprite2D" type="Sprite2D" parent="Arm/weapons/Sword" unique_id=58287317]
 position = Vector2(13, -6)
 texture = ExtResource("9_p34w5")
 

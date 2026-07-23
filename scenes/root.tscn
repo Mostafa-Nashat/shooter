@@ -2,7 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="1_lrqlo"]
 [ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="2_lrqlo"]
-[ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="3_sqa0i"]
+
+[sub_resource type="TileSet" id="TileSet_twpsu"]
 
 [node name="root" type="Node2D" unique_id=864890305]
 
@@ -12,9 +13,9 @@ tile_map_data = PackedByteArray("AADs/wkAAAAAAAIAAADs/woAAAAAAAMAAADs/wsAAAAAAAM
 tile_set = ExtResource("1_lrqlo")
 y_sort_origin = -1
 
-[node name="Player" parent="." unique_id=1281965873 instance=ExtResource("2_lrqlo")]
-position = Vector2(-206, 194)
+[node name="build" type="TileMapLayer" parent="." unique_id=379798963]
+tile_set = SubResource("TileSet_twpsu")
 
-[node name="blader" parent="." unique_id=1531731814 instance=ExtResource("3_sqa0i")]
-position = Vector2(285, 193)
-attack_radius = 30.0
+[node name="Player" parent="." unique_id=1281965873 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_lrqlo")]
+position = Vector2(-206, 194)
+tilemap = NodePath("../build")

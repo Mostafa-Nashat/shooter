@@ -58,9 +58,3 @@ func set_items_in_box(count: int, texture: Texture2D, box: BoxContainer):
 
 func set_progress_bar(value: float, bar: ProgressBar):
 	bar.value = value
-
-func _ready() -> void:
-	size.x = ProjectSettings.get_setting("display/window/size/viewport_width")
-	size.y = ProjectSettings.get_setting("display/window/size/viewport_height")
-	position.x = -size.x / 2
-	position.y = -size.y / 2

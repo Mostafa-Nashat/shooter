@@ -4,24 +4,28 @@ extends CharacterBody2D
 signal died
 
 @export var SPEED: float = 120.0
-@export var MAX_HAND_SWING_SPEED: float = 90
 
+var kill_count = 0
+@export var bullet_max: int = 6
+@export var bullet_count: int
+@export var MAX_HAND_SWING_SPEED: float = 90
+@export var blocks: Array[BlockData]
+
+@export_category("Dependencies")
+@export var tilemap: TileMapLayer
+@export var build_ray: FallbackRayCast2D
+@export var builder: TileBuilder
 @export var sprite: Sprite2D
 @export var health: HealthManager
-
 @export var gun: Gun
 @export var sword: Sword
 @export var camera: Camera2D
-@export var deflipper: Node2D
-@export var bullet_count: int
-var kill_count = 0
-@export var bullet_max: int = 6
 @export var arm: Arm
 @export var state: State_machine
 
 var weapon_being_used: bool = false
 
-@export_group("HUD")
+@export_category("HUD")
 @export var hud: UI_manager
 @export var weapons: BoxContainer
 @export var weapon_frames: Frames
@@ -30,6 +34,7 @@ var weapon_being_used: bool = false
 @export var hearts: BoxContainer
 @export var heart_texture: Texture2D
 @export var stamina: ProgressBar
+@export var selected_block: TextureRect
 
 func add_weapon_frame(weapon: Weapon, offset) -> void:
 	hud.add_weapon(
@@ -40,7 +45,7 @@ func add_weapon_frame(weapon: Weapon, offset) -> void:
 	)
 
 func _ready() -> void:
-	arm.visible = false
+	builder.tilemap = tilemap
 	if sword.weapon:
 		var offset = Vector2(4.0, 0)
 		add_weapon_frame(sword, offset)
@@ -55,12 +60,10 @@ func _physics_process(_delta: float) -> void:
 
 func use_weapon(weapon: Weapon, cooldown: float):
 	weapon_being_used = true
-	arm.visible = true
 	weapon.weapon.enabled = true
 	weapon.use()
 	await weapon.done_using
 	weapon.weapon.enabled = false
-	arm.visible = false
 	await get_tree().create_timer(cooldown).timeout
 	weapon_being_used = false
 
@@ -75,6 +78,8 @@ func _on_sword_kill() -> void:
 	bullet_count = clamp(bullet_count, 0 , bullet_max)
 
 func allow_weapon_control() -> void:
+	if !sword or !sword.weapon or !sword.animation_player.is_playing():
+		arm.look_at_target(get_global_mouse_position(), MAX_HAND_SWING_SPEED)
 	if !weapon_being_used:
 		if Input.is_action_just_pressed("shoot") and bullet_count > 0:
 			bullet_count -= 1
@@ -85,3 +90,11 @@ func allow_weapon_control() -> void:
 func show_hud_elements() -> void:
 	hud.set_items_in_box(int(health.health), heart_texture, hearts)
 	hud.set_items_in_box(bullet_count, bullet_texture, bullets)
+
+func allow_movement_control() -> void:
+	var direction := Input.get_vector("left", "right", "front", "back").normalized()
+	velocity = direction * SPEED
+	if direction.x < 0:
+		transform.x = Vector2(-1, 0)
+	elif direction.x > 0:
+		transform.x = Vector2(1, 0)
