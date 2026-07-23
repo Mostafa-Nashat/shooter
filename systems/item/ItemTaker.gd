@@ -16,8 +16,6 @@ func take_item(item: ItemData, count: int) -> void:
 	if count == 0:
 		return
 	for inventory_item in inventory:
-		print(inventory_item.name)
-		print(item.name)
 		if inventory_item.name == item.name:
 			inventory_item.count += count
 			return
