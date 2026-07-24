@@ -16,12 +16,14 @@ func take_item(item: ItemData, count: int) -> void:
 	if count == 0:
 		return
 	for inventory_item in inventory:
-		if inventory_item.name == item.name:
+		if inventory_item.data.name == item.name:
 			inventory_item.count += count
 			return
 	var inventory_item := InventoryItemData.new()
 	inventory_item.count = count
-	inventory_item.name = item.name
-	inventory_item.shape = item.shape
-	inventory_item.texture = item.texture
+	var item_data := ItemData.new() 
+	item_data.name = item.name
+	item_data.shape = item.shape
+	item_data.texture = item.texture
+	inventory_item.data = item_data
 	inventory.append(inventory_item)

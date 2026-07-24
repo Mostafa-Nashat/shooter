@@ -14,14 +14,14 @@ func _start():
 	for item in player.item_taker.inventory:
 		var sprite := TextureRect.new()
 		sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
-		sprite.texture = item.texture
+		sprite.texture = item.data.texture
 		player.inventory_grid.add_child(sprite)
 		
 		var label := Label.new()
 		if item.count == 1:
-			label.text = "1 " + item.name
+			label.text = "1 " + item.data.name
 		else:
-			label.text = str(item.count) + " " + item.name
+			label.text = str(item.count) + " " + item.data.name
 		player.inventory_grid.add_child(label)
 
 func _update():

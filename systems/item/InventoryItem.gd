@@ -1,4 +1,5 @@
 class_name InventoryItemData
-extends ItemData
+extends Resource
 
 @export var count: int
+@export var data: ItemData
