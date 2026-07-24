@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://dwa7c0o5bgq44"]
 
 [ext_resource type="Script" uid="uid://yx405wdflm2y" path="res://systems/item/Item.gd" id="1_oytdp"]
-[ext_resource type="Texture2D" uid="uid://b8mgkgt1frogd" path="res://assets/plank.png" id="3_7y7vg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7y7vg"]
-size = Vector2(8, 8)
 
 [node name="base_item" type="RigidBody2D" unique_id=1251309664 node_paths=PackedStringArray("sprite", "collision_shape")]
 collision_layer = 16
@@ -16,7 +12,5 @@ collision_shape = NodePath("CollisionShape2D")
 metadata/_custom_type_script = "uid://yx405wdflm2y"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=264548363]
-texture = ExtResource("3_7y7vg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=864788210]
-shape = SubResource("RectangleShape2D_7y7vg")

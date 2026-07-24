@@ -1,11 +1,11 @@
 class_name Recipe
 extends Resource
 
-var title: String
-var description: String
-var ingredients: Array[InventoryItemData]
-var preview: Texture2D
-var result: Result
+@export var title: String
+@export_multiline() var description: String
+@export var ingredients: Array[InventoryItemData]
+@export var preview: Texture2D
+@export var result: Result
 
 func craftable(player: Player) -> bool:
 	for ingredient in ingredients:
