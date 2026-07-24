@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cb0q7rqe0no1r"]
+
+[ext_resource type="Script" uid="uid://dxjy8yim1aavu" path="res://systems/item/ItemData.gd" id="1_8gakv"]
+[ext_resource type="Texture2D" uid="uid://vsti6it1yx0b" path="res://assets/nails.png" id="2_m3cbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpgqj"]
+size = Vector2(6, 6)
+
+[resource]
+script = ExtResource("1_8gakv")
+texture = ExtResource("2_m3cbx")
+name = &"nails"
+shape = SubResource("RectangleShape2D_bpgqj")
+metadata/_custom_type_script = "uid://dxjy8yim1aavu"

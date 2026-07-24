@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://5lbk1cs1bpky"]
+
+[ext_resource type="Script" uid="uid://dxjy8yim1aavu" path="res://systems/item/ItemData.gd" id="1_uedmx"]
+[ext_resource type="Texture2D" uid="uid://b8mgkgt1frogd" path="res://assets/plank.png" id="2_8xfwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_peyax"]
+size = Vector2(8, 8)
+
+[resource]
+script = ExtResource("1_uedmx")
+texture = ExtResource("2_8xfwv")
+name = &"plank"
+shape = SubResource("RectangleShape2D_peyax")
+metadata/_custom_type_script = "uid://dxjy8yim1aavu"
