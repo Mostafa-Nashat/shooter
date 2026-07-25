@@ -2,16 +2,7 @@ extends State
 
 var player: Player
 
-func _start():
-	player = state.node
-	
-	player.bullets.visible = false
-	player.hearts.visible = false
-	player.weapons.visible = false
-	player.stamina.visible = false
-	player.inventory.visible = true
-	
-	remove_zero_items()
+func display_items() -> void:
 	for item in player.item_taker.inventory:
 		var sprite := TextureRect.new()
 		sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
@@ -24,6 +15,19 @@ func _start():
 		else:
 			label.text = str(item.count) + " " + item.data.name
 		player.item_grid.add_child(label)
+
+func _start():
+	player = state.node
+	
+	player.bullets.visible = false
+	player.hearts.visible = false
+	player.weapons.visible = false
+	player.stamina.visible = false
+	player.inventory.visible = true
+	
+	remove_zero_items()
+	display_items()
+
 
 func remove_zero_items() -> void:
 	player.item_taker.inventory = player.item_taker.inventory.filter(func(item: InventoryItemData): return item.count > 0)
