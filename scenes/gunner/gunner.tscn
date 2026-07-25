@@ -90,4 +90,5 @@ one_shot = true
 [node name="HealthManager" type="Node" parent="State_machine" unique_id=1612107428]
 script = ExtResource("6_imgld")
 health = 2.0
+max_health = 2.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"

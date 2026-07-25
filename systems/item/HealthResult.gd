@@ -4,4 +4,4 @@ extends Result
 @export var health: int
 
 func apply(player: Player) -> void:
-	player.health.health += health
+	player.health.set_health_to_max()

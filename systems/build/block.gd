@@ -16,6 +16,7 @@ func _ready() -> void:
 	if health:
 		hurtbox_collision_shape.shape = data.shape
 		health.health = data.health
+		health.max_health = data.health
 		health.died.connect(queue_free)
 	place_if_valid()
 

@@ -20,6 +20,7 @@ debug_color = Color(0.7628064, 0.3208644, 0.7995636, 0.41960785)
 [node name="HealthManager" type="Node" parent="." unique_id=1790384898]
 script = ExtResource("2_n7plq")
 health = 5.0
+max_health = 5.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=533903077 node_paths=PackedStringArray("health")]

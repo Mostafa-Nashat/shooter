@@ -56,6 +56,7 @@ shape = SubResource("RectangleShape2D_n804e")
 [node name="HealthManager" type="Node" parent="." unique_id=1126892542]
 script = ExtResource("3_6a7yw")
 health = 2.0
+max_health = 2.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=2074454187 node_paths=PackedStringArray("health")]

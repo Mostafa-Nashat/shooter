@@ -184,6 +184,7 @@ shape = SubResource("RectangleShape2D_8afob")
 [node name="HealthManager" type="Node" parent="." unique_id=937521712]
 script = ExtResource("3_gx1jg")
 health = 5.0
+max_health = 5.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1972263714]
