@@ -123,7 +123,6 @@ size = Vector2(11, 30)
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "sprite", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block", "inventory", "item_grid", "recipe_list") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
-bullet_count = 4
 MAX_HAND_SWING_SPEED = 20.0
 build_ray = NodePath("Arm/FallbackRayCast2D")
 builder = NodePath("TileBuilder")
