@@ -23,7 +23,7 @@ func _start():
 			label.text = "1 " + item.data.name
 		else:
 			label.text = str(item.count) + " " + item.data.name
-		player.inventory_grid.add_child(label)
+		player.item_grid.add_child(label)
 
 func remove_zero_items() -> void:
 	player.item_taker.inventory = player.item_taker.inventory.filter(func(item: InventoryItemData): return item.count > 0)
@@ -39,6 +39,6 @@ func _end():
 	player.stamina.visible = true
 	player.inventory.visible = false
 
-	for child in player.inventory_grid.get_children():
+	for child in player.item_grid.get_children():
 		child.queue_free()
 	
