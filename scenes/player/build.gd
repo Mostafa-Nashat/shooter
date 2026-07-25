@@ -7,33 +7,33 @@ var base_block := preload("res://systems/build/base_block.tscn")
 var selected_block: int = 0
 
 class TileBlock:
-	var data: BlockData
+	var block: InventoryBlockData
 	var id: int
 
 func remove_zero_blocks():
-	var filtered_blocks: Array = player.blocks.filter(func(block: BlockData): return !block.count == 0)
+	var filtered_blocks: Array = player.blocks.filter(func(block: InventoryBlockData): return !block.count == 0)
 	player.blocks.assign(filtered_blocks)
-	tile_blocks = tile_blocks.filter(func(tile_block: TileBlock): return !tile_block.data.count == 0)
+	tile_blocks = tile_blocks.filter(func(tile_block: TileBlock): return !tile_block.block.count == 0)
 
-func filter_added_blocks(block: BlockData) -> bool:
+func filter_added_blocks(block: InventoryBlockData) -> bool:
 	for tile_block in tile_blocks:
-		if block.name == tile_block.data.name:
+		if block.data.name == tile_block.block.data.name:
 			return false
 	return true
 
-func add_block(data: BlockData) -> void:
+func add_block(block_data: InventoryBlockData) -> void:
 	var block := base_block.instantiate()
-	block.data = data
+	block.data = block_data.data
 	var unique_id = player.builder.add_block(block)
 	var tile_block := TileBlock.new()
-	tile_block.data = data
+	tile_block.block = block_data
 	tile_block.id = unique_id
 	tile_blocks.append(tile_block)
 
 func update_blocks() -> void:
 	remove_zero_blocks()
 	var new_blocks := player.blocks.filter(filter_added_blocks)
-	for block_data in new_blocks:
+	for block_data: InventoryBlockData in new_blocks:
 		add_block(block_data)
 
 func place_block():
@@ -42,7 +42,7 @@ func place_block():
 	var grid_build_target := player.tilemap.local_to_map(local_build_target)
 	var successful := player.builder.place_block(tile_blocks[selected_block].id, grid_build_target)
 	if successful:
-		tile_blocks[selected_block].data.count -= 1
+		tile_blocks[selected_block].block.count -= 1
 	
 func _start():
 	player = state.node
@@ -73,7 +73,7 @@ func _update():
 	if Input.is_action_just_pressed("place"):
 		place_block()
 	
-	player.selected_block.texture = tile_blocks[selected_block].data.texture
+	player.selected_block.texture = tile_blocks[selected_block].block.data.texture
 
 	
 func _end():
