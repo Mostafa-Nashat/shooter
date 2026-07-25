@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://tdby182tcdyt"]
+
+[ext_resource type="Script" uid="uid://dtbpjctismtvf" path="res://systems/item/InventoryItem.gd" id="1_81u0d"]
+[ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="2_26ngg"]
+[ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="3_l3wah"]
+[ext_resource type="Resource" uid="uid://b8k52eqtbdupc" path="res://resources/items/scrap.tres" id="4_ftwii"]
+[ext_resource type="Texture2D" uid="uid://dnmnecv7bpgq0" path="res://assets/plank_butter_and_metal_sandwich.png" id="5_o8a65"]
+[ext_resource type="Script" uid="uid://ch8d4jef0mwxd" path="res://systems/item/HealthResult.gd" id="6_puifg"]
+[ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="7_2ocqg"]
+
+[sub_resource type="Resource" id="Resource_78urh"]
+script = ExtResource("1_81u0d")
+count = 2
+data = ExtResource("2_26ngg")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_gbs07"]
+script = ExtResource("1_81u0d")
+count = 2
+data = ExtResource("3_l3wah")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_h5miy"]
+script = ExtResource("1_81u0d")
+count = 1
+data = ExtResource("4_ftwii")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_a3ltf"]
+script = ExtResource("6_puifg")
+health = 5
+metadata/_custom_type_script = "uid://ch8d4jef0mwxd"
+
+[resource]
+script = ExtResource("7_2ocqg")
+title = "Plank butter and metal sandwich"
+description = "this is what happens when the dev is too lazy to add food items - restores full health"
+ingredients = Array[ExtResource("1_81u0d")]([SubResource("Resource_78urh"), SubResource("Resource_gbs07"), SubResource("Resource_h5miy")])
+preview = ExtResource("5_o8a65")
+result = SubResource("Resource_a3ltf")
+metadata/_custom_type_script = "uid://cke5youaerj1n"

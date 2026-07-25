@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://41ck5gr876eg"]
+
+[ext_resource type="Script" uid="uid://dtbpjctismtvf" path="res://systems/item/InventoryItem.gd" id="1_s5hio"]
+[ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="2_2e3o2"]
+[ext_resource type="Resource" uid="uid://b8k52eqtbdupc" path="res://resources/items/scrap.tres" id="3_mylos"]
+[ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="4_v0ced"]
+[ext_resource type="Texture2D" uid="uid://b6ba7lu33k7jd" path="res://assets/shotgun.png" id="5_w7ut3"]
+[ext_resource type="Resource" uid="uid://ck5bfvihwnpmr" path="res://resources/guns/shotgun.tres" id="6_lk08e"]
+[ext_resource type="Script" uid="uid://cuy4mjxe8l3fo" path="res://systems/item/GunResult.gd" id="7_rf03e"]
+[ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="8_yaedm"]
+
+[sub_resource type="Resource" id="Resource_v4t5f"]
+script = ExtResource("1_s5hio")
+count = 1
+data = ExtResource("2_2e3o2")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_cjdgw"]
+script = ExtResource("1_s5hio")
+count = 5
+data = ExtResource("3_mylos")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_6vp2v"]
+script = ExtResource("1_s5hio")
+count = 5
+data = ExtResource("4_v0ced")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_7ocic"]
+script = ExtResource("7_rf03e")
+gun = ExtResource("6_lk08e")
+metadata/_custom_type_script = "uid://cuy4mjxe8l3fo"
+
+[resource]
+script = ExtResource("8_yaedm")
+title = "shutgun"
+description = "a normal shotgun named by I person with the humor of a 5 year old"
+ingredients = Array[ExtResource("1_s5hio")]([SubResource("Resource_v4t5f"), SubResource("Resource_cjdgw"), SubResource("Resource_6vp2v")])
+preview = ExtResource("5_w7ut3")
+result = SubResource("Resource_7ocic")
+metadata/_custom_type_script = "uid://cke5youaerj1n"

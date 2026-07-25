@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://p51p8p6x63m5"]
+
+[ext_resource type="Script" uid="uid://dtbpjctismtvf" path="res://systems/item/InventoryItem.gd" id="1_j4q4s"]
+[ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="2_8mea0"]
+[ext_resource type="Texture2D" uid="uid://cb80w8eh2x10y" path="res://assets/barracade.png" id="3_e2w1r"]
+[ext_resource type="Resource" uid="uid://b8nlue3ujok3a" path="res://resources/blocks/barracade.tres" id="4_glrhs"]
+[ext_resource type="Script" uid="uid://dyiq17bbr83m5" path="res://systems/build/InventoryBlockData.gd" id="5_gb8op"]
+[ext_resource type="Script" uid="uid://dq862ifhwmlfr" path="res://systems/item/BlockResult.gd" id="6_3gwa8"]
+[ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="7_u4g2q"]
+
+[sub_resource type="Resource" id="Resource_y7j5o"]
+script = ExtResource("1_j4q4s")
+count = 8
+data = ExtResource("2_8mea0")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_mlx1t"]
+script = ExtResource("5_gb8op")
+data = ExtResource("4_glrhs")
+count = 4
+metadata/_custom_type_script = "uid://dyiq17bbr83m5"
+
+[sub_resource type="Resource" id="Resource_bbgb8"]
+script = ExtResource("6_3gwa8")
+block = SubResource("Resource_mlx1t")
+metadata/_custom_type_script = "uid://dq862ifhwmlfr"
+
+[resource]
+script = ExtResource("7_u4g2q")
+title = "Barracade"
+description = "A simple barracade for dealing with crowds"
+ingredients = Array[ExtResource("1_j4q4s")]([SubResource("Resource_y7j5o")])
+preview = ExtResource("3_e2w1r")
+result = SubResource("Resource_bbgb8")
+metadata/_custom_type_script = "uid://cke5youaerj1n"
