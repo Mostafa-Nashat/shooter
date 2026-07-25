@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bobheebp1u8jt"]
+
+[ext_resource type="Texture2D" uid="uid://b8mgkgt1frogd" path="res://assets/plank.png" id="1_6fqrh"]
+[ext_resource type="Script" uid="uid://b318qic3notx" path="res://scenes/player/inventory/recipe.gd" id="1_ti2u4"]
+
+[sub_resource type="Theme" id="Theme_6fqrh"]
+default_font_size = 4
+
+[node name="recipe" type="HBoxContainer" unique_id=348708127 node_paths=PackedStringArray("preview_texture", "title", "description", "needs", "button")]
+theme = SubResource("Theme_6fqrh")
+script = ExtResource("1_ti2u4")
+preview_texture = NodePath("TextureRect")
+title = NodePath("VBoxContainer/title")
+description = NodePath("VBoxContainer/description")
+needs = NodePath("VBoxContainer/needs")
+button = NodePath("VBoxContainer/Button")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1746684004]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_6fqrh")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=873150785]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="title" type="Label" parent="VBoxContainer" unique_id=611765798]
+layout_mode = 2
+text = "this is some text"
+
+[node name="description" type="Label" parent="VBoxContainer" unique_id=1640178638]
+layout_mode = 2
+text = "description"
+
+[node name="needs" type="Label" parent="VBoxContainer" unique_id=971706155]
+layout_mode = 2
+text = "needs: 1, 2, 3"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=188948249]
+layout_mode = 2
+text = "craft"
