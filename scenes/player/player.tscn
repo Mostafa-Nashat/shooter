@@ -2,12 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b2037oeqgqbxe" path="res://scenes/player/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://00o7qk3nqif5" path="res://systems/build/BlockData.gd" id="2_28m0y"]
 [ext_resource type="Script" uid="uid://d37tf3xi3bwr8" path="res://systems/health/hurtbox.gd" id="2_fm80t"]
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="3_gx1jg"]
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="3_lvxji"]
 [ext_resource type="Texture2D" uid="uid://bnuufbq6huxje" path="res://assets/arm.png" id="3_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="4_uniwh"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_5gtgg"]
 [ext_resource type="Script" uid="uid://v7jmb8l0l1cr" path="res://scenes/player/frames.gd" id="5_j4nxn"]
 [ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
@@ -31,28 +29,6 @@
 [ext_resource type="Script" uid="uid://qhgmmhpoci1n" path="res://systems/build/TileBuilder.gd" id="25_007i1"]
 [ext_resource type="Script" uid="uid://cgvijb7vhbgw1" path="res://scenes/player/craft.gd" id="28_tffgl"]
 [ext_resource type="Script" uid="uid://dr7ds6bn67p80" path="res://systems/item/ItemTaker.gd" id="30_iqsei"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqsei"]
-size = Vector2(16, 16)
-
-[sub_resource type="Resource" id="Resource_tffgl"]
-script = ExtResource("2_28m0y")
-texture = ExtResource("11_8ydkj")
-shape = SubResource("RectangleShape2D_iqsei")
-count = 2
-name = &"sword"
-metadata/_custom_type_script = "uid://00o7qk3nqif5"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pk8ii"]
-size = Vector2(16, 16)
-
-[sub_resource type="Resource" id="Resource_5mf0n"]
-script = ExtResource("2_28m0y")
-texture = ExtResource("4_uniwh")
-shape = SubResource("RectangleShape2D_pk8ii")
-count = 2
-name = &"revolver"
-metadata/_custom_type_script = "uid://00o7qk3nqif5"
 
 [sub_resource type="Resource" id="Resource_uniwh"]
 script = ExtResource("5_j4nxn")
@@ -148,7 +124,6 @@ size = Vector2(11, 30)
 motion_mode = 1
 script = ExtResource("1_g2els")
 MAX_HAND_SWING_SPEED = 20.0
-blocks = Array[ExtResource("2_28m0y")]([SubResource("Resource_tffgl"), SubResource("Resource_5mf0n")])
 build_ray = NodePath("Arm/FallbackRayCast2D")
 builder = NodePath("TileBuilder")
 sprite = NodePath("Sprite2D")
