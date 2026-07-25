@@ -20,7 +20,7 @@ func add_block(block: Block) -> int:
 	return unique_id
 
 func place_block(unique_id: int, coords: Vector2i) -> bool:
-	for cell in tilemap.get_used_cells_by_id(source_id, Vector2i.ZERO, unique_id):
+	for cell in tilemap.get_used_cells_by_id(source_id):
 		if cell == coords:
 			return false
 	tilemap.set_cell(coords, source_id, Vector2i.ZERO, unique_id)
