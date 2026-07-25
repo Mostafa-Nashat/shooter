@@ -5,5 +5,9 @@ extends Result
 
 func apply(player: Player) -> void:
 	player.gun.gun = gun
-	print(player.gun.gun.sprite.resource_path)
 	player.gun.update()
+
+func craftable(player: Player) -> bool:
+	if player.gun.gun == gun:
+		return false
+	return true

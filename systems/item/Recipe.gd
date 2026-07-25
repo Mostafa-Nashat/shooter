@@ -11,7 +11,7 @@ func craftable(player: Player) -> bool:
 	for ingredient in ingredients:
 		var is_craftable: bool = false
 		for item in player.item_taker.inventory:
-			if ingredient.data.name == item.data.name and ingredient.count <= item.count:
+			if ingredient.data.name == item.data.name and ingredient.count <= item.count and result.craftable(player):
 				is_craftable = true
 		if !is_craftable:
 			return false
