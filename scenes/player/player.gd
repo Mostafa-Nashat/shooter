@@ -9,7 +9,7 @@ var kill_count = 0
 @export var bullet_max: int = 6
 @export var bullet_count: int
 @export var MAX_HAND_SWING_SPEED: float = 90
-@export var blocks: Array[BlockData]
+@export var blocks: Array[InventoryBlockData]
 
 @export_category("Dependencies")
 @export var tilemap: TileMapLayer
