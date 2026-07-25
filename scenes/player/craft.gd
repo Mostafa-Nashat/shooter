@@ -16,7 +16,7 @@ func _start():
 		var sprite := TextureRect.new()
 		sprite.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 		sprite.texture = item.data.texture
-		player.inventory_grid.add_child(sprite)
+		player.item_grid.add_child(sprite)
 		
 		var label := Label.new()
 		if item.count == 1:
