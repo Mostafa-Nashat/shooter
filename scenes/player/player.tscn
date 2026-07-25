@@ -10,13 +10,13 @@
 [ext_resource type="Script" uid="uid://v7jmb8l0l1cr" path="res://scenes/player/frames.gd" id="5_j4nxn"]
 [ext_resource type="Script" uid="uid://ch5tr6awtfhui" path="res://scenes/player/ui.gd" id="5_qek5x"]
 [ext_resource type="Texture2D" uid="uid://dxrhpoorojc8n" path="res://assets/ui_0004.png" id="6_28m0y"]
+[ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/player_revolver.tres" id="8_uf5tr"]
 [ext_resource type="Script" uid="uid://e4xsevke2hor" path="res://systems/weapons/sword.gd" id="10_kvlxm"]
 [ext_resource type="Resource" uid="uid://hiurog48n3ab" path="res://resources/sword.tres" id="10_lgqa7"]
 [ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/sword.png" id="11_8ydkj"]
 [ext_resource type="Texture2D" uid="uid://d04vu41ifrfm7" path="res://assets/ui_0001.png" id="11_ugbui"]
 [ext_resource type="Texture2D" uid="uid://bqdwob52bxdfh" path="res://assets/ui_0002.png" id="12_fcs02"]
 [ext_resource type="Texture2D" uid="uid://0dpmngcg128u" path="res://assets/ui_0003.png" id="13_myrg7"]
-[ext_resource type="Resource" uid="uid://ck5bfvihwnpmr" path="res://resources/guns/shotgun.tres" id="16_uniwh"]
 [ext_resource type="Script" uid="uid://bpsh5p35yjjgw" path="res://systems/helper_camera/helper_camera.gd" id="17_kvlxm"]
 [ext_resource type="Texture2D" uid="uid://iqw2df0mk3x2" path="res://assets/heart.png" id="17_uf5tr"]
 [ext_resource type="Texture2D" uid="uid://bp5bibthhrgv" path="res://assets/silver_bullet.png" id="18_lgqa7"]
@@ -209,7 +209,7 @@ texture = ExtResource("3_qhqgy")
 visible = false
 position = Vector2(14.000001, 0)
 script = ExtResource("5_5gtgg")
-weapon = ExtResource("16_uniwh")
+weapon = ExtResource("8_uf5tr")
 sprite = NodePath("Sprite2D")
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
 
