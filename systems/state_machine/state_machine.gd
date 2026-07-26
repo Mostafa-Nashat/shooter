@@ -10,7 +10,9 @@ var current_state: State
 func _ready() -> void:
 	for child in get_children(false):
 		if child is State:
-			states.append(child)
+			var state: State = child
+			states.append(state)
+			state._setup()
 	default_state._start()
 	current_state = default_state
 func update():

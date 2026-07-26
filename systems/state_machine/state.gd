@@ -15,3 +15,6 @@ func _end():
 
 func _update():
 	pass
+
+func _setup() -> void:
+	pass
