@@ -10,20 +10,22 @@ extends HBoxContainer
 @export var needs: Label
 @export var button: Button
 
+signal crafted
+
 func _ready() -> void:
 	preview_texture.texture = data.preview
 	title.text = data.title
 	description.text = data.description
 	needs.text = "ingredients:"
 	for ingredient in data.ingredients:
-		needs.text += " " + ingredient.data.name
+		needs.text += " " + str(ingredient.count) + " " + ingredient.data.name
 	if !data.craftable(player):
 		button.disabled = true
-	button.text = "craft"
 	button.button_up.connect(apply)
 
 func apply() -> void:
 	data.apply(player)
+	crafted.emit()
 
 
 func _process(_delta: float) -> void:
