@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://b8k52eqtbdupc" path="res://resources/items/scrap.tres" id="3_kh2m6"]
 [ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="4_m8lmc"]
 [ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="5_mi7d1"]
-[ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/player_revolver.tres" id="6_ye3td"]
+[ext_resource type="Resource" uid="uid://dto2j3lr7b6nh" path="res://resources/guns/player_revolver.tres" id="6_ye3td"]
 [ext_resource type="Script" uid="uid://cuy4mjxe8l3fo" path="res://systems/item/GunResult.gd" id="7_jirmp"]
 [ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="8_0eo3s"]
 

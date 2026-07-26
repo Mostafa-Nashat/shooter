@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="4_imgld"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="5_4pqen"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_d4pgo"]
-[ext_resource type="Resource" uid="uid://dffbxoqxn8j1k" path="res://resources/enemy_revolver.tres" id="6_3qrdr"]
+[ext_resource type="Resource" uid="uid://dffbxoqxn8j1k" path="res://resources/guns/enemy_revolver.tres" id="6_3qrdr"]
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="6_imgld"]
 [ext_resource type="Texture2D" uid="uid://by1b8vn5w5rhx" path="res://assets/enemy_arm.png" id="7_3qrdr"]
 [ext_resource type="Script" uid="uid://dm5mjb1lco8fk" path="res://scenes/gunner/chasing.gd" id="7_48ckf"]

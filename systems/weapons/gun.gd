@@ -14,7 +14,7 @@ func _use(_user: Node) -> void:
 	for index: float in gun.count:
 		var bullet: Bullet = base_bullet.duplicate()
 		bullet.set_collision_mask_value(2, true)
-		bullet.bullet = weapon.bullet
+		bullet.bullet = gun.bullet
 		bullet.position = to_global(position + weapon.bullet.offset)
 		var offset := lerpf(-gun.spread, gun.spread, (index+1)/gun.count)
 		bullet.rotation = global_rotation + deg_to_rad(offset)

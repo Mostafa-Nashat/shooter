@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Gun_data" format=3 uid="uid://dto2j3lr7b6nh"]
+
+[ext_resource type="Resource" uid="uid://fvngfbdu1mqf" path="res://resources/bullets/silver_bullet.tres" id="1_lt8ss"]
+[ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="2_gqknx"]
+[ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="3_iadio"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_gqknx")
+bullet = ExtResource("1_lt8ss")
+cooldown = 0.15
+sprite = ExtResource("3_iadio")
+offset = Vector2(6, 0)
+name = &"RookieRevolver"
+metadata/_custom_type_script = "uid://brrymp10nyswo"
