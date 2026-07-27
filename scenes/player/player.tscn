@@ -384,6 +384,7 @@ grow_vertical = 0
 stretch_mode = 4
 
 [node name="inventory" type="Control" parent="CanvasLayer/UI_manager" unique_id=1090160704]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
