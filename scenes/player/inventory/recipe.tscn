@@ -3,11 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b8mgkgt1frogd" path="res://assets/plank.png" id="1_6fqrh"]
 [ext_resource type="Script" uid="uid://b318qic3notx" path="res://scenes/player/inventory/recipe.gd" id="1_ti2u4"]
 
-[sub_resource type="Theme" id="Theme_6fqrh"]
-default_font_size = 6
-
 [node name="recipe" type="HBoxContainer" unique_id=348708127 node_paths=PackedStringArray("preview_texture", "title", "description", "needs", "button")]
-theme = SubResource("Theme_6fqrh")
 script = ExtResource("1_ti2u4")
 preview_texture = NodePath("TextureRect")
 title = NodePath("VBoxContainer/title")

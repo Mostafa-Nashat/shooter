@@ -1,0 +1,33 @@
+[gd_resource type="Theme" format=3 uid="uid://bgss6sc118qme"]
+
+[ext_resource type="FontFile" uid="uid://6jwheednjkft" path="res://assets/fonts/Micro5-Regular.ttf" id="1_7o25s"]
+[ext_resource type="Texture2D" uid="uid://dy5xuijx7nxir" path="res://assets/stone_panel_ui.png" id="1_rb4rf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqsei"]
+texture = ExtResource("1_rb4rf")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4rf"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rb4rf"]
+color = Color(0.15, 0.1395, 0.14947501, 1)
+thickness = 2
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7o25s"]
+color = Color(0.55, 0.5115, 0.548075, 1)
+thickness = 2
+vertical = true
+
+[resource]
+default_font = ExtResource("1_7o25s")
+default_font_size = 8
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_iqsei")
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_rb4rf")
+VScrollBar/styles/grabber = SubResource("StyleBoxLine_rb4rf")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxLine_rb4rf")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxLine_rb4rf")
+VScrollBar/styles/scroll = SubResource("StyleBoxLine_7o25s")

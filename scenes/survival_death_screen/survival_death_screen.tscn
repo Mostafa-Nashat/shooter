@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bqrdb5ojp7c0y"]
 
 [ext_resource type="Script" uid="uid://fjml02b3ryp5" path="res://scenes/survival_death_screen/survival_death_screen.gd" id="1_7vti4"]
+[ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="1_b1cny"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="2_b1cny"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axe0n"]
@@ -22,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_b1cny")
 script = ExtResource("1_7vti4")
 died_on_wave_label = NodePath("VBoxContainer/Label")
 

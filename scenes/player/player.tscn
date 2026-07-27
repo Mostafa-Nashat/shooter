@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://clf7erby3l0wn" path="res://systems/FallbackRayCast2D/FallbackRayCast2D.gd" id="22_uniwh"]
 [ext_resource type="Script" uid="uid://se4eio0temhk" path="res://scenes/player/build.gd" id="24_6cv16"]
 [ext_resource type="Script" uid="uid://qhgmmhpoci1n" path="res://systems/build/TileBuilder.gd" id="25_007i1"]
+[ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="27_tffgl"]
 [ext_resource type="Script" uid="uid://cgvijb7vhbgw1" path="res://scenes/player/craft.gd" id="28_tffgl"]
 [ext_resource type="Script" uid="uid://dr7ds6bn67p80" path="res://systems/item/ItemTaker.gd" id="30_iqsei"]
 
@@ -111,13 +112,10 @@ border_width_left = 1
 border_width_right = 1
 border_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tffgl"]
-bg_color = Color(0.08, 0.08, 0.08, 0.8666667)
-
 [sub_resource type="Theme" id="Theme_tffgl"]
 default_font_size = 6
 
-[sub_resource type="DPITexture" id="DPITexture_uniwh"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqsei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
 size = Vector2(11, 30)
@@ -125,7 +123,6 @@ size = Vector2(11, 30)
 [node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "sprite", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block", "inventory", "item_grid", "recipe_list") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
-bullet_count = 5
 MAX_HAND_SWING_SPEED = 20.0
 build_ray = NodePath("Arm/FallbackRayCast2D")
 builder = NodePath("TileBuilder")
@@ -148,7 +145,7 @@ stamina = NodePath("CanvasLayer/UI_manager/stamina")
 selected_block = NodePath("CanvasLayer/UI_manager/selected_block")
 inventory = NodePath("CanvasLayer/UI_manager/inventory")
 item_grid = NodePath("CanvasLayer/UI_manager/inventory/items/MarginContainer/GridContainer")
-recipe_list = NodePath("CanvasLayer/UI_manager/inventory/recipes/PanelContainer/MarginContainer/recipe_list")
+recipe_list = NodePath("CanvasLayer/UI_manager/inventory/PanelContainer/recipes/MarginContainer/recipe_list")
 
 [node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
 scale = Vector2(0.75, 0.75)
@@ -186,7 +183,7 @@ shape = SubResource("RectangleShape2D_8afob")
 
 [node name="HealthManager" type="Node" parent="." unique_id=937521712]
 script = ExtResource("3_gx1jg")
-health = 2.0
+health = 5.0
 max_health = 5.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
@@ -290,6 +287,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("27_tffgl")
 script = ExtResource("5_qek5x")
 metadata/_custom_type_script = "uid://ch5tr6awtfhui"
 
@@ -385,15 +383,17 @@ offset_bottom = -0.040039063
 grow_vertical = 0
 stretch_mode = 4
 
-[node name="inventory" type="Control" parent="CanvasLayer/UI_manager" unique_id=607637568]
+[node name="inventory" type="Control" parent="CanvasLayer/UI_manager" unique_id=1090160704]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("27_tffgl")
 
-[node name="items" type="PanelContainer" parent="CanvasLayer/UI_manager/inventory" unique_id=538452158]
+[node name="items" type="PanelContainer" parent="CanvasLayer/UI_manager/inventory" unique_id=317685802]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 1
 anchors_preset = -1
@@ -403,43 +403,39 @@ anchor_bottom = 1.0
 offset_left = 0.07998657
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tffgl")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI_manager/inventory/items" unique_id=40925868]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI_manager/inventory/items" unique_id=1414859659]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI_manager/inventory/items/MarginContainer" unique_id=765188776]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI_manager/inventory/items/MarginContainer" unique_id=409217983]
 layout_mode = 2
 theme = SubResource("Theme_tffgl")
 columns = 2
 
-[node name="recipes" type="ScrollContainer" parent="CanvasLayer/UI_manager/inventory" unique_id=1535204255]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.6
-anchor_bottom = 1.0
-offset_right = -0.120010376
-grow_vertical = 2
-theme_override_icons/scroll_hint_vertical = SubResource("DPITexture_uniwh")
-metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI_manager/inventory/recipes" unique_id=456262600]
-layout_mode = 2
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI_manager/inventory" unique_id=1741190775]
+layout_mode = 0
+offset_right = 191.87999
+offset_bottom = 180.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_tffgl")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI_manager/inventory/recipes/PanelContainer" unique_id=834579215]
+[node name="recipes" type="ScrollContainer" parent="CanvasLayer/UI_manager/inventory/PanelContainer" unique_id=1305121465]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iqsei")
+horizontal_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI_manager/inventory/PanelContainer/recipes" unique_id=1045823218]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 4
 
-[node name="recipe_list" type="VBoxContainer" parent="CanvasLayer/UI_manager/inventory/recipes/PanelContainer/MarginContainer" unique_id=756282743]
+[node name="recipe_list" type="VBoxContainer" parent="CanvasLayer/UI_manager/inventory/PanelContainer/recipes/MarginContainer" unique_id=635225865]
 layout_mode = 2
 
 [node name="TileBuilder" type="Node" parent="." unique_id=1247591526]

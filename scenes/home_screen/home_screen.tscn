@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cicn18bcru3vo"]
 
 [ext_resource type="Script" uid="uid://cp777ltfxk0dn" path="res://scenes/home_screen/home_screen.gd" id="1_f338u"]
+[ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="1_h7tmx"]
 [ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/player.png" id="2_f338u"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="2_h7tmx"]
 
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_h7tmx")
 script = ExtResource("1_f338u")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1434713686]

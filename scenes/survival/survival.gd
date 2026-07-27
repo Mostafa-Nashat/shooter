@@ -18,8 +18,6 @@ func _process(_delta: float) -> void:
 	hud.wave = wave_spawner.wave
 	if wave_spawner.enemy_count == 0:
 		hud.enemy_counter.visible = false
-	else:
-		hud.enemy_counter.visible = true
 
 func _on_player_died() -> void:
 	var death_screen_node := death_screen.instantiate()
