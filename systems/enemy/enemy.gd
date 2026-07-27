@@ -2,7 +2,9 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var SPEED: float = 50 
+@export var drops: Array[ItemDrop]
 
+@export_category("Dependencies")
 @export var state_machine: State_machine 
 @export var arm: Arm
 @export var navigator: NavigationAgent2D
@@ -13,7 +15,11 @@ signal died
 
 func _ready() -> void:
 	health.died.connect(_on_died)
-	
+	health.damaged.connect(_on_damaged)
+
+func _on_damaged() -> void:
+	pass
+
 func _physics_process(_delta: float) -> void:
 	state_machine.update()
 	move_and_slide()
