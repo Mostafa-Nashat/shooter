@@ -35,7 +35,7 @@ metadata/_custom_type_script = "uid://cuy4mjxe8l3fo"
 [resource]
 script = ExtResource("8_yaedm")
 title = "shutgun"
-description = "a normal shotgun named by I person with the humor of a 5 year old"
+description = "a normal shotgun named by a person with the humor of a 5 year old"
 ingredients = Array[ExtResource("1_s5hio")]([SubResource("Resource_v4t5f"), SubResource("Resource_cjdgw"), SubResource("Resource_6vp2v")])
 preview = ExtResource("5_w7ut3")
 result = SubResource("Resource_7ocic")
