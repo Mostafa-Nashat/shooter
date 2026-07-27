@@ -71,7 +71,7 @@ func use_weapon(weapon: Weapon, cooldown: float):
 	await get_tree().create_timer(cooldown).timeout
 	weapon_being_used = false
 
-func _on_died() -> void:
+func _on_died(_killer: Node2D) -> void:
 	died.emit()
 
 func _on_sword_kill() -> void:
