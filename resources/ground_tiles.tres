@@ -296,7 +296,7 @@ texture = ExtResource("1_a344r")
 6:7/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lrqlo")
 
 [resource]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 17
 navigation_layer_0/layers = 1
 custom_data_layer_0/name = "spawnable"
 custom_data_layer_0/type = 1
