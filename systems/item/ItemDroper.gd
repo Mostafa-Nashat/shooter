@@ -17,7 +17,7 @@ func knock_from(item: ItemData, count: int , from: Node2D, speed: float) -> void
 	item_node.data = item
 	item_node.count = count
 	item_node.global_position = global_position
-	var direction := -to_local(from.global_position).normalized()
+	var direction := -(from.global_position - global_position).normalized()
 	item_node.linear_velocity = direction * speed
 	var root := get_tree().root
 	root.add_child(item_node)
