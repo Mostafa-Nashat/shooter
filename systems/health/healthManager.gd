@@ -5,6 +5,7 @@ extends Node
 @export var max_health: float
 
 signal died
+signal damaged(hitpoints)
 
 func set_health_to_max() -> void:
 	health = max_health
@@ -18,5 +19,6 @@ func get_health() -> float:
 
 func damage(hitpoints: float):
 	health -= hitpoints
+	damaged.emit(hitpoints)
 	if health <= 0:
 		died.emit()
