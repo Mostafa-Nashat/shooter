@@ -47,5 +47,5 @@ func _on_hit(area: Area2D):
 		if !(area is Hurtbox):
 			return
 		var hurtbox: Hurtbox = area
-		hurtbox.health.damage(bullet.damage)
+		hurtbox.health.damage(bullet.damage, self)
 		queue_free()

@@ -7,7 +7,6 @@ var sword: Sword_data
 @export var animation_player: AnimationPlayer
 var library_name: String = "sword"
 
-
 signal hit
 signal kill
 
@@ -34,7 +33,7 @@ func _setup() -> void:
 		hitbox.set_collision_mask_value(1, false)
 		hitbox.set_collision_mask_value(2, true)
 
-func _use(_user: Node) -> void:
+func _use(weapon_user: Node) -> void:
 	animation_player.play("sword_animations/swing")
 	await animation_player.animation_finished
 	animation_player.play("sword_animations/RESET")
@@ -45,7 +44,7 @@ func _on_hit(area: Area2D):
 		hit.emit()
 		var hurtbox = area
 		hurtbox.health.died.connect(_on_kill)
-		hurtbox.health.damage(sword.damage)
+		hurtbox.health.damage(sword.damage, self)
 
 func _on_kill():
 	kill.emit()
