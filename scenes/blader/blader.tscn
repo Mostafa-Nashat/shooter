@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://clvooxthdfbwl"]
 
 [ext_resource type="Script" uid="uid://mvbhfopltits" path="res://scenes/blader/blader.gd" id="1_5ipyw"]
-[ext_resource type="Texture2D" uid="uid://bod7uywwnm8hk" path="res://assets/blader.png" id="2_jugw4"]
-[ext_resource type="Script" uid="uid://bvo10ywo2xvn7" path="res://systems/enemy/ItemDrop.gd" id="2_ofshg"]
+[ext_resource type="Script" uid="uid://bvo10ywo2xvn7" path="res://systems/item/ItemDrop.gd" id="2_ofshg"]
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="3_6a7yw"]
 [ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="3_42756"]
 [ext_resource type="Script" uid="uid://d37tf3xi3bwr8" path="res://systems/health/hurtbox.gd" id="4_2kfvj"]
@@ -12,12 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://5sjt4nfhp7cg" path="res://assets/blader_arm.png" id="6_x8a40"]
 [ext_resource type="Script" uid="uid://e4xsevke2hor" path="res://systems/weapons/sword.gd" id="7_5ipyw"]
 [ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="8_2kfvj"]
-[ext_resource type="AnimationLibrary" uid="uid://dldbpd54docwt" path="res://resources/sword_animations.res" id="8_jugw4"]
+[ext_resource type="AnimationLibrary" uid="uid://dldbpd54docwt" path="res://resources/animations/sword_animations.res" id="8_jugw4"]
 [ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/sword.png" id="9_p34w5"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="11_5ipyw"]
+[ext_resource type="Texture2D" uid="uid://c42tcx50f21ls" path="res://assets/blader/arm.png" id="12_a1pjg"]
 [ext_resource type="Script" uid="uid://fftn6w3xg54c" path="res://scenes/blader/chasing.gd" id="12_n804e"]
 [ext_resource type="Script" uid="uid://bkffn5xb22f64" path="res://scenes/blader/swing.gd" id="13_5ipyw"]
+[ext_resource type="Texture2D" uid="uid://bomo4v3uavhut" path="res://assets/blader/leg.png" id="13_8up27"]
+[ext_resource type="Texture2D" uid="uid://k50euc610d4m" path="res://assets/blader/torso.png" id="14_vgaxu"]
+[ext_resource type="Texture2D" uid="uid://brnxju7cqtxyj" path="res://assets/blader/head.png" id="15_k726e"]
 [ext_resource type="Script" uid="uid://dw1ecc3203g0t" path="res://systems/item/ItemDroper.gd" id="15_nrkbr"]
+[ext_resource type="AnimationLibrary" uid="uid://cs7r131qmoggd" path="res://resources/animations/movement.res" id="18_txmpk"]
 
 [sub_resource type="Resource" id="Resource_txmpk"]
 script = ExtResource("4_cug3x")
@@ -63,22 +67,19 @@ metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrkbr"]
 size = Vector2(4, 16)
 
-[node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health", "item_droper")]
+[node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health", "item_droper", "animation")]
 motion_mode = 1
 script = ExtResource("1_5ipyw")
-sword = NodePath("Arm/weapons/Sword")
+sword = NodePath("r6/right_arm/weapons/Sword")
 attack_radius = 40.0
 drops = Array[ExtResource("2_ofshg")]([SubResource("Resource_tlwr0"), SubResource("Resource_vgaxu")])
 state_machine = NodePath("State_machine")
-arm = NodePath("Arm")
+arm = NodePath("r6/right_arm")
 navigator = NodePath("NavigationAgent2D")
 health = NodePath("HealthManager")
 item_droper = NodePath("ItemDroper")
+animation = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://cbcd77fsrhwsn"
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1449591518]
-position = Vector2(0, -16)
-texture = ExtResource("2_jugw4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2086905539]
 position = Vector2(0.5, -4.5)
@@ -98,42 +99,6 @@ metadata/_custom_type_script = "uid://d37tf3xi3bwr8"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=35888145]
 position = Vector2(0.5, -15)
 shape = SubResource("RectangleShape2D_ofshg")
-
-[node name="Arm" type="Node2D" parent="." unique_id=1087001621]
-position = Vector2(0, -15)
-script = ExtResource("5_p34w5")
-metadata/_custom_type_script = "uid://dlkn740mx7473"
-
-[node name="Sprite2D" type="Sprite2D" parent="Arm" unique_id=869629001]
-position = Vector2(8, 0)
-rotation = 1.5707964
-texture = ExtResource("6_x8a40")
-
-[node name="weapons" type="Node2D" parent="Arm" unique_id=140028175]
-
-[node name="Sword" type="Node2D" parent="Arm/weapons" unique_id=1998251897 node_paths=PackedStringArray("hitbox", "animation_player", "sprite")]
-script = ExtResource("7_5ipyw")
-hitbox = NodePath("Area2D")
-animation_player = NodePath("../../../AnimationPlayer")
-weapon = SubResource("Resource_5ipyw")
-sprite = NodePath("Sprite2D")
-metadata/_custom_type_script = "uid://e4xsevke2hor"
-
-[node name="Area2D" type="Area2D" parent="Arm/weapons/Sword" unique_id=975272198]
-collision_mask = 3
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arm/weapons/Sword/Area2D" unique_id=224737363]
-position = Vector2(13, -6)
-shape = SubResource("RectangleShape2D_nrkbr")
-
-[node name="Sprite2D" type="Sprite2D" parent="Arm/weapons/Sword" unique_id=58287317]
-position = Vector2(13, -6)
-texture = ExtResource("9_p34w5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=40042167]
-libraries/sword_animations = ExtResource("8_jugw4")
-speed_scale = 0.75
 
 [node name="State_machine" type="Node" parent="." unique_id=1496466088 node_paths=PackedStringArray("node", "default_state")]
 script = ExtResource("11_5ipyw")
@@ -160,3 +125,74 @@ one_shot = true
 position = Vector2(0, -15)
 script = ExtResource("15_nrkbr")
 metadata/_custom_type_script = "uid://dw1ecc3203g0t"
+
+[node name="r6" type="Node2D" parent="." unique_id=2020326741]
+
+[node name="left_arm" type="Node2D" parent="r6" unique_id=236621435]
+position = Vector2(2.9789504e-12, -17)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/left_arm" unique_id=1643082016]
+rotation = 3.1415927
+texture = ExtResource("12_a1pjg")
+offset = Vector2(0, -8)
+
+[node name="left_leg" type="Node2D" parent="r6" unique_id=15592126]
+position = Vector2(0, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/left_leg" unique_id=56214243]
+texture = ExtResource("13_8up27")
+
+[node name="right_leg" type="Node2D" parent="r6" unique_id=698582582]
+position = Vector2(0, -8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="r6/right_leg" unique_id=800129616]
+texture = ExtResource("13_8up27")
+
+[node name="torso" type="Node2D" parent="r6" unique_id=1365315953]
+position = Vector2(0, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/torso" unique_id=464392124]
+texture = ExtResource("14_vgaxu")
+
+[node name="head" type="Node2D" parent="r6" unique_id=603663089]
+position = Vector2(0, -28)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/head" unique_id=569660766]
+texture = ExtResource("15_k726e")
+
+[node name="right_arm" type="Node2D" parent="r6" unique_id=1087001621]
+position = Vector2(0, -17)
+script = ExtResource("5_p34w5")
+metadata/_custom_type_script = "uid://dlkn740mx7473"
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/right_arm" unique_id=869629001]
+position = Vector2(8, 0)
+rotation = 1.5707964
+texture = ExtResource("6_x8a40")
+
+[node name="weapons" type="Node2D" parent="r6/right_arm" unique_id=140028175]
+
+[node name="Sword" type="Node2D" parent="r6/right_arm/weapons" unique_id=1998251897 node_paths=PackedStringArray("hitbox", "animation_player", "sprite")]
+script = ExtResource("7_5ipyw")
+hitbox = NodePath("Area2D")
+animation_player = NodePath("../../../../AnimationPlayer")
+weapon = SubResource("Resource_5ipyw")
+sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://e4xsevke2hor"
+
+[node name="Area2D" type="Area2D" parent="r6/right_arm/weapons/Sword" unique_id=975272198]
+collision_mask = 3
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="r6/right_arm/weapons/Sword/Area2D" unique_id=224737363]
+position = Vector2(13, -6)
+shape = SubResource("RectangleShape2D_nrkbr")
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/right_arm/weapons/Sword" unique_id=58287317]
+position = Vector2(13, -6)
+texture = ExtResource("9_p34w5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1296861499]
+root_node = NodePath("../r6")
+libraries/movement = ExtResource("18_txmpk")
+libraries/sword_animations = ExtResource("8_jugw4")

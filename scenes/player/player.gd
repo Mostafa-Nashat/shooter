@@ -15,7 +15,6 @@ var kill_count = 0
 @export var tilemap: TileMapLayer
 @export var build_ray: FallbackRayCast2D
 @export var builder: TileBuilder
-@export var sprite: Sprite2D
 @export var health: HealthManager
 @export var gun: Gun
 @export var sword: Sword
@@ -23,6 +22,7 @@ var kill_count = 0
 @export var arm: Arm
 @export var state: State_machine
 @export var item_taker: ItemTaker
+@export var animation: AnimationPlayer
 
 var weapon_being_used: bool = false
 
@@ -102,3 +102,8 @@ func allow_movement_control() -> void:
 		transform.x = Vector2(-1, 0)
 	elif direction.x > 0:
 		transform.x = Vector2(1, 0)
+	
+	if direction:
+		animation.play("movement/walk")
+	else:
+		animation.play("movement/RESET")

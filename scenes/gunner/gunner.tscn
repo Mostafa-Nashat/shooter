@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://dn1ywnankmule"]
 
 [ext_resource type="Script" uid="uid://blptdg1gekrl3" path="res://scenes/gunner/gunner.gd" id="1_hl2eg"]
-[ext_resource type="Texture2D" uid="uid://c8itbckqghsw1" path="res://assets/enemy.png" id="2_ky6iw"]
-[ext_resource type="Script" uid="uid://bvo10ywo2xvn7" path="res://systems/enemy/ItemDrop.gd" id="2_wwu67"]
+[ext_resource type="Script" uid="uid://bvo10ywo2xvn7" path="res://systems/item/ItemDrop.gd" id="2_wwu67"]
 [ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="3_0fv4q"]
 [ext_resource type="Script" uid="uid://d37tf3xi3bwr8" path="res://systems/health/hurtbox.gd" id="3_n1l2s"]
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="4_imgld"]
@@ -11,10 +10,14 @@
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_d4pgo"]
 [ext_resource type="Resource" uid="uid://dffbxoqxn8j1k" path="res://resources/guns/enemy_revolver.tres" id="6_3qrdr"]
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="6_imgld"]
-[ext_resource type="Texture2D" uid="uid://by1b8vn5w5rhx" path="res://assets/enemy_arm.png" id="7_3qrdr"]
 [ext_resource type="Script" uid="uid://dm5mjb1lco8fk" path="res://scenes/gunner/chasing.gd" id="7_48ckf"]
 [ext_resource type="Script" uid="uid://bam3idqpwxo35" path="res://scenes/gunner/shooting.gd" id="8_cgbon"]
+[ext_resource type="Texture2D" uid="uid://dnpbnddag32bo" path="res://assets/gunner/arm.png" id="11_t704p"]
+[ext_resource type="Texture2D" uid="uid://cpgda8q0ajxuf" path="res://assets/gunner/leg.png" id="12_7os18"]
+[ext_resource type="Texture2D" uid="uid://c8d7s1o7o307j" path="res://assets/gunner/torso.png" id="13_rqkk1"]
+[ext_resource type="Texture2D" uid="uid://4tejlh6kjgt0" path="res://assets/gunner/head.png" id="14_2n0b0"]
 [ext_resource type="Script" uid="uid://dw1ecc3203g0t" path="res://systems/item/ItemDroper.gd" id="15_0fv4q"]
+[ext_resource type="AnimationLibrary" uid="uid://cs7r131qmoggd" path="res://resources/animations/movement.res" id="17_t704p"]
 
 [sub_resource type="Resource" id="Resource_61hds"]
 script = ExtResource("4_qmkte")
@@ -34,24 +37,53 @@ size = Vector2(10, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48ckf"]
 size = Vector2(10, 28.5)
 
-[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health", "item_droper")]
+[sub_resource type="Animation" id="Animation_503fu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left_arm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2.9789504e-12, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("torso:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dys5"]
+_data = {
+&"RESET": SubResource("Animation_503fu")
+}
+
+[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health", "item_droper", "animation")]
 motion_mode = 1
 script = ExtResource("1_hl2eg")
 shooting_cooldown = 2.0
-gun = NodePath("Arm/Gun")
+gun = NodePath("r6/right_arm/Gun")
 shooting_radius = 90.0
 chasing_radius = 200.0
 drops = Array[ExtResource("2_wwu67")]([SubResource("Resource_7os18")])
 state_machine = NodePath("State_machine")
-arm = NodePath("Arm")
+arm = NodePath("r6/right_arm")
 navigator = NodePath("NavigationAgent2D")
 health = NodePath("State_machine/HealthManager")
 item_droper = NodePath("ItemDroper")
+animation = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://cbcd77fsrhwsn"
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1997369805]
-position = Vector2(0, -16)
-texture = ExtResource("2_ky6iw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960153276]
 position = Vector2(1, -4)
@@ -65,25 +97,6 @@ metadata/_custom_type_script = "uid://d37tf3xi3bwr8"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1848184140]
 position = Vector2(0, -14.75)
 shape = SubResource("RectangleShape2D_48ckf")
-
-[node name="Arm" type="Node2D" parent="." unique_id=68066091]
-position = Vector2(0, -15)
-script = ExtResource("4_imgld")
-metadata/_custom_type_script = "uid://dlkn740mx7473"
-
-[node name="Gun" type="Node2D" parent="Arm" unique_id=1230303586 node_paths=PackedStringArray("sprite")]
-position = Vector2(11, 0)
-script = ExtResource("5_d4pgo")
-weapon = ExtResource("6_3qrdr")
-sprite = NodePath("Sprite2D")
-metadata/_custom_type_script = "uid://cjd0v4olditgc"
-
-[node name="Sprite2D" type="Sprite2D" parent="Arm/Gun" unique_id=744633159]
-
-[node name="Sprite2D" type="Sprite2D" parent="Arm" unique_id=1491398054]
-position = Vector2(8, -1)
-rotation = 1.5707964
-texture = ExtResource("7_3qrdr")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=735413489]
 
@@ -115,3 +128,65 @@ metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 position = Vector2(0, -15)
 script = ExtResource("15_0fv4q")
 metadata/_custom_type_script = "uid://dw1ecc3203g0t"
+
+[node name="r6" type="Node2D" parent="." unique_id=2020326741]
+
+[node name="left_arm" type="Node2D" parent="r6" unique_id=236621435]
+position = Vector2(-2.9789504e-12, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/left_arm" unique_id=248426907]
+rotation = 3.1415927
+texture = ExtResource("11_t704p")
+offset = Vector2(0, -8)
+
+[node name="left_leg" type="Node2D" parent="r6" unique_id=15592126]
+position = Vector2(0, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/left_leg" unique_id=1280670268]
+position = Vector2(0, -3)
+texture = ExtResource("12_7os18")
+offset = Vector2(0, 3)
+
+[node name="right_leg" type="Node2D" parent="r6" unique_id=698582582]
+position = Vector2(0, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/right_leg" unique_id=724288581]
+position = Vector2(0, -3)
+texture = ExtResource("12_7os18")
+offset = Vector2(0, 3)
+
+[node name="torso" type="Node2D" parent="r6" unique_id=1365315953]
+position = Vector2(0, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/torso" unique_id=917913907]
+texture = ExtResource("13_rqkk1")
+
+[node name="head" type="Node2D" parent="r6" unique_id=603663089]
+position = Vector2(0, -28)
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/head" unique_id=1659086692]
+texture = ExtResource("14_2n0b0")
+
+[node name="right_arm" type="Node2D" parent="r6" unique_id=68066091]
+position = Vector2(0, -17)
+script = ExtResource("4_imgld")
+metadata/_custom_type_script = "uid://dlkn740mx7473"
+
+[node name="Gun" type="Node2D" parent="r6/right_arm" unique_id=1230303586 node_paths=PackedStringArray("sprite")]
+position = Vector2(11, 0)
+script = ExtResource("5_d4pgo")
+weapon = ExtResource("6_3qrdr")
+sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://cjd0v4olditgc"
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/right_arm/Gun" unique_id=744633159]
+
+[node name="Sprite2D" type="Sprite2D" parent="r6/right_arm" unique_id=1491398054]
+rotation = 1.5707964
+texture = ExtResource("11_t704p")
+offset = Vector2(0, -8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2061080198]
+root_node = NodePath("../r6")
+libraries/ = SubResource("AnimationLibrary_8dys5")
+libraries/movement = ExtResource("17_t704p")

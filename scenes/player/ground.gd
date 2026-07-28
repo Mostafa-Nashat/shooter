@@ -27,7 +27,6 @@ func _update():
 		state.switch_state("craft")
 
 	
-
 	player.allow_movement_control()	
 	player.allow_weapon_control()
 	player.show_hud_elements()

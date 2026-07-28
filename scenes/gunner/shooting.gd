@@ -19,6 +19,7 @@ func _start():
 	player = get_player()
 	delay.start()
 	enemy.arm.visible = true
+	enemy.animation.play("movement/RESET")
 
 
 func _update():
