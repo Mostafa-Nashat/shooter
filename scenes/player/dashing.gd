@@ -6,11 +6,12 @@ var direction: Vector2
 @export var SPEED_MULTIPLYER: float = 2
 @export var timer: Timer
 @export var fade_affect: GPUParticles2D
-@export_range(0.01, 1, 0.01) var zoom: float = 0.98
-
+@export_range(0.01, 1, 0.01) var zoom_addition: float = 0.02
+var original_zoom: Vector2
 
 func _start():
 	player = state.node
+	original_zoom = player.camera.zoom
 	direction = Input.get_vector("left", "right", "front", "back").normalized()
 	if direction == Vector2.ZERO:
 		direction = Vector2.LEFT
@@ -21,7 +22,7 @@ func _start():
 	zoom_tween.tween_property(
 		player.camera, 
 		"zoom", 
-		Vector2(zoom, zoom),
+		original_zoom + Vector2(zoom_addition, zoom_addition),
 		timer.wait_time / 2
 	)
 	
@@ -35,7 +36,7 @@ func _update():
 		zoom_tween.tween_property(
 		player.camera, 
 		"zoom", 
-		Vector2(1.0, 1.0),
+		original_zoom,
 		timer.wait_time / 2
 		)
 		state.switch_state("ground")

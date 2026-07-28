@@ -149,6 +149,7 @@ recipe_list = NodePath("CanvasLayer/UI_manager/inventory/PanelContainer/recipes/
 
 [node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
 scale = Vector2(0.75, 0.75)
+zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 position_smoothing_speed = 30.0
 script = ExtResource("17_kvlxm")
