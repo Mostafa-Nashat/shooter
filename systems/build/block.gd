@@ -32,3 +32,7 @@ func place_if_valid() -> void:
 		return
 	sprite.texture = data.texture
 	collision_shape.shape = data.shape
+
+
+func _on_health_manager_died(_killer: Node2D) -> void:
+	queue_free()
