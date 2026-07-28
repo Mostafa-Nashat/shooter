@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://blptdg1gekrl3" path="res://scenes/gunner/gunner.gd" id="1_hl2eg"]
 [ext_resource type="Texture2D" uid="uid://c8itbckqghsw1" path="res://assets/enemy.png" id="2_ky6iw"]
+[ext_resource type="Script" uid="uid://bvo10ywo2xvn7" path="res://systems/enemy/ItemDrop.gd" id="2_wwu67"]
+[ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="3_0fv4q"]
 [ext_resource type="Script" uid="uid://d37tf3xi3bwr8" path="res://systems/health/hurtbox.gd" id="3_n1l2s"]
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="4_imgld"]
+[ext_resource type="Script" uid="uid://dtbpjctismtvf" path="res://systems/item/InventoryItem.gd" id="4_qmkte"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="5_4pqen"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_d4pgo"]
 [ext_resource type="Resource" uid="uid://dffbxoqxn8j1k" path="res://resources/guns/enemy_revolver.tres" id="6_3qrdr"]
@@ -11,6 +14,19 @@
 [ext_resource type="Texture2D" uid="uid://by1b8vn5w5rhx" path="res://assets/enemy_arm.png" id="7_3qrdr"]
 [ext_resource type="Script" uid="uid://dm5mjb1lco8fk" path="res://scenes/gunner/chasing.gd" id="7_48ckf"]
 [ext_resource type="Script" uid="uid://bam3idqpwxo35" path="res://scenes/gunner/shooting.gd" id="8_cgbon"]
+[ext_resource type="Script" uid="uid://dw1ecc3203g0t" path="res://systems/item/ItemDroper.gd" id="15_0fv4q"]
+
+[sub_resource type="Resource" id="Resource_61hds"]
+script = ExtResource("4_qmkte")
+count = 1
+data = ExtResource("3_0fv4q")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_7os18"]
+script = ExtResource("2_wwu67")
+item = SubResource("Resource_61hds")
+weight = 0.3
+metadata/_custom_type_script = "uid://bvo10ywo2xvn7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbg2u"]
 size = Vector2(10, 8)
@@ -18,17 +34,19 @@ size = Vector2(10, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48ckf"]
 size = Vector2(10, 28.5)
 
-[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health")]
+[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health", "item_droper")]
 motion_mode = 1
 script = ExtResource("1_hl2eg")
 shooting_cooldown = 2.0
 gun = NodePath("Arm/Gun")
 shooting_radius = 90.0
 chasing_radius = 200.0
+drops = Array[ExtResource("2_wwu67")]([SubResource("Resource_7os18")])
 state_machine = NodePath("State_machine")
 arm = NodePath("Arm")
 navigator = NodePath("NavigationAgent2D")
 health = NodePath("State_machine/HealthManager")
+item_droper = NodePath("ItemDroper")
 metadata/_custom_type_script = "uid://cbcd77fsrhwsn"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1997369805]
@@ -92,3 +110,8 @@ script = ExtResource("6_imgld")
 health = 2.0
 max_health = 2.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
+
+[node name="ItemDroper" type="Node2D" parent="." unique_id=1542357247]
+position = Vector2(0, -15)
+script = ExtResource("15_0fv4q")
+metadata/_custom_type_script = "uid://dw1ecc3203g0t"

@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://mvbhfopltits" path="res://scenes/blader/blader.gd" id="1_5ipyw"]
 [ext_resource type="Texture2D" uid="uid://bod7uywwnm8hk" path="res://assets/blader.png" id="2_jugw4"]
+[ext_resource type="Script" uid="uid://bvo10ywo2xvn7" path="res://systems/enemy/ItemDrop.gd" id="2_ofshg"]
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="3_6a7yw"]
+[ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="3_42756"]
 [ext_resource type="Script" uid="uid://d37tf3xi3bwr8" path="res://systems/health/hurtbox.gd" id="4_2kfvj"]
+[ext_resource type="Script" uid="uid://dtbpjctismtvf" path="res://systems/item/InventoryItem.gd" id="4_cug3x"]
 [ext_resource type="Script" uid="uid://dlkn740mx7473" path="res://systems/arm.gd" id="5_p34w5"]
+[ext_resource type="Resource" uid="uid://b8k52eqtbdupc" path="res://resources/items/scrap.tres" id="6_tlwr0"]
 [ext_resource type="Texture2D" uid="uid://5sjt4nfhp7cg" path="res://assets/blader_arm.png" id="6_x8a40"]
 [ext_resource type="Script" uid="uid://e4xsevke2hor" path="res://systems/weapons/sword.gd" id="7_5ipyw"]
 [ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="8_2kfvj"]
@@ -13,6 +17,31 @@
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="11_5ipyw"]
 [ext_resource type="Script" uid="uid://fftn6w3xg54c" path="res://scenes/blader/chasing.gd" id="12_n804e"]
 [ext_resource type="Script" uid="uid://bkffn5xb22f64" path="res://scenes/blader/swing.gd" id="13_5ipyw"]
+[ext_resource type="Script" uid="uid://dw1ecc3203g0t" path="res://systems/item/ItemDroper.gd" id="15_nrkbr"]
+
+[sub_resource type="Resource" id="Resource_txmpk"]
+script = ExtResource("4_cug3x")
+count = 1
+data = ExtResource("3_42756")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_tlwr0"]
+script = ExtResource("2_ofshg")
+item = SubResource("Resource_txmpk")
+weight = 0.2
+metadata/_custom_type_script = "uid://bvo10ywo2xvn7"
+
+[sub_resource type="Resource" id="Resource_8up27"]
+script = ExtResource("4_cug3x")
+count = 1
+data = ExtResource("6_tlwr0")
+metadata/_custom_type_script = "uid://dtbpjctismtvf"
+
+[sub_resource type="Resource" id="Resource_vgaxu"]
+script = ExtResource("2_ofshg")
+item = SubResource("Resource_8up27")
+weight = 0.2
+metadata/_custom_type_script = "uid://bvo10ywo2xvn7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n804e"]
 size = Vector2(11, 9)
@@ -34,15 +63,17 @@ metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrkbr"]
 size = Vector2(4, 16)
 
-[node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health")]
+[node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health", "item_droper")]
 motion_mode = 1
 script = ExtResource("1_5ipyw")
 sword = NodePath("Arm/weapons/Sword")
 attack_radius = 40.0
+drops = Array[ExtResource("2_ofshg")]([SubResource("Resource_tlwr0"), SubResource("Resource_vgaxu")])
 state_machine = NodePath("State_machine")
 arm = NodePath("Arm")
 navigator = NodePath("NavigationAgent2D")
 health = NodePath("HealthManager")
+item_droper = NodePath("ItemDroper")
 metadata/_custom_type_script = "uid://cbcd77fsrhwsn"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1449591518]
@@ -124,3 +155,8 @@ wait_time = 0.3
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1854333904]
+
+[node name="ItemDroper" type="Node2D" parent="." unique_id=1096315154]
+position = Vector2(0, -15)
+script = ExtResource("15_nrkbr")
+metadata/_custom_type_script = "uid://dw1ecc3203g0t"
