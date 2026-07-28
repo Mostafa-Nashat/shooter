@@ -8,7 +8,7 @@
 script = ExtResource("2_71cht")
 bullet = ExtResource("1_kyfoe")
 count = 3
-spread = 5.0
+spread = 7.5
 sprite = ExtResource("3_kyfoe")
 offset = Vector2(5, 0)
 name = &"Shutgun"
