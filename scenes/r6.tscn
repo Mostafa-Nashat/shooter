@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://n3j6kofqke8s"]
+
+[node name="r6" type="Node2D" unique_id=2020326741]
+
+[node name="left_arm" type="Node2D" parent="." unique_id=236621435]
+position = Vector2(2.9789504e-12, -17)
+rotation = -2.8139919e-05
+
+[node name="left_leg" type="Node2D" parent="." unique_id=15592126]
+position = Vector2(0, -8)
+rotation = -0.006856758
+
+[node name="right_leg" type="Node2D" parent="." unique_id=698582582]
+position = Vector2(0, -8)
+rotation = 1.9342882e-05
+
+[node name="torso" type="Node2D" parent="." unique_id=1365315953]
+
+[node name="head" type="Node2D" parent="." unique_id=603663089]
+position = Vector2(0, -28)
+
+[node name="right_arm" type="Node2D" parent="." unique_id=486716758]
