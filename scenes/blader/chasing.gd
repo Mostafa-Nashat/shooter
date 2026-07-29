@@ -27,7 +27,7 @@ func _update() -> void:
 		enemy.transform.x = Vector2(1, 0)
 	
 	if direction:
-		enemy.animation.play("movement/walk")
+		enemy.animation.play(&"movement/walk_with_free_arm")
 	
 	enemy.go_to(player.global_position, enemy.SPEED)
 	if enemy.navigator.distance_to_target() < blader.attack_radius:

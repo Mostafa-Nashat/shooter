@@ -104,6 +104,6 @@ func allow_movement_control() -> void:
 		transform.x = Vector2(1, 0)
 	
 	if direction:
-		animation.play("movement/walk")
+		animation.play(&"movement/walk_with_free_arm")
 	else:
-		animation.play("movement/RESET")
+		animation.play(&"movement/RESET")

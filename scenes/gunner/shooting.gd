@@ -18,7 +18,6 @@ func _start():
 	delay.wait_time = enemy.shooting_cooldown
 	player = get_player()
 	delay.start()
-	enemy.arm.visible = true
 	enemy.animation.play("movement/RESET")
 
 

@@ -130,6 +130,7 @@ metadata/_custom_type_script = "uid://dw1ecc3203g0t"
 
 [node name="left_arm" type="Node2D" parent="r6" unique_id=236621435]
 position = Vector2(2.9789504e-12, -17)
+rotation = -2.8139919e-05
 
 [node name="Sprite2D" type="Sprite2D" parent="r6/left_arm" unique_id=1643082016]
 rotation = 3.1415927
@@ -138,12 +139,14 @@ offset = Vector2(0, -8)
 
 [node name="left_leg" type="Node2D" parent="r6" unique_id=15592126]
 position = Vector2(0, -8)
+rotation = -1.8131115e-05
 
 [node name="Sprite2D" type="Sprite2D" parent="r6/left_leg" unique_id=56214243]
 texture = ExtResource("13_8up27")
 
 [node name="right_leg" type="Node2D" parent="r6" unique_id=698582582]
 position = Vector2(0, -8)
+rotation = 1.9342882e-05
 
 [node name="Sprite2D2" type="Sprite2D" parent="r6/right_leg" unique_id=800129616]
 texture = ExtResource("13_8up27")

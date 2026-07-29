@@ -13,7 +13,6 @@ var player: Player
 func _start():
 	enemy = state.node
 	player = get_player()
-	enemy.arm.visible = false
 	enemy.arm.rotation_degrees = 0
 
 func get_next_direction() -> Vector2:
@@ -35,7 +34,7 @@ func _update() -> void:
 		enemy.transform.x = Vector2(1, 0)
 	
 	if direction:
-		enemy.animation.play("movement/walk")
+		enemy.animation.play(&"movement/walk")
 		
 	
 	go_to(player.global_position, enemy.SPEED)
