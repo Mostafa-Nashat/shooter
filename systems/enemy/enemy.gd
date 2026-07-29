@@ -18,29 +18,27 @@ signal died
 
 func _ready() -> void:
 	health.died.connect(_on_died)
-	health.damaged.connect(_on_damaged)
 
 func drop_item(drop: ItemDrop, damager: Node2D) -> void:
 	item_droper.knock_from(drop.item.data, drop.item.count, damager, drop_speed)
 
 
-func _on_damaged(_hitpoints: int, damager: Node2D) -> void:
-	for drop in drops:
-		if drop.weight > 1:
-			while drop.weight > 1:
-				drop_item(drop, damager)
-		if drop.weight > 0:
-			var random_number := randf_range(0, 1.0)
-			if drop.weight > random_number:
-				drop_item(drop, damager)
-				
-		
 func _physics_process(_delta: float) -> void:
 	state_machine.update()
 	move_and_slide()
 
+func drop_items(killer: Node2D) -> void:
+	for drop in drops:
+		if drop.weight > 1:
+			while drop.weight > 1:
+				drop_item(drop, killer)
+		if drop.weight > 0:
+			var random_number := randf_range(0, 1.0)
+			if drop.weight > random_number:
+				drop_item(drop, killer)
 
-func _on_died(_killer: Node2D) -> void:
+func _on_died(killer: Node2D) -> void:
+	drop_items(killer)
 	queue_free()
 	died.emit()
 
