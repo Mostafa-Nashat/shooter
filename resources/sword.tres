@@ -9,7 +9,6 @@ size = Vector2(5, 16)
 [resource]
 script = ExtResource("1_dcagp")
 sword_shape = SubResource("RectangleShape2D_uf5tr")
-damage = 5
 cooldown = 10.0
 sprite = ExtResource("2_taahv")
 offset = Vector2(16, -6)

@@ -14,6 +14,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dldbpd54docwt" path="res://resources/animations/sword_animations.res" id="8_jugw4"]
 [ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/sword.png" id="9_p34w5"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="11_5ipyw"]
+[ext_resource type="Script" uid="uid://cuo37b4j7twf3" path="res://systems/enemy/stun.gd" id="11_8up27"]
 [ext_resource type="Texture2D" uid="uid://c42tcx50f21ls" path="res://assets/blader/arm.png" id="12_a1pjg"]
 [ext_resource type="Script" uid="uid://fftn6w3xg54c" path="res://scenes/blader/chasing.gd" id="12_n804e"]
 [ext_resource type="Script" uid="uid://bkffn5xb22f64" path="res://scenes/blader/swing.gd" id="13_5ipyw"]
@@ -67,7 +68,7 @@ metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrkbr"]
 size = Vector2(4, 16)
 
-[node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health", "item_droper", "animation")]
+[node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health", "item_droper", "animation", "hurtbox")]
 motion_mode = 1
 script = ExtResource("1_5ipyw")
 sword = NodePath("r6/right_arm/weapons/Sword")
@@ -79,6 +80,7 @@ navigator = NodePath("NavigationAgent2D")
 health = NodePath("HealthManager")
 item_droper = NodePath("ItemDroper")
 animation = NodePath("AnimationPlayer")
+hurtbox = NodePath("Hurtbox")
 metadata/_custom_type_script = "uid://cbcd77fsrhwsn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2086905539]
@@ -118,6 +120,13 @@ metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 [node name="Timer" type="Timer" parent="State_machine/swing" unique_id=1781822807]
 wait_time = 0.3
 one_shot = true
+
+[node name="stun" type="Node" parent="State_machine" unique_id=311942644]
+script = ExtResource("11_8up27")
+stun_time = 0.3
+knock_back_power = 100.0
+invicibility_time = 0.1
+metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1854333904]
 

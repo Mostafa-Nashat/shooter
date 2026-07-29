@@ -6,3 +6,6 @@ extends Enemy
 @export var gun: Gun
 @export var shooting_radius: float = 100.0
 @export var chasing_radius: float = 70.0
+
+func _stun() -> void:
+	state_machine.switch_state("stun")

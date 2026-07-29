@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="6_imgld"]
 [ext_resource type="Script" uid="uid://dm5mjb1lco8fk" path="res://scenes/gunner/chasing.gd" id="7_48ckf"]
 [ext_resource type="Script" uid="uid://bam3idqpwxo35" path="res://scenes/gunner/shooting.gd" id="8_cgbon"]
+[ext_resource type="Script" uid="uid://cuo37b4j7twf3" path="res://systems/enemy/stun.gd" id="10_rqkk1"]
 [ext_resource type="Texture2D" uid="uid://dnpbnddag32bo" path="res://assets/gunner/arm.png" id="11_t704p"]
 [ext_resource type="Texture2D" uid="uid://cpgda8q0ajxuf" path="res://assets/gunner/leg.png" id="12_7os18"]
 [ext_resource type="Texture2D" uid="uid://c8d7s1o7o307j" path="res://assets/gunner/torso.png" id="13_rqkk1"]
@@ -69,7 +70,7 @@ _data = {
 &"RESET": SubResource("Animation_503fu")
 }
 
-[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health", "item_droper", "animation")]
+[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health", "item_droper", "animation", "hurtbox")]
 motion_mode = 1
 script = ExtResource("1_hl2eg")
 shooting_cooldown = 2.0
@@ -80,9 +81,10 @@ drops = Array[ExtResource("2_wwu67")]([SubResource("Resource_7os18")])
 state_machine = NodePath("State_machine")
 arm = NodePath("r6/right_arm")
 navigator = NodePath("NavigationAgent2D")
-health = NodePath("State_machine/HealthManager")
+health = NodePath("HealthManager")
 item_droper = NodePath("ItemDroper")
 animation = NodePath("AnimationPlayer")
+hurtbox = NodePath("Hurtbox")
 metadata/_custom_type_script = "uid://cbcd77fsrhwsn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960153276]
@@ -91,7 +93,7 @@ shape = SubResource("RectangleShape2D_dbg2u")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1672169935 node_paths=PackedStringArray("health")]
 script = ExtResource("3_n1l2s")
-health = NodePath("../State_machine/HealthManager")
+health = NodePath("../HealthManager")
 metadata/_custom_type_script = "uid://d37tf3xi3bwr8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1848184140]
@@ -99,6 +101,12 @@ position = Vector2(0, -14.75)
 shape = SubResource("RectangleShape2D_48ckf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=735413489]
+
+[node name="HealthManager" type="Node" parent="." unique_id=1612107428]
+script = ExtResource("6_imgld")
+health = 2.0
+max_health = 2.0
+metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="State_machine" type="Node" parent="." unique_id=311960848 node_paths=PackedStringArray("node", "default_state")]
 script = ExtResource("5_4pqen")
@@ -118,11 +126,12 @@ metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 wait_time = 2.0
 one_shot = true
 
-[node name="HealthManager" type="Node" parent="State_machine" unique_id=1612107428]
-script = ExtResource("6_imgld")
-health = 2.0
-max_health = 2.0
-metadata/_custom_type_script = "uid://dwcjq42qu32h1"
+[node name="stun" type="Node" parent="State_machine" unique_id=1986813550]
+script = ExtResource("10_rqkk1")
+stun_time = 0.3
+knock_back_power = 100.0
+invicibility_time = 0.1
+metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
 [node name="ItemDroper" type="Node2D" parent="." unique_id=1542357247]
 position = Vector2(0, -15)

@@ -13,15 +13,24 @@ extends CharacterBody2D
 @export var item_droper: ItemDroper
 @export var collision_offset := 60
 @export var animation: AnimationPlayer
+@export var hurtbox: Hurtbox
+var stun_direction: Vector2
 
 signal died
 
 func _ready() -> void:
 	health.died.connect(_on_died)
+	health.damaged.connect(_on_damaged)
 
 func drop_item(drop: ItemDrop, damager: Node2D) -> void:
 	item_droper.knock_from(drop.item.data, drop.item.count, damager, drop_speed)
 
+func _on_damaged(_hp, damager: Node2D) -> void:
+	stun_direction = -(damager.global_position - global_position).normalized()
+	_stun()
+
+func _stun() -> void:
+	pass
 
 func _physics_process(_delta: float) -> void:
 	state_machine.update()

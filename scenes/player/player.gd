@@ -5,6 +5,7 @@ signal died
 
 @export var SPEED: float = 120.0
 
+@export var stun_direction: Vector2 
 var kill_count = 0
 @export var bullet_max: int = 6
 @export var bullet_count: int
@@ -23,6 +24,7 @@ var kill_count = 0
 @export var state: State_machine
 @export var item_taker: ItemTaker
 @export var animation: AnimationPlayer
+@export var hurtbox: Hurtbox
 
 var weapon_being_used: bool = false
 

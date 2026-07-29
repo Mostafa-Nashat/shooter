@@ -148,7 +148,7 @@ _data = {
 &"RESET": SubResource("Animation_kxw46")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "animation", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block", "inventory", "item_grid", "recipe_list") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "animation", "hurtbox", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block", "inventory", "item_grid", "recipe_list") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
 MAX_HAND_SWING_SPEED = 20.0
@@ -162,6 +162,7 @@ arm = NodePath("r6/right_arm")
 state = NodePath("State_machine")
 item_taker = NodePath("ItemTaker")
 animation = NodePath("AnimationPlayer")
+hurtbox = NodePath("hurtbox")
 hud = NodePath("CanvasLayer/UI_manager")
 weapons = NodePath("CanvasLayer/UI_manager/weapons")
 weapon_frames = SubResource("Resource_uniwh")
