@@ -43,7 +43,8 @@ func _on_hit(area: Area2D):
 	if area is Hurtbox:
 		hit.emit()
 		var hurtbox = area
-		hurtbox.health.died.connect(_on_kill)
+		if !hurtbox.health.died.is_connected(_on_kill):
+			hurtbox.health.died.connect(_on_kill)
 		hurtbox.health.damage(sword.damage, self)
 
 func _on_kill(_killer: Node2D):

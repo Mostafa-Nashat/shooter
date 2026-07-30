@@ -9,4 +9,4 @@ extends RigidBody2D
 
 func _ready() -> void:
 	sprite.texture = data.texture
-	collision_shape.shape = data.shape
+	collision_shape.set_deferred("shape", data.shape)

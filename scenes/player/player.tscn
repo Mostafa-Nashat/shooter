@@ -528,5 +528,7 @@ root_node = NodePath("../r6")
 libraries/ = SubResource("AnimationLibrary_8qxvo")
 libraries/movement = ExtResource("13_4hvnv")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1153659757]
+
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
 [connection signal="kill" from="r6/right_arm/weapons/Sword" to="." method="_on_sword_kill"]
