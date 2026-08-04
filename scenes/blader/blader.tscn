@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://dtbpjctismtvf"
 [sub_resource type="Resource" id="Resource_tlwr0"]
 script = ExtResource("2_ofshg")
 item = SubResource("Resource_txmpk")
-weight = 0.2
+weight = 0.3
 metadata/_custom_type_script = "uid://bvo10ywo2xvn7"
 
 [sub_resource type="Resource" id="Resource_8up27"]
@@ -45,7 +45,7 @@ metadata/_custom_type_script = "uid://dtbpjctismtvf"
 [sub_resource type="Resource" id="Resource_vgaxu"]
 script = ExtResource("2_ofshg")
 item = SubResource("Resource_8up27")
-weight = 0.2
+weight = 0.3
 metadata/_custom_type_script = "uid://bvo10ywo2xvn7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n804e"]
@@ -67,6 +67,8 @@ metadata/_custom_type_script = "uid://rvnmd2ew1c6k"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrkbr"]
 size = Vector2(4, 16)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8up27"]
 
 [node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health", "item_droper", "animation", "hurtbox")]
 motion_mode = 1
@@ -94,6 +96,7 @@ max_health = 2.0
 metadata/_custom_type_script = "uid://dwcjq42qu32h1"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=2074454187 node_paths=PackedStringArray("health")]
+collision_mask = 0
 script = ExtResource("4_2kfvj")
 health = NodePath("../HealthManager")
 metadata/_custom_type_script = "uid://d37tf3xi3bwr8"
@@ -174,6 +177,7 @@ texture = ExtResource("15_k726e")
 
 [node name="right_arm" type="Node2D" parent="r6" unique_id=1087001621]
 position = Vector2(0, -17)
+rotation = 1.5707964
 script = ExtResource("5_p34w5")
 metadata/_custom_type_script = "uid://dlkn740mx7473"
 
@@ -206,5 +210,6 @@ texture = ExtResource("9_p34w5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1296861499]
 root_node = NodePath("../r6")
+libraries/ = SubResource("AnimationLibrary_8up27")
 libraries/movement = ExtResource("18_txmpk")
 libraries/sword_animations = ExtResource("8_jugw4")
