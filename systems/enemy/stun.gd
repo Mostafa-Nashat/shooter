@@ -8,7 +8,7 @@ var player: Enemy
 
 func knock_back() -> void:
 	player.velocity.x = lerpf(player.velocity.x, 0, 0.005)
-	player.velocity.y = lerpf(player.velocity.y, 0, 0.999)
+	player.velocity.y = lerpf(player.velocity.y, 0, 0.005)
 
 func stun_affect() -> Tween:
 	var tween := get_tree().create_tween()
