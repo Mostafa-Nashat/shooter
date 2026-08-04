@@ -9,6 +9,8 @@ signal died
 var kill_count = 0
 @export var bullet_max: int = 6
 @export var bullet_count: int
+@export var frag_max: int = 3
+@export var frag_count: int
 @export var MAX_HAND_SWING_SPEED: float = 90
 @export var blocks: Array[InventoryBlockData]
 @export var frag_throw_power: float
@@ -43,6 +45,8 @@ var weapon_being_used: bool = false
 @export var inventory: Control
 @export var item_grid: GridContainer
 @export var recipe_list: BoxContainer
+@export var frag_list: BoxContainer
+@export var frag_texture: Texture2D
 
 func add_weapon_frame(weapon: Weapon, offset) -> void:
 	hud.add_weapon(
@@ -75,15 +79,22 @@ func use_weapon(weapon: Weapon, cooldown: float):
 	await get_tree().create_timer(cooldown).timeout
 	weapon_being_used = false
 
+func throw_frag(direction: Vector2) -> void:
+	frag_thrower.throw(direction, frag_throw_power, self)
+	
+
 func _on_died(_killer: Node2D) -> void:
 	died.emit()
 
 func _on_sword_kill() -> void:
 	kill_count += 1
 	if (kill_count % 2) == 0:
-		kill_count = 0
 		bullet_count += 1
-	bullet_count = clamp(bullet_count, 0 , bullet_max)
+		bullet_count = clamp(bullet_count, 0 , bullet_max)
+	if (kill_count % 5) == 0:
+		frag_count += 1
+		frag_count = clamp(frag_count, 0, frag_max)
+	
 
 func allow_weapon_control() -> void:
 	if !sword or !sword.weapon or !sword.animation_player.is_playing():
@@ -95,12 +106,15 @@ func allow_weapon_control() -> void:
 		if Input.is_action_just_pressed("swing"):
 			use_weapon(sword, 0.0)
 		if Input.is_action_just_pressed("frag"):
-			var direction := (get_global_mouse_position() - global_position).normalized()
-			frag_thrower.throw(direction, frag_throw_power)
-
+			if frag_count > 0:
+				var direction := (get_global_mouse_position() - global_position).normalized()
+				throw_frag(direction)
+				frag_count -= 1
+			
 func show_hud_elements() -> void:
 	hud.set_items_in_box(int(health.health), heart_texture, hearts)
 	hud.set_items_in_box(bullet_count, bullet_texture, bullets)
+	hud.set_items_in_box(frag_count, frag_texture, frag_list)
 
 func allow_movement_control() -> void:
 	var direction := Input.get_vector("left", "right", "front", "back").normalized()
