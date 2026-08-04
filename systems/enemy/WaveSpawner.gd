@@ -11,6 +11,7 @@ var enemy_count := 0
 @export var autostart: bool
 @export var auto_continue: bool
 @export var auto_continue_cooldown: float
+@export_range(0, 1.0, 0.01) var interpolation_speed: float
 
 
 signal enemy_died
@@ -24,9 +25,11 @@ func _on_enemy_died():
 	
 
 func spawn() -> void:
-	for data in wave_data:
-		var interpolcation := 1 - pow(0.8, wave)
-		var number :=int(data.distribution.sample(interpolcation))
+	for data in wave_data: 
+		var interpolcation := 1 - pow(interpolation_speed, wave)
+		var number := roundi(data.distribution.sample(interpolcation))
+		if number <= 0:
+			continue
 		await spawn_composer.spawn_off_camera(
 			parent,
 			data.enemy,
