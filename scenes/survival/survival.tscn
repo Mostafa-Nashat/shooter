@@ -9,11 +9,13 @@
 [ext_resource type="Script" uid="uid://mfmux50yxmj3" path="res://systems/enemy/WaveData.gd" id="6_p2oe2"]
 [ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="7_ohsek"]
 [ext_resource type="PackedScene" uid="uid://dn1ywnankmule" path="res://scenes/gunner/gunner.tscn" id="8_0ganr"]
+[ext_resource type="PackedScene" uid="uid://yiu5hl3r60th" path="res://scenes/frager/frager.tscn" id="10_ohsek"]
 
 [sub_resource type="TileSet" id="TileSet_p2oe2"]
 
 [sub_resource type="Curve" id="Curve_p2oe2"]
 _limits = [4.0, 30.0, 0.0, 1.0]
+bake_resolution = 300
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 30), 65.128006, 0.0, 0, 0]
 point_count = 2
 
@@ -25,13 +27,27 @@ metadata/_custom_type_script = "uid://mfmux50yxmj3"
 
 [sub_resource type="Curve" id="Curve_0ganr"]
 _limits = [2.0, 15.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
-point_count = 2
+bake_resolution = 300
+_data = [Vector2(0, 2), 0.0, -17.64306, 0, 0, Vector2(0.8, 7.2), 13.253295, 13.253295, 0, 0, Vector2(1, 15), 33.284042, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
 
-[sub_resource type="Resource" id="Resource_6cf1l"]
+[sub_resource type="Resource" id="Resource_0ganr"]
 script = ExtResource("6_p2oe2")
 enemy = ExtResource("8_0ganr")
 distribution = SubResource("Curve_0ganr")
+metadata/_custom_type_script = "uid://mfmux50yxmj3"
+
+[sub_resource type="Curve" id="Curve_6cf1l"]
+_limits = [0.0, 15.0, 0.0, 1.0]
+bake_resolution = 300
+_data = [Vector2(0, 0), 0.0, -15.54474, 0, 0, Vector2(0.97163117, 15), 34.747078, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_rbqrr"]
+script = ExtResource("6_p2oe2")
+enemy = ExtResource("10_ohsek")
+distribution = SubResource("Curve_6cf1l")
 metadata/_custom_type_script = "uid://mfmux50yxmj3"
 
 [node name="survival" type="Node2D" unique_id=1399230750 node_paths=PackedStringArray("wave_spawner", "player")]
@@ -92,15 +108,44 @@ collision_mask = 8
 script = ExtResource("3_abumj")
 metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
 
+[node name="Enemy_Spawner6" type="Area2D" parent="SpawnComposer" unique_id=985062941]
+position = Vector2(127, -69)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_abumj")
+metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
+
+[node name="Enemy_Spawner7" type="Area2D" parent="SpawnComposer" unique_id=637204777]
+position = Vector2(116, 100)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_abumj")
+metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
+
+[node name="Enemy_Spawner8" type="Area2D" parent="SpawnComposer" unique_id=2101066311]
+position = Vector2(-322, -116)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_abumj")
+metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
+
+[node name="Enemy_Spawner9" type="Area2D" parent="SpawnComposer" unique_id=952837517]
+position = Vector2(-256, 174)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_abumj")
+metadata/_custom_type_script = "uid://c5mtacxfjj0ws"
+
 [node name="WaveSpawner" type="Node" parent="." unique_id=707876410 node_paths=PackedStringArray("spawn_composer", "parent", "player")]
 script = ExtResource("5_4oq61")
 spawn_composer = NodePath("../SpawnComposer")
-wave_data = Array[ExtResource("6_p2oe2")]([SubResource("Resource_ohsek"), SubResource("Resource_6cf1l")])
+wave_data = Array[ExtResource("6_p2oe2")]([SubResource("Resource_ohsek"), SubResource("Resource_0ganr"), SubResource("Resource_rbqrr")])
 parent = NodePath("..")
 player = NodePath("../Player")
 autostart = true
 auto_continue = true
 auto_continue_cooldown = 5.0
+interpolation_speed = 0.85
 metadata/_custom_type_script = "uid://bke7cmvbshg0t"
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
