@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://d0o6irknxepwt"]
+
+[ext_resource type="Script" uid="uid://dmqjo3hrpej8j" path="res://scenes/standard_frag.gd" id="1_jko7i"]
+[ext_resource type="Texture2D" uid="uid://cea8nmqy6omdo" path="res://assets/frag.png" id="2_jko7i"]
+[ext_resource type="Texture2D" uid="uid://bumr36xb8sd5m" path="res://assets/explosion.png" id="3_reheh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jko7i"]
+rough = true
+bounce = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltbko"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vqwm"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r50b2"]
+atlas = ExtResource("3_reheh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a583x"]
+atlas = ExtResource("3_reheh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmfmy"]
+atlas = ExtResource("3_reheh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wvi3"]
+atlas = ExtResource("3_reheh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clfsd"]
+atlas = ExtResource("3_reheh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcai0"]
+atlas = ExtResource("3_reheh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8j1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r50b2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a583x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmfmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wvi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clfsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcai0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="Frag" type="RigidBody2D" unique_id=1986503805 node_paths=PackedStringArray("hitbox", "animation", "sprite")]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_jko7i")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_jko7i")
+hitbox = NodePath("Area2D")
+animation = NodePath("AnimatedSprite2D")
+sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://ds5lxd22eiw2m"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=907292930]
+position = Vector2(-1, -19)
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1721256032]
+shape = SubResource("CircleShape2D_ltbko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2143167620]
+shape = SubResource("CircleShape2D_4vqwm")
+debug_color = Color(0.68836576, 0.41543177, 0.7241453, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1912218597]
+texture = ExtResource("2_jko7i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=757913323]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_h8j1r")
+frame = 5
+frame_progress = 1.0
+offset = Vector2(0, -12)
