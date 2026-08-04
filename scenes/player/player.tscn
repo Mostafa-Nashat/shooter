@@ -36,6 +36,8 @@
 [ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="30_8qxvo"]
 [ext_resource type="Script" uid="uid://dr7ds6bn67p80" path="res://systems/item/ItemTaker.gd" id="30_iqsei"]
 [ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="31_5q8fn"]
+[ext_resource type="Script" uid="uid://bsxuonfiqefhq" path="res://systems/frag/FragThrower.gd" id="36_8qxvo"]
+[ext_resource type="PackedScene" uid="uid://d0o6irknxepwt" path="res://scenes/standard_frag.tscn" id="37_5q8fn"]
 
 [sub_resource type="Resource" id="Resource_uniwh"]
 script = ExtResource("5_j4nxn")
@@ -148,10 +150,11 @@ _data = {
 &"RESET": SubResource("Animation_kxw46")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "animation", "hurtbox", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block", "inventory", "item_grid", "recipe_list") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "animation", "hurtbox", "frag_thrower", "hud", "weapons", "bullets", "hearts", "stamina", "selected_block", "inventory", "item_grid", "recipe_list") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
 MAX_HAND_SWING_SPEED = 20.0
+frag_throw_power = 100.0
 build_ray = NodePath("r6/right_arm/FallbackRayCast2D")
 builder = NodePath("TileBuilder")
 health = NodePath("HealthManager")
@@ -163,6 +166,7 @@ state = NodePath("State_machine")
 item_taker = NodePath("ItemTaker")
 animation = NodePath("AnimationPlayer")
 hurtbox = NodePath("hurtbox")
+frag_thrower = NodePath("r6/right_arm/FragThrower")
 hud = NodePath("CanvasLayer/UI_manager")
 weapons = NodePath("CanvasLayer/UI_manager/weapons")
 weapon_frames = SubResource("Resource_uniwh")
@@ -507,6 +511,8 @@ texture = ExtResource("11_8ydkj")
 
 [node name="Area2D" type="Area2D" parent="r6/right_arm/weapons/Sword" unique_id=1662253425]
 position = Vector2(14, -6)
+collision_layer = 0
+collision_mask = 2
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="r6/right_arm/weapons/Sword/Area2D" unique_id=954077607]
@@ -522,6 +528,13 @@ metadata/_custom_type_script = "uid://clf7erby3l0wn"
 
 [node name="Node2D" type="Node2D" parent="r6/right_arm/FallbackRayCast2D" unique_id=1964664854]
 position = Vector2(30, 0)
+
+[node name="FragThrower" type="Node2D" parent="r6/right_arm" unique_id=1650897966]
+position = Vector2(14, 0)
+script = ExtResource("36_8qxvo")
+frag_scene = ExtResource("37_5q8fn")
+player_freindly = true
+metadata/_custom_type_script = "uid://bsxuonfiqefhq"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1341816481]
 root_node = NodePath("../r6")

@@ -11,6 +11,7 @@ var kill_count = 0
 @export var bullet_count: int
 @export var MAX_HAND_SWING_SPEED: float = 90
 @export var blocks: Array[InventoryBlockData]
+@export var frag_throw_power: float
 
 @export_category("Dependencies")
 @export var tilemap: TileMapLayer
@@ -25,6 +26,7 @@ var kill_count = 0
 @export var item_taker: ItemTaker
 @export var animation: AnimationPlayer
 @export var hurtbox: Hurtbox
+@export var frag_thrower: FragThrower
 
 var weapon_being_used: bool = false
 
@@ -92,6 +94,9 @@ func allow_weapon_control() -> void:
 			use_weapon(gun, 0.0)
 		if Input.is_action_just_pressed("swing"):
 			use_weapon(sword, 0.0)
+		if Input.is_action_just_pressed("frag"):
+			var direction := (get_global_mouse_position() - global_position).normalized()
+			frag_thrower.throw(direction, frag_throw_power)
 
 func show_hud_elements() -> void:
 	hud.set_items_in_box(int(health.health), heart_texture, hearts)
