@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://cl4gqdyunakkb" path="res://scenes/survival/survival.gd" id="1_p2oe2"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="1_rpllv"]
 [ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="2_abumj"]
-[ext_resource type="Script" uid="uid://c5mtacxfjj0ws" path="res://systems/enemy/spawner.gd" id="3_abumj"]
-[ext_resource type="Script" uid="uid://cc5ittxgx1eoh" path="res://systems/enemy/SpawnComposer.gd" id="5_3lrja"]
-[ext_resource type="Script" uid="uid://bke7cmvbshg0t" path="res://systems/enemy/WaveSpawner.gd" id="5_4oq61"]
-[ext_resource type="Script" uid="uid://mfmux50yxmj3" path="res://systems/enemy/WaveData.gd" id="6_p2oe2"]
+[ext_resource type="Script" uid="uid://c5mtacxfjj0ws" path="res://systems/spawn/spawner.gd" id="3_abumj"]
+[ext_resource type="Script" uid="uid://cc5ittxgx1eoh" path="res://systems/spawn/SpawnComposer.gd" id="5_3lrja"]
+[ext_resource type="Script" uid="uid://bke7cmvbshg0t" path="res://systems/spawn/WaveSpawner.gd" id="5_4oq61"]
+[ext_resource type="Script" uid="uid://mfmux50yxmj3" path="res://systems/spawn/WaveData.gd" id="6_p2oe2"]
 [ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="7_ohsek"]
 [ext_resource type="PackedScene" uid="uid://dn1ywnankmule" path="res://scenes/gunner/gunner.tscn" id="8_0ganr"]
+[ext_resource type="Script" uid="uid://cggsf6yusae1e" path="res://systems/enemy/enemy_setup.gd" id="9_0ganr"]
 [ext_resource type="PackedScene" uid="uid://yiu5hl3r60th" path="res://scenes/frager/frager.tscn" id="10_ohsek"]
 
 [sub_resource type="TileSet" id="TileSet_p2oe2"]
@@ -19,10 +20,15 @@ bake_resolution = 300
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 30), 65.128006, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Resource" id="Resource_6cf1l"]
+script = ExtResource("9_0ganr")
+metadata/_custom_type_script = "uid://cggsf6yusae1e"
+
 [sub_resource type="Resource" id="Resource_ohsek"]
 script = ExtResource("6_p2oe2")
 enemy = ExtResource("7_ohsek")
 distribution = SubResource("Curve_p2oe2")
+setup = SubResource("Resource_6cf1l")
 metadata/_custom_type_script = "uid://mfmux50yxmj3"
 
 [sub_resource type="Curve" id="Curve_0ganr"]
@@ -32,10 +38,15 @@ _data = [Vector2(0, 2), 0.0, -17.64306, 0, 0, Vector2(0.8, 7.2), 13.253295, 13.2
 point_count = 3
 metadata/_snap_enabled = true
 
+[sub_resource type="Resource" id="Resource_muc25"]
+script = ExtResource("9_0ganr")
+metadata/_custom_type_script = "uid://cggsf6yusae1e"
+
 [sub_resource type="Resource" id="Resource_0ganr"]
 script = ExtResource("6_p2oe2")
 enemy = ExtResource("8_0ganr")
 distribution = SubResource("Curve_0ganr")
+setup = SubResource("Resource_muc25")
 metadata/_custom_type_script = "uid://mfmux50yxmj3"
 
 [sub_resource type="Curve" id="Curve_6cf1l"]
@@ -44,10 +55,15 @@ bake_resolution = 300
 _data = [Vector2(0, 0), 0.0, -15.54474, 0, 0, Vector2(0.97163117, 15), 34.747078, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Resource" id="Resource_van2t"]
+script = ExtResource("9_0ganr")
+metadata/_custom_type_script = "uid://cggsf6yusae1e"
+
 [sub_resource type="Resource" id="Resource_rbqrr"]
 script = ExtResource("6_p2oe2")
 enemy = ExtResource("10_ohsek")
 distribution = SubResource("Curve_6cf1l")
+setup = SubResource("Resource_van2t")
 metadata/_custom_type_script = "uid://mfmux50yxmj3"
 
 [node name="survival" type="Node2D" unique_id=1399230750 node_paths=PackedStringArray("wave_spawner", "player")]
