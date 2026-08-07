@@ -13,6 +13,5 @@ bullet = ExtResource("1_vxfrd")
 cooldown = 0.15
 sprite = SubResource("CompressedTexture2D_0ncl1")
 offset = Vector2(6, 0)
-enabled = true
 name = &"EnemyRevolver"
 metadata/_custom_type_script = "uid://brrymp10nyswo"
