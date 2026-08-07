@@ -4,20 +4,21 @@ extends Node2D
 
 @export var weapon: Weapon_data
 @export var sprite: Sprite2D
+@export var enabled: bool
 
 signal done_using
 
 var started: bool = false
 
 func enable_temp(time: float):
-	weapon.enabled = true
+	enabled = true
 	await get_tree().create_timer(time).timeout
-	weapon.enabled = false
+	enabled = false
 	
 
 func _ready() -> void:
 	_setup()
-	if weapon.enabled:
+	if enabled:
 		_start()
 		started = true
 		visible = true
@@ -29,19 +30,19 @@ func add_sprite(texture: Texture2D, offset: Vector2) -> void:
 	sprite.position = offset
 
 func _physics_process(_delta: float) -> void:
-	if weapon.enabled:
+	if enabled:
 		visible = true
 		_update()
 	else:
 		visible = false
 		
-	if !started and weapon.enabled:
+	if !started and enabled:
 		_start()
 		started = true
 
 
 func use(user: Node = null) -> void:
-	if weapon.enabled:
+	if enabled:
 		visible = true
 		await _use(user)
 		done_using.emit()

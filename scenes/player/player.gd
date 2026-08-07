@@ -72,10 +72,10 @@ func _physics_process(_delta: float) -> void:
 
 func use_weapon(weapon: Weapon, cooldown: float):
 	weapon_being_used = true
-	weapon.weapon.enabled = true
+	weapon.enabled = true
 	weapon.use()
 	await weapon.done_using
-	weapon.weapon.enabled = false
+	weapon.enabled = false
 	await get_tree().create_timer(cooldown).timeout
 	weapon_being_used = false
 
