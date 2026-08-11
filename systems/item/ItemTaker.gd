@@ -2,6 +2,7 @@ class_name ItemTaker
 extends Area2D
 
 var inventory: Array[InventoryItemData]
+@export var sound: AudioStreamPlayer2D
 
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
@@ -13,6 +14,7 @@ func on_body_entered(body: Node) -> void:
 		item.queue_free()
 
 func take_item(item: ItemData, count: int) -> void:
+	sound.play()
 	if count == 0:
 		return
 	for inventory_item in inventory:
