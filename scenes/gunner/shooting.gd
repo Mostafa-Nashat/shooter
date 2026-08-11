@@ -12,8 +12,10 @@ func get_player() -> Player:
 
 
 @onready var delay = $delay
+@onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _start():
+	sound.play()
 	enemy = state.node
 	delay.wait_time = enemy.shooting_cooldown
 	player = get_player()

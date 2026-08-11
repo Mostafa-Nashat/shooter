@@ -1,16 +1,28 @@
 [gd_resource type="Resource" script_class="Sword_data" format=3 uid="uid://hiurog48n3ab"]
 
 [ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="1_dcagp"]
+[ext_resource type="AudioStream" uid="uid://bt4qtxqf2v88i" path="res://assets/audio/slashes/swish-10.wav" id="2_adyx2"]
 [ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/sword.png" id="2_taahv"]
+[ext_resource type="AudioStream" uid="uid://quvj4af5srh" path="res://assets/audio/slashes/swish-11.wav" id="3_mptpp"]
+[ext_resource type="AudioStream" uid="uid://rjfxiuxknefe" path="res://assets/audio/slashes/swish-12.wav" id="4_5g05b"]
+[ext_resource type="AudioStream" uid="uid://cht32sc8uwgpk" path="res://assets/audio/slashes/swish-13.wav" id="5_lihpl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf5tr"]
-size = Vector2(5, 16)
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_624s6"]
+random_pitch = 1.3348398
+streams_count = 4
+stream_0/stream = ExtResource("2_adyx2")
+stream_1/stream = ExtResource("3_mptpp")
+stream_2/stream = ExtResource("4_5g05b")
+stream_3/stream = ExtResource("5_lihpl")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8a40"]
+size = Vector2(4, 16)
 
 [resource]
 script = ExtResource("1_dcagp")
-sword_shape = SubResource("RectangleShape2D_uf5tr")
-cooldown = 10.0
+sword_shape = SubResource("RectangleShape2D_x8a40")
+sounds = SubResource("AudioStreamRandomizer_624s6")
 sprite = ExtResource("2_taahv")
-offset = Vector2(16, -6)
-name = &"SickleSword"
+offset = Vector2(13, -6)
+name = &"sickleSword"
 metadata/_custom_type_script = "uid://rvnmd2ew1c6k"

@@ -17,6 +17,8 @@ func stun_affect() -> Tween:
 	tween.tween_property(player, "modulate", Color(1.0, 1.0, 1.0, 1.0), stun_affect_frequency/2)
 	return tween
 
+
+
 func _start():
 	player = state.node
 	player.velocity = player.stun_direction * knock_back_power

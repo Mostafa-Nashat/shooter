@@ -3,12 +3,37 @@
 [ext_resource type="FontFile" uid="uid://6jwheednjkft" path="res://assets/fonts/Micro5-Regular.ttf" id="1_7o25s"]
 [ext_resource type="Texture2D" uid="uid://dy5xuijx7nxir" path="res://assets/stone_panel_ui.png" id="1_rb4rf"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7o25s"]
+texture = ExtResource("1_rb4rf")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+modulate_color = Color(0.735357, 0.735357, 0.735357, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dyisv"]
+texture = ExtResource("1_rb4rf")
+texture_margin_left = 4.0
+texture_margin_top = 5.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hshku"]
+texture = ExtResource("1_rb4rf")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 16, 16)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqsei"]
 texture = ExtResource("1_rb4rf")
 texture_margin_left = 4.0
 texture_margin_top = 6.0
 texture_margin_right = 4.0
 texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 16, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4rf"]
 
@@ -25,6 +50,9 @@ vertical = true
 [resource]
 default_font = ExtResource("1_7o25s")
 default_font_size = 8
+Button/styles/hover = SubResource("StyleBoxTexture_7o25s")
+Button/styles/normal = SubResource("StyleBoxTexture_dyisv")
+Panel/styles/panel = SubResource("StyleBoxTexture_hshku")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_iqsei")
 ScrollContainer/styles/panel = SubResource("StyleBoxFlat_rb4rf")
 VScrollBar/styles/grabber = SubResource("StyleBoxLine_rb4rf")

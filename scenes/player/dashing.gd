@@ -8,8 +8,10 @@ var direction: Vector2
 @export var fade_affect: GPUParticles2D
 @export_range(0.01, 1, 0.01) var zoom_addition: float = 0.02
 var original_zoom: Vector2
+@onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _start():
+	sound.play()
 	player = state.node
 	original_zoom = player.camera.zoom
 	direction = Input.get_vector("left", "right", "front", "back").normalized()

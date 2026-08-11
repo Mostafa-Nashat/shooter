@@ -9,6 +9,6 @@ sprite = ExtResource("2_qkhu2")
 damage = 2
 hitbox_size = Vector2(4, 2)
 velocity = Vector2(5, 0)
-offset = Vector2(-8, -3)
+offset = Vector2(0, -3)
 player_freindly = true
 metadata/_custom_type_script = "uid://d3b3pdyp2qggm"

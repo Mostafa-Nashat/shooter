@@ -9,5 +9,5 @@ sprite = ExtResource("2_xhmfy")
 damage = 1
 hitbox_size = Vector2(8, 4)
 velocity = Vector2(5, 0)
-offset = Vector2(-8, 0)
+offset = Vector2(-2, -2)
 metadata/_custom_type_script = "uid://d3b3pdyp2qggm"

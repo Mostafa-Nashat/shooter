@@ -8,17 +8,24 @@
 [ext_resource type="Script" uid="uid://dtbpjctismtvf" path="res://systems/item/InventoryItem.gd" id="4_qmkte"]
 [ext_resource type="Script" uid="uid://c1uh781vulfjr" path="res://systems/state_machine/state_machine.gd" id="5_4pqen"]
 [ext_resource type="Script" uid="uid://cjd0v4olditgc" path="res://systems/weapons/gun.gd" id="5_d4pgo"]
-[ext_resource type="Resource" uid="uid://dffbxoqxn8j1k" path="res://resources/guns/enemy_revolver.tres" id="6_3qrdr"]
+[ext_resource type="Resource" uid="uid://u5viulwmfjm8" path="res://resources/guns/enemy_revolver.tres" id="6_3qrdr"]
 [ext_resource type="Script" uid="uid://dwcjq42qu32h1" path="res://systems/health/healthManager.gd" id="6_imgld"]
 [ext_resource type="Script" uid="uid://dm5mjb1lco8fk" path="res://scenes/gunner/chasing.gd" id="7_48ckf"]
 [ext_resource type="Script" uid="uid://bam3idqpwxo35" path="res://scenes/gunner/shooting.gd" id="8_cgbon"]
 [ext_resource type="Script" uid="uid://cuo37b4j7twf3" path="res://systems/enemy/stun.gd" id="10_rqkk1"]
+[ext_resource type="AudioStream" uid="uid://cnhwgcu6r7jjb" path="res://assets/audio/gun/revolvercock.wav" id="10_yp7ba"]
+[ext_resource type="AudioStream" uid="uid://dbbnoifbs6x78" path="res://assets/audio/hits/qubodupPunch01.ogg" id="11_fvix7"]
 [ext_resource type="Texture2D" uid="uid://dnpbnddag32bo" path="res://assets/gunner/arm.png" id="11_t704p"]
 [ext_resource type="Texture2D" uid="uid://cpgda8q0ajxuf" path="res://assets/gunner/leg.png" id="12_7os18"]
+[ext_resource type="AudioStream" uid="uid://73w7ih0riwou" path="res://assets/audio/hits/qubodupPunch02.ogg" id="12_yp7ba"]
+[ext_resource type="AudioStream" uid="uid://dsaujw8g8pvi0" path="res://assets/audio/hits/qubodupPunch03.ogg" id="13_kq73s"]
 [ext_resource type="Texture2D" uid="uid://c8d7s1o7o307j" path="res://assets/gunner/torso.png" id="13_rqkk1"]
 [ext_resource type="Texture2D" uid="uid://4tejlh6kjgt0" path="res://assets/gunner/head.png" id="14_2n0b0"]
+[ext_resource type="AudioStream" uid="uid://crg2u0mbqb0hf" path="res://assets/audio/hits/qubodupPunch04.ogg" id="14_lg2lm"]
 [ext_resource type="Script" uid="uid://dw1ecc3203g0t" path="res://systems/item/ItemDroper.gd" id="15_0fv4q"]
+[ext_resource type="AudioStream" uid="uid://cysa0pto4wys3" path="res://assets/audio/hits/qubodupPunch05.ogg" id="15_eiwj8"]
 [ext_resource type="AnimationLibrary" uid="uid://cs7r131qmoggd" path="res://resources/animations/movement.res" id="17_t704p"]
+[ext_resource type="AudioStream" uid="uid://buo7isn0khwbe" path="res://assets/audio/gun/revolver_shot.wav" id="20_kq73s"]
 
 [sub_resource type="Resource" id="Resource_61hds"]
 script = ExtResource("4_qmkte")
@@ -46,7 +53,16 @@ _data = {
 &"RESET": SubResource("Animation_503fu")
 }
 
-[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health", "item_droper", "animation", "hurtbox")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pd3b1"]
+random_pitch = 1.005793
+streams_count = 5
+stream_0/stream = ExtResource("11_fvix7")
+stream_1/stream = ExtResource("12_yp7ba")
+stream_2/stream = ExtResource("13_kq73s")
+stream_3/stream = ExtResource("14_lg2lm")
+stream_4/stream = ExtResource("15_eiwj8")
+
+[node name="Gunner" type="CharacterBody2D" unique_id=551205312 node_paths=PackedStringArray("gun", "state_machine", "arm", "navigator", "health", "item_droper", "animation", "hurtbox", "audio_player", "hit_sound_affect")]
 motion_mode = 1
 script = ExtResource("1_hl2eg")
 shooting_cooldown = 2.0
@@ -61,6 +77,8 @@ health = NodePath("HealthManager")
 item_droper = NodePath("ItemDroper")
 animation = NodePath("AnimationPlayer")
 hurtbox = NodePath("Hurtbox")
+audio_player = NodePath("AudioStreamPlayer2D")
+hit_sound_affect = NodePath("hit_sound_affect")
 metadata/_custom_type_script = "uid://cbcd77fsrhwsn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960153276]
@@ -102,6 +120,10 @@ metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 [node name="delay" type="Timer" parent="State_machine/shooting" unique_id=1500216192]
 wait_time = 2.0
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="State_machine/shooting" unique_id=12156584]
+stream = ExtResource("10_yp7ba")
+volume_db = 5.0
 
 [node name="stun" type="Node" parent="State_machine" unique_id=1986813550]
 script = ExtResource("10_rqkk1")
@@ -162,14 +184,20 @@ rotation = 1.5707964
 script = ExtResource("4_imgld")
 metadata/_custom_type_script = "uid://dlkn740mx7473"
 
-[node name="Gun" type="Node2D" parent="r6/right_arm" unique_id=1230303586 node_paths=PackedStringArray("sprite")]
-position = Vector2(9, -3.934025e-07)
+[node name="Gun" type="Node2D" parent="r6/right_arm" unique_id=1230303586 node_paths=PackedStringArray("audio", "sprite")]
+position = Vector2(11, -4.808253e-07)
 script = ExtResource("5_d4pgo")
+audio = NodePath("AudioStreamPlayer2D")
 weapon = ExtResource("6_3qrdr")
 sprite = NodePath("Sprite2D")
+enabled = true
 metadata/_custom_type_script = "uid://cjd0v4olditgc"
 
 [node name="Sprite2D" type="Sprite2D" parent="r6/right_arm/Gun" unique_id=744633159]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="r6/right_arm/Gun" unique_id=294854333]
+stream = ExtResource("20_kq73s")
+volume_db = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="r6/right_arm" unique_id=1491398054]
 rotation = 1.5707964
@@ -180,3 +208,10 @@ offset = Vector2(0, -8)
 root_node = NodePath("../r6")
 libraries/ = SubResource("AnimationLibrary_8dys5")
 libraries/movement = ExtResource("17_t704p")
+
+[node name="hit_sound_affect" type="AudioStreamPlayer2D" parent="." unique_id=1215083819]
+stream = SubResource("AudioStreamRandomizer_pd3b1")
+volume_db = 5.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1135019499]
+max_distance = 320.0

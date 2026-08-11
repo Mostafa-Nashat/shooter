@@ -4,6 +4,8 @@
 [ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="1_h7tmx"]
 [ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/player.png" id="2_f338u"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="2_h7tmx"]
+[ext_resource type="Texture2D" uid="uid://mgtcmwdidm3h" path="res://assets/survival_card.png" id="5_vk13r"]
+[ext_resource type="AudioStream" uid="uid://nbieqa0da5rc" path="res://assets/audio/click1.wav" id="6_celfk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hmsn"]
 
@@ -13,7 +15,197 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vk13r"]
 
-[node name="home" type="Control" unique_id=1345468186]
+[sub_resource type="Animation" id="Animation_vk13r"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-181, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story/story:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2, -0.05, 0, 0.05, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story/story:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-2.3009453]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l1s5h"]
+resource_name = "main_to_play"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-181, -0.25, 0, 0.13201864, 126.52792, -0.69905376, -0.23308021, -3.925435, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_fpiqi"]
+resource_name = "play_to_main"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.69905376, -0.23308021, -3.925435, 0, 0, -181, -0.25, 0, 0.13201864, 126.52792),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_celfk"]
+resource_name = "story_hover_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story/story:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_perap"]
+resource_name = "story_hover_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story/story:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q4dac"]
+resource_name = "survival_hover_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0bnas"]
+resource_name = "survival_hover_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story/story:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4dac"]
+_data = {
+&"RESET": SubResource("Animation_vk13r"),
+&"main_to_play": SubResource("Animation_l1s5h"),
+&"play_to_main": SubResource("Animation_fpiqi"),
+&"story_hover_down": SubResource("Animation_celfk"),
+&"story_hover_up": SubResource("Animation_perap"),
+&"survival_hover_down": SubResource("Animation_q4dac"),
+&"survival_hover_up": SubResource("Animation_0bnas")
+}
+
+[node name="home" type="Control" unique_id=1345468186 node_paths=PackedStringArray("card_animations", "click_sound")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,39 +214,49 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h7tmx")
 script = ExtResource("1_f338u")
+card_animations = NodePath("card_animations")
+click_sound = NodePath("AudioStreamPlayer2D")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1434713686]
+[node name="background" type="TileMapLayer" parent="." unique_id=1434713686]
 position = Vector2(144, 80)
 tile_map_data = PackedByteArray("AAAAAPz/AAAHAAUAAAAAAP3/AAAHAAUAAAAAAP7/AAAHAAUAAAAAAP//AAAHAAUAAAAAAAAAAAAHAAUAAAAAAAEAAAAHAAUAAAAAAAIAAAAHAAUAAAAAAAMAAAAHAAUAAAD3//v/AAAHAAUAAAD3//z/AAAHAAUAAAD3//3/AAAHAAUAAAD3//7/AAAHAAUAAAD3////AAAHAAUAAAD3/wAAAAAHAAUAAAD3/wEAAAAHAAUAAAD3/wIAAAAHAAUAAAD3/wMAAAAHAAUAAAD3/wQAAAAHAAUAAAD4//v/AAAHAAUAAAD4//z/AAAHAAUAAAD4//3/AAAHAAUAAAD4//7/AAAHAAUAAAD4////AAAHAAUAAAD4/wAAAAAHAAUAAAD4/wEAAAAHAAUAAAD4/wIAAAAHAAUAAAD4/wMAAAAHAAUAAAD4/wQAAAAHAAUAAAD5//v/AAAHAAUAAAD5//z/AAAHAAUAAAD5//3/AAAHAAUAAAD5//7/AAAHAAUAAAD5////AAAHAAUAAAD5/wAAAAAHAAUAAAD5/wEAAAAHAAUAAAD5/wIAAAAHAAUAAAD5/wMAAAAHAAUAAAD5/wQAAAAHAAUAAAD6//v/AAAHAAUAAAD6//z/AAAHAAUAAAD6//3/AAAHAAUAAAD6//7/AAAHAAUAAAD6////AAAHAAUAAAD6/wAAAAAHAAUAAAD6/wEAAAAHAAUAAAD6/wIAAAAHAAUAAAD6/wMAAAAHAAUAAAD6/wQAAAAHAAUAAAD7//v/AAAHAAUAAAD7//z/AAAHAAUAAAD7//3/AAAHAAUAAAD7//7/AAAHAAUAAAD7////AAAHAAUAAAD7/wAAAAAHAAUAAAD7/wEAAAAHAAUAAAD7/wIAAAAHAAUAAAD7/wMAAAAHAAUAAAD7/wQAAAAHAAUAAAD8//v/AAAHAAUAAAD8//z/AAAHAAUAAAD8//3/AAAHAAUAAAD8//7/AAAHAAUAAAD8////AAAHAAUAAAD8/wAAAAAHAAUAAAD8/wEAAAAHAAUAAAD8/wIAAAAHAAUAAAD8/wMAAAAHAAUAAAD8/wQAAAAHAAUAAAD9//v/AAAHAAUAAAD9//z/AAAHAAUAAAD9//3/AAAHAAUAAAD9//7/AAAHAAUAAAD9////AAAHAAUAAAD9/wAAAAAHAAUAAAD9/wEAAAAHAAUAAAD9/wIAAAAHAAUAAAD9/wMAAAAHAAUAAAD9/wQAAAAHAAUAAAD+//v/AAAHAAUAAAD+//z/AAAHAAUAAAD+//3/AAAHAAUAAAD+//7/AAAHAAUAAAD+////AAAHAAUAAAD+/wAAAAAHAAUAAAD+/wEAAAAHAAUAAAD+/wIAAAAHAAUAAAD+/wMAAAAHAAUAAAD+/wQAAAAHAAUAAAD///v/AAAHAAUAAAD///z/AAAHAAUAAAD///3/AAAHAAUAAAD///7/AAAHAAUAAAD/////AAAHAAUAAAD//wAAAAAHAAUAAAD//wEAAAAHAAUAAAD//wIAAAAHAAUAAAD//wMAAAAHAAUAAAD//wQAAAAHAAUAAAAAAPv/AAAHAAUAAAAAAAQAAAAHAAUAAAABAPv/AAAHAAUAAAABAPz/AAAAAAIAAAACAPv/AAAHAAUAAAACAPz/AAAEAAIAAAADAPv/AAAHAAUAAAADAPz/AAAEAAIAAAAEAPv/AAAHAAUAAAAEAPz/AAACAAIAAAAFAPv/AAAHAAUAAAAFAPz/AAABAAIAAAAGAPv/AAAHAAUAAAAGAPz/AAAGAAIAAFAHAPv/AAAFAAEAAFAHAPz/AAAGAAEAAFAIAPv/AAADAAMAAAAIAPz/AAADAAMAAAAJAPz/AAABAAMAAAD//wUAAAAGAAUAAAD+/wUAAAAGAAUAAAD9/wUAAAAGAAUAAAD8/wUAAAAGAAUAAAD7/wUAAAAGAAUAAAD6/wUAAAAGAAUAAAD5/wUAAAAGAAUAAAD4/wUAAAAGAAUAAAD3/wUAAAAGAAUAAAAAAAUAAAAGAAUAAAABAP3/AAAAAAMAAAABAP7/AAAAAAMAAAABAP//AAAAAAMAAAABAAAAAAAAAAMAAAABAAEAAAAAAAQAAAABAAIAAAAAAAUAAAABAAMAAAAAAAYAAAABAAQAAAAAAAcAAAACAP3/AAACAAMAAAACAP7/AAAEAAMAAAACAP//AAAEAAMAAAACAAAAAAACAAMAAAACAAEAAAABAAQAAAACAAIAAAABAAUAAAACAAMAAAABAAYAAAACAAQAAAABAAcAAAADAP3/AAABAAMAAAADAP7/AAAEAAMAAAADAP//AAABAAMAAAADAAAAAAABAAMAAAADAAEAAAAEAAQAAAADAAIAAAACAAUAAAADAAMAAAACAAYAAAADAAQAAAACAAcAAAAEAP3/AAADAAMAAAAEAP7/AAACAAMAAAAEAP//AAADAAMAAAAEAAAAAAADAAMAAAAEAAEAAAACAAQAAAAEAAIAAAADAAUAAAAEAAMAAAADAAYAAAAEAAQAAAADAAcAAAAFAP3/AAAEAAMAAAAFAP7/AAACAAMAAAAFAP//AAACAAMAAAAFAAAAAAADAAMAAAAFAAEAAAABAAQAAAAFAAIAAAAEAAUAAAAFAAMAAAAEAAYAAAAFAAQAAAAEAAcAAAAGAP3/AAADAAMAAAAGAP7/AAACAAMAAAAGAP//AAABAAMAAAAGAAAAAAABAAMAAAAGAAEAAAADAAQAAAAGAAIAAAAFAAUAAAAGAAMAAAAFAAYAAAAGAAQAAAAFAAcAAAAHAP3/AAAEAAMAAAAHAP7/AAACAAMAAAAHAP//AAADAAMAAAAHAAAAAAADAAMAAAAHAAEAAAABAAQAAAAHAAIAAAAAAAUAAAAHAAMAAAAAAAYAAAAHAAQAAAAAAAcAAAAIAP3/AAAEAAMAAAAIAP7/AAAEAAMAAAAIAP//AAABAAMAAAAIAAAAAAACAAMAAAAIAAEAAAACAAQAAAAIAAIAAAABAAUAAAAIAAMAAAABAAYAAAAIAAQAAAABAAcAAAAJAP3/AAAEAAMAAAAJAP7/AAABAAMAAAAJAP//AAACAAMAAAAJAAAAAAADAAMAAAAJAAEAAAAEAAQAAAAJAAIAAAACAAUAAAAJAAMAAAACAAYAAAAJAAQAAAACAAcAAAABAAUAAAAGAAUAAAACAAUAAAAGAAUAAAADAAUAAAAGAAUAAAAEAAUAAAAGAAUAAAAFAAUAAAAGAAUAAAAGAAUAAAAGAAUAAAAHAAUAAAAGAAUAAAAIAAUAAAAGAAUAAAAJAAUAAAAGAAUAAAAJAPv/AAAEAAMAAAD3/wYAAAAGAAUAAAD4/wYAAAAGAAUAAAD5/wYAAAAGAAUAAAD6/wYAAAAGAAUAAAD7/wYAAAAGAAUAAAD8/wYAAAAGAAUAAAD9/wYAAAAGAAUAAAD+/wYAAAAGAAUAAAD//wYAAAAGAAUAAAAAAAYAAAAGAAUAAAAFAAYAAAAGAAUAAAAEAAYAAAAGAAUAAAADAAYAAAAGAAUAAAACAAYAAAAGAAUAAAABAAYAAAAGAAUAAAAGAAYAAAAGAAUAAAAHAAYAAAAGAAUAAAAIAAYAAAAGAAUAAAAJAAYAAAAGAAUAAAAKAAAAAAAEAAMAAAAKAP//AAABAAMAAAAKAP7/AAAEAAMAAAAKAP3/AAAEAAMAAAAKAPz/AAABAAMAAAAKAPv/AAAEAAMAAAAKAAEAAAAEAAQAAAAKAAIAAAAFAAUAAAAKAAMAAAAFAAYAAAAKAAQAAAAFAAcAAAAKAAUAAAAGAAUAAAAKAAYAAAAGAAUAAAA=")
 tile_set = ExtResource("2_h7tmx")
 
-[node name="Sprite2D" type="Sprite2D" parent="TileMapLayer" unique_id=1367546688]
+[node name="Sprite2D" type="Sprite2D" parent="background" unique_id=1367546688]
 position = Vector2(68, -28)
 texture = ExtResource("2_f338u")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1100898857]
+[node name="home_menu" type="MarginContainer" parent="." unique_id=1100898857]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -24.5
-offset_right = 76.0
-offset_bottom = 24.5
+offset_top = -29.75
+offset_right = 120.0
+offset_bottom = 29.75
 grow_vertical = 2
-theme_override_constants/margin_left = 50
+theme_override_constants/margin_left = 35
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1156140256]
+[node name="PanelContainer" type="PanelContainer" parent="home_menu" unique_id=142011245]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="home_menu/PanelContainer" unique_id=1744244907]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="home_menu/PanelContainer/MarginContainer" unique_id=1156140256]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1359420537]
+[node name="Label" type="Label" parent="home_menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=1359420537]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "boat-shoot"
 label_settings = SubResource("LabelSettings_0hmsn")
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=777585610]
+[node name="Button" type="Button" parent="home_menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=777585610]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -62,6 +264,111 @@ theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_f338u")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_h7tmx")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_vk13r")
-text = "survival"
+text = "Play"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_survival"]
+[node name="play_menu" type="MarginContainer" parent="." unique_id=437279203]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -181.0
+offset_bottom = -181.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="play_menu" unique_id=1726150718]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="play_menu/PanelContainer" unique_id=202229602]
+layout_mode = 2
+
+[node name="back" type="Button" parent="play_menu/PanelContainer/VBoxContainer" unique_id=29882566]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+text = "back"
+
+[node name="MarginContainer" type="MarginContainer" parent="play_menu/PanelContainer/VBoxContainer" unique_id=1349787043]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="cards" type="HBoxContainer" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer" unique_id=1210244758]
+layout_mode = 2
+
+[node name="survival" type="Control" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards" unique_id=1227090672]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="survival" type="PanelContainer" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" unique_id=261923330]
+layout_mode = 0
+offset_right = 141.0
+offset_bottom = 130.0
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival" unique_id=907306826]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival/VBoxContainer" unique_id=286217659]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_font_sizes/font_size = 16
+text = "Survival"
+
+[node name="TextureRect" type="TextureRect" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival/survival/VBoxContainer" unique_id=1359399464]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_vk13r")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="story" type="Control" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards" unique_id=375684086]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="story" type="PanelContainer" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story" unique_id=1373293056]
+layout_mode = 0
+offset_right = 141.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story/story" unique_id=50667242]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story/story/VBoxContainer" unique_id=200180369]
+layout_mode = 2
+size_flags_horizontal = 6
+mouse_filter = 1
+theme_override_font_sizes/font_size = 16
+text = "Story"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=950378516]
+libraries/ = SubResource("AnimationLibrary_q4dac")
+
+[node name="card_animations" type="AnimationPlayer" parent="." unique_id=1497090471]
+libraries/ = SubResource("AnimationLibrary_q4dac")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=441195812]
+stream = ExtResource("6_celfk")
+volume_db = 20.0
+
+[connection signal="pressed" from="home_menu/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="play_menu/PanelContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="gui_input" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_gui_input"]
+[connection signal="mouse_entered" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_mouse_entered"]
+[connection signal="mouse_exited" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_mouse_exited"]
+[connection signal="mouse_entered" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story" to="." method="_on_story_mouse_entered"]
+[connection signal="mouse_exited" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/story" to="." method="_on_story_mouse_exited"]

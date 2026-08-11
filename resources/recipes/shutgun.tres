@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://ck5bfvihwnpmr" path="res://resources/guns/shotgun.tres" id="6_lk08e"]
 [ext_resource type="Script" uid="uid://cuy4mjxe8l3fo" path="res://systems/item/GunResult.gd" id="7_rf03e"]
 [ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="8_yaedm"]
+[ext_resource type="AudioStream" uid="uid://c6kxy511tbp8k" path="res://assets/audio/gun/shotgun_eject.wav" id="9_2e3o2"]
 
 [sub_resource type="Resource" id="Resource_v4t5f"]
 script = ExtResource("1_s5hio")
@@ -38,5 +39,6 @@ title = "shutgun"
 description = "a normal shotgun named by a person with the humor of a 5 year old"
 ingredients = Array[ExtResource("1_s5hio")]([SubResource("Resource_v4t5f"), SubResource("Resource_cjdgw"), SubResource("Resource_6vp2v")])
 preview = ExtResource("5_w7ut3")
+sound_affect = ExtResource("9_2e3o2")
 result = SubResource("Resource_7ocic")
 metadata/_custom_type_script = "uid://cke5youaerj1n"

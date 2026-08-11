@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnmnecv7bpgq0" path="res://assets/plank_butter_and_metal_sandwich.png" id="5_o8a65"]
 [ext_resource type="Script" uid="uid://ch8d4jef0mwxd" path="res://systems/item/HealthResult.gd" id="6_puifg"]
 [ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="7_2ocqg"]
+[ext_resource type="AudioStream" uid="uid://dntjum3naaeyj" path="res://assets/audio/minecraft_burp.mp3" id="8_26ngg"]
 
 [sub_resource type="Resource" id="Resource_78urh"]
 script = ExtResource("1_81u0d")
@@ -16,7 +17,7 @@ metadata/_custom_type_script = "uid://dtbpjctismtvf"
 
 [sub_resource type="Resource" id="Resource_gbs07"]
 script = ExtResource("1_81u0d")
-count = 2
+count = 1
 data = ExtResource("3_l3wah")
 metadata/_custom_type_script = "uid://dtbpjctismtvf"
 
@@ -37,5 +38,6 @@ title = "Plank butter and metal sandwich"
 description = "this is what happens when the dev is too lazy to add food items - restores full health"
 ingredients = Array[ExtResource("1_81u0d")]([SubResource("Resource_78urh"), SubResource("Resource_gbs07"), SubResource("Resource_h5miy")])
 preview = ExtResource("5_o8a65")
+sound_affect = ExtResource("8_26ngg")
 result = SubResource("Resource_a3ltf")
 metadata/_custom_type_script = "uid://cke5youaerj1n"

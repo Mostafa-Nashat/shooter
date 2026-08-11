@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 
 @export var wave_spawner: WaveSpawner

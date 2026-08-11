@@ -28,6 +28,10 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/snap/snap_2d_transforms_to_pixel=false
 
+[editor]
+
+movie_writer/movie_file="/home/hp-linux/Projects/godot/shooter/movie.png"
+
 [input]
 
 front={

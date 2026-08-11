@@ -9,8 +9,11 @@ extends RigidBody2D
 @export var hitbox: Area2D
 @export var animation: AnimatedSprite2D
 @export var sprite: Sprite2D
+@export var explosion_sound: AudioStreamPlayer2D
+@export var rolling_sound: AudioStreamPlayer2D
 
 func _ready() -> void:
+	rolling_sound.play()
 	linear_velocity = direction * throw_power
 	get_tree().create_timer(roll_duration).timeout.connect(explode)
 	if animation:
@@ -21,6 +24,7 @@ func ready() -> void:
 	pass
 
 func explode() -> void:
+	explosion_sound.play()
 	if animation:
 		animation.visible = true
 	if sprite:

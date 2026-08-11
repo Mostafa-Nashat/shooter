@@ -14,13 +14,26 @@ extends CharacterBody2D
 @export var collision_offset := 60
 @export var animation: AnimationPlayer
 @export var hurtbox: Hurtbox
+@export var audio_player: AudioStreamPlayer2D
+@export var hit_sound_affect: AudioStreamPlayer2D
+@onready var ground_audio_player := SurfaceBasedAudioPlayer.create("res://assets/audio/footsteps/", audio_player)
+
+var next_direction: Vector2
+var tilemap: TileMapLayer
 var stun_direction: Vector2
 
 signal died
 
+func play_random_hit_audio(_hp, _damager) -> void:
+	hit_sound_affect.play()
+
 func _ready() -> void:
+	var level: Level = get_tree().root.get_child(0)
+	tilemap = level.ground_layer
 	health.died.connect(_on_died)
+	health.damaged.connect(play_random_hit_audio)
 	health.damaged.connect(_on_damaged)
+	set_next_direction()
 
 func drop_item(drop: ItemDrop, damager: Node2D) -> void:
 	item_droper.knock_from(drop.item.data, drop.item.count, damager, drop_speed)
@@ -51,11 +64,16 @@ func _on_died(killer: Node2D) -> void:
 	queue_free()
 	died.emit()
 
+func set_next_direction() -> void:
+	next_direction = (navigator.get_next_path_position() - global_position).normalized()
+	if get_tree():
+		get_tree().create_timer(1.0/10).timeout.connect(set_next_direction, CONNECT_ONE_SHOT)
+
 func get_next_direction() -> Vector2:
-	var direction := (navigator.get_next_path_position() - global_position).normalized()
-	return direction
+	return next_direction
 
 func go_to(target: Vector2, speed: float) -> void:
+	ground_audio_player.play_surface_audio(tilemap, global_position, "audio")
 	navigator.target_position = target
 	var velocity_direction := (navigator.get_next_path_position() - global_position).normalized()
 	velocity = velocity_direction * speed

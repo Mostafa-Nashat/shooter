@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Gun_data" format=3 uid="uid://ctyi7s1rf455s"]
+
+[ext_resource type="AudioStream" uid="uid://buo7isn0khwbe" path="res://assets/audio/gun/revolver_shot.wav" id="1_57ave"]
+[ext_resource type="Resource" uid="uid://fvngfbdu1mqf" path="res://resources/bullets/silver_bullet.tres" id="2_57ave"]
+[ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="3_g66mh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ncl1"]
+load_path = "res://.godot/imported/revolver.png-787f81594d48939ce25b1d72d5656ad8.ctex"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("3_g66mh")
+bullet = ExtResource("2_57ave")
+cooldown = 0.15
+audio = ExtResource("1_57ave")
+sprite = SubResource("CompressedTexture2D_0ncl1")
+offset = Vector2(6, 0)
+name = &"revolver"
+metadata/_custom_type_script = "uid://brrymp10nyswo"

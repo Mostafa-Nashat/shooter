@@ -29,13 +29,15 @@ var kill_count = 0
 @export var animation: AnimationPlayer
 @export var hurtbox: Hurtbox
 @export var frag_thrower: FragThrower
+@export var audio_player: AudioStreamPlayer2D
+@export var hit_sound_player: AudioStreamPlayer2D
+@onready var ground_audio_fetcher := SurfaceBasedAudioPlayer.create("res://assets/audio/footsteps/", audio_player)
+
 
 var weapon_being_used: bool = false
 
 @export_category("HUD")
 @export var hud: UI_manager
-@export var weapons: BoxContainer
-@export var weapon_frames: Frames
 @export var bullets: BoxContainer
 @export var bullet_texture: Texture2D
 @export var hearts: BoxContainer
@@ -48,22 +50,9 @@ var weapon_being_used: bool = false
 @export var frag_list: BoxContainer
 @export var frag_texture: Texture2D
 
-func add_weapon_frame(weapon: Weapon, offset) -> void:
-	hud.add_weapon(
-		weapons,
-		weapon.weapon.sprite,
-		weapon_frames,
-		offset
-	)
-
 func _ready() -> void:
+	health.damaged.connect(func (_hp, _damager): hit_sound_player.play())
 	builder.tilemap = tilemap
-	if sword.weapon:
-		var offset = Vector2(4.0, 0)
-		add_weapon_frame(sword, offset)
-	if gun.weapon:
-		var offset = Vector2.ZERO
-		add_weapon_frame(gun, offset)
 	ready.emit()
 
 func _physics_process(_delta: float) -> void:
@@ -123,8 +112,9 @@ func allow_movement_control() -> void:
 		transform.x = Vector2(-1, 0)
 	elif direction.x > 0:
 		transform.x = Vector2(1, 0)
-	
+
 	if direction:
 		animation.play(&"movement/walk_with_free_arm")
+		ground_audio_fetcher.play_surface_audio(tilemap, global_position, "audio")
 	else:
 		animation.play(&"movement/RESET")

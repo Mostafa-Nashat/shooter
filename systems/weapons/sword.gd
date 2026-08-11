@@ -5,6 +5,7 @@ var sword: Sword_data
 @export var hitbox: Area2D
 @export var player_friendly: bool
 @export var animation_player: AnimationPlayer
+@export var sound: AudioStreamPlayer2D
 var library_name: String = "sword"
 
 signal hit
@@ -19,11 +20,12 @@ func setup_hitbox() -> void:
 	hitbox.position = sword.offset
 
 func _setup() -> void:
+	sword = weapon
 	hitbox.monitoring = false
 	hitbox.area_entered.connect(_on_hit)
 	if !(weapon is Sword_data):
 		return
-	sword = weapon
+	sound.stream = sword.sounds
 	add_sprite(weapon.sprite, weapon.offset)
 	setup_hitbox()
 	if player_friendly:
@@ -34,6 +36,8 @@ func _setup() -> void:
 		hitbox.set_collision_mask_value(2, true)
 
 func _use(_user: Node) -> void:
+	if !sound.playing:
+		sound.play()
 	animation_player.play("sword_animations/swing")
 	await animation_player.animation_finished
 	animation_player.play("sword_animations/RESET")
