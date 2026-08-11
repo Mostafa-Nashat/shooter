@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://dn7607il32v06" path="res://resources/bullets/pellet.tres" id="1_kyfoe"]
 [ext_resource type="Script" uid="uid://brrymp10nyswo" path="res://systems/weapons/gun_data.gd" id="2_71cht"]
 [ext_resource type="AudioStream" uid="uid://c6kxy511tbp8k" path="res://assets/audio/gun/shotgun_eject.wav" id="2_a6cuu"]
-[ext_resource type="Texture2D" uid="uid://b6ba7lu33k7jd" path="res://assets/shotgun.png" id="3_kyfoe"]
+[ext_resource type="Texture2D" uid="uid://b6ba7lu33k7jd" path="res://assets/textures/shotgun.png" id="3_kyfoe"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_a6cuu"]
 loop = false

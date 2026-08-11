@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="2_2e3o2"]
 [ext_resource type="Resource" uid="uid://b8k52eqtbdupc" path="res://resources/items/scrap.tres" id="3_mylos"]
 [ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="4_v0ced"]
-[ext_resource type="Texture2D" uid="uid://b6ba7lu33k7jd" path="res://assets/shotgun.png" id="5_w7ut3"]
+[ext_resource type="Texture2D" uid="uid://b6ba7lu33k7jd" path="res://assets/textures/shotgun.png" id="5_w7ut3"]
 [ext_resource type="Resource" uid="uid://ck5bfvihwnpmr" path="res://resources/guns/shotgun.tres" id="6_lk08e"]
 [ext_resource type="Script" uid="uid://cuy4mjxe8l3fo" path="res://systems/item/GunResult.gd" id="7_rf03e"]
 [ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="8_yaedm"]

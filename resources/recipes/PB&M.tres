@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="2_26ngg"]
 [ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="3_l3wah"]
 [ext_resource type="Resource" uid="uid://b8k52eqtbdupc" path="res://resources/items/scrap.tres" id="4_ftwii"]
-[ext_resource type="Texture2D" uid="uid://dnmnecv7bpgq0" path="res://assets/plank_butter_and_metal_sandwich.png" id="5_o8a65"]
+[ext_resource type="Texture2D" uid="uid://dnmnecv7bpgq0" path="res://assets/textures/plank_butter_and_metal_sandwich.png" id="5_o8a65"]
 [ext_resource type="Script" uid="uid://ch8d4jef0mwxd" path="res://systems/item/HealthResult.gd" id="6_puifg"]
 [ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="7_2ocqg"]
 [ext_resource type="AudioStream" uid="uid://dntjum3naaeyj" path="res://assets/audio/minecraft_burp.mp3" id="8_26ngg"]

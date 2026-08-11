@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Bullet_data" format=3 uid="uid://ehkfom1spf5l"]
 
 [ext_resource type="Script" uid="uid://d3b3pdyp2qggm" path="res://systems/weapons/bullet_data.gd" id="1_6ujr7"]
-[ext_resource type="Texture2D" uid="uid://bkk7326w7ricn" path="res://assets/copper_bullet.png" id="2_6pvfr"]
+[ext_resource type="Texture2D" uid="uid://bkk7326w7ricn" path="res://assets/textures/copper_bullet.png" id="2_6pvfr"]
 
 [resource]
 script = ExtResource("1_6ujr7")

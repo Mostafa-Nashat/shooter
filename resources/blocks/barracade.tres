@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BlockData" format=3 uid="uid://b8nlue3ujok3a"]
 
 [ext_resource type="Script" uid="uid://00o7qk3nqif5" path="res://systems/build/BlockData.gd" id="1_512u5"]
-[ext_resource type="Texture2D" uid="uid://cb80w8eh2x10y" path="res://assets/barracade.png" id="2_fajkj"]
+[ext_resource type="Texture2D" uid="uid://cb80w8eh2x10y" path="res://assets/textures/barracade.png" id="2_fajkj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2tuv"]
 size = Vector2(16, 16)

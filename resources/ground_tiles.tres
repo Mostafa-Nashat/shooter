@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://ngiqnx3msayi"]
 
-[ext_resource type="Texture2D" uid="uid://c681t8q66c01u" path="res://assets/2d_placeholder_grass.png" id="1_a344r"]
+[ext_resource type="Texture2D" uid="uid://c681t8q66c01u" path="res://assets/textures/2d_placeholder_grass.png" id="1_a344r"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lrqlo"]
 

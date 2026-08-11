@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://bgss6sc118qme"]
 
 [ext_resource type="FontFile" uid="uid://6jwheednjkft" path="res://assets/fonts/Micro5-Regular.ttf" id="1_7o25s"]
-[ext_resource type="Texture2D" uid="uid://dy5xuijx7nxir" path="res://assets/stone_panel_ui.png" id="1_rb4rf"]
+[ext_resource type="Texture2D" uid="uid://dy5xuijx7nxir" path="res://assets/textures/stone_panel_ui.png" id="1_rb4rf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7o25s"]
 texture = ExtResource("1_rb4rf")

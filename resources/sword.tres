@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rvnmd2ew1c6k" path="res://systems/weapons/sword_data.gd" id="1_dcagp"]
 [ext_resource type="AudioStream" uid="uid://bt4qtxqf2v88i" path="res://assets/audio/slashes/swish-10.wav" id="2_adyx2"]
-[ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/sword.png" id="2_taahv"]
+[ext_resource type="Texture2D" uid="uid://clr816n2ok28o" path="res://assets/textures/sword.png" id="2_taahv"]
 [ext_resource type="AudioStream" uid="uid://quvj4af5srh" path="res://assets/audio/slashes/swish-11.wav" id="3_mptpp"]
 [ext_resource type="AudioStream" uid="uid://rjfxiuxknefe" path="res://assets/audio/slashes/swish-12.wav" id="4_5g05b"]
 [ext_resource type="AudioStream" uid="uid://cht32sc8uwgpk" path="res://assets/audio/slashes/swish-13.wav" id="5_lihpl"]

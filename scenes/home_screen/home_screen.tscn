@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cp777ltfxk0dn" path="res://scenes/home_screen/home_screen.gd" id="1_f338u"]
 [ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="1_h7tmx"]
-[ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/player.png" id="2_f338u"]
+[ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/textures/player.png" id="2_f338u"]
 [ext_resource type="TileSet" uid="uid://ngiqnx3msayi" path="res://resources/ground_tiles.tres" id="2_h7tmx"]
-[ext_resource type="Texture2D" uid="uid://mgtcmwdidm3h" path="res://assets/survival_card.png" id="5_vk13r"]
+[ext_resource type="Texture2D" uid="uid://mgtcmwdidm3h" path="res://assets/textures/survival_card.png" id="5_vk13r"]
 [ext_resource type="AudioStream" uid="uid://nbieqa0da5rc" path="res://assets/audio/click1.wav" id="6_celfk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hmsn"]

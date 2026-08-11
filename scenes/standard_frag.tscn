@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d0o6irknxepwt"]
 
 [ext_resource type="Script" uid="uid://dmqjo3hrpej8j" path="res://scenes/standard_frag.gd" id="1_jko7i"]
-[ext_resource type="Texture2D" uid="uid://cea8nmqy6omdo" path="res://assets/frag.png" id="2_jko7i"]
-[ext_resource type="Texture2D" uid="uid://bumr36xb8sd5m" path="res://assets/explosion.png" id="3_reheh"]
+[ext_resource type="Texture2D" uid="uid://cea8nmqy6omdo" path="res://assets/textures/frag.png" id="2_jko7i"]
+[ext_resource type="Texture2D" uid="uid://bumr36xb8sd5m" path="res://assets/textures/explosion.png" id="3_reheh"]
 [ext_resource type="AudioStream" uid="uid://lqj752pgcu3k" path="res://assets/audio/dice_roll/dice_roll_1.wav" id="4_ltbko"]
 [ext_resource type="AudioStream" uid="uid://c6hqn0ie52878" path="res://assets/audio/dice_roll/dice_roll_2.wav" id="5_4vqwm"]
 [ext_resource type="AudioStream" uid="uid://d1pmtatpcbc44" path="res://assets/audio/explosion.wav" id="6_r50b2"]

@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b8k52eqtbdupc" path="res://resources/items/scrap.tres" id="2_fvnrp"]
 [ext_resource type="Resource" uid="uid://5lbk1cs1bpky" path="res://resources/items/plank.tres" id="3_2k0hg"]
 [ext_resource type="Resource" uid="uid://cb0q7rqe0no1r" path="res://resources/items/nails.tres" id="4_cqfok"]
-[ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/revolver.png" id="5_g6csq"]
+[ext_resource type="Texture2D" uid="uid://de2u62nwc8n3b" path="res://assets/textures/revolver.png" id="5_g6csq"]
 [ext_resource type="Resource" uid="uid://ctyi7s1rf455s" path="res://resources/guns/revolver.tres" id="6_ar58n"]
 [ext_resource type="Script" uid="uid://cuy4mjxe8l3fo" path="res://systems/item/GunResult.gd" id="7_tgb03"]
 [ext_resource type="Script" uid="uid://cke5youaerj1n" path="res://systems/item/Recipe.gd" id="8_1phnq"]
