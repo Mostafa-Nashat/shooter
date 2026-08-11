@@ -38,3 +38,7 @@ func _on_survival_gui_input(event: InputEvent) -> void:
 func _on_back_pressed() -> void:
 	click_sound.play()
 	animation.play("play_to_main")
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()

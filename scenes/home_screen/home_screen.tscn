@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cicn18bcru3vo"]
 
+[ext_resource type="Theme" uid="uid://bcxvvxolw3pwn" path="res://resources/themes/naked_buttons.tres" id="1_celfk"]
 [ext_resource type="Script" uid="uid://cp777ltfxk0dn" path="res://scenes/home_screen/home_screen.gd" id="1_f338u"]
 [ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="1_h7tmx"]
 [ext_resource type="Texture2D" uid="uid://daqna7gpxn7kd" path="res://assets/textures/player.png" id="2_f338u"]
@@ -8,12 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://nbieqa0da5rc" path="res://assets/audio/click1.wav" id="6_celfk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hmsn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f338u"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h7tmx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vk13r"]
 
 [sub_resource type="Animation" id="Animation_vk13r"]
 length = 0.001
@@ -235,6 +230,7 @@ offset_top = -29.75
 offset_right = 120.0
 offset_bottom = 29.75
 grow_vertical = 2
+theme = ExtResource("1_celfk")
 theme_override_constants/margin_left = 35
 
 [node name="PanelContainer" type="PanelContainer" parent="home_menu" unique_id=142011245]
@@ -256,15 +252,17 @@ size_flags_horizontal = 4
 text = "boat-shoot"
 label_settings = SubResource("LabelSettings_0hmsn")
 
-[node name="Button" type="Button" parent="home_menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=777585610]
+[node name="play" type="Button" parent="home_menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=777585610]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_f338u")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_h7tmx")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vk13r")
 text = "Play"
+
+[node name="quit" type="Button" parent="home_menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=1434596005]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "quit"
 
 [node name="play_menu" type="MarginContainer" parent="." unique_id=437279203]
 layout_mode = 1
@@ -365,7 +363,8 @@ libraries/ = SubResource("AnimationLibrary_q4dac")
 stream = ExtResource("6_celfk")
 volume_db = 20.0
 
-[connection signal="pressed" from="home_menu/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="home_menu/PanelContainer/MarginContainer/VBoxContainer/play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="home_menu/PanelContainer/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="play_menu/PanelContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="gui_input" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_gui_input"]
 [connection signal="mouse_entered" from="play_menu/PanelContainer/VBoxContainer/MarginContainer/cards/survival" to="." method="_on_survival_mouse_entered"]

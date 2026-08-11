@@ -1,0 +1,53 @@
+[gd_resource type="Theme" format=3 uid="uid://bcxvvxolw3pwn"]
+
+[ext_resource type="Texture2D" uid="uid://dy5xuijx7nxir" path="res://assets/textures/stone_panel_ui.png" id="1_01oxc"]
+[ext_resource type="FontFile" uid="uid://6jwheednjkft" path="res://assets/fonts/Micro5-Regular.ttf" id="2_0rbtb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d6uw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_getai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01oxc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hshku"]
+texture = ExtResource("1_01oxc")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqsei"]
+texture = ExtResource("1_01oxc")
+texture_margin_left = 4.0
+texture_margin_top = 6.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb4rf"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rb4rf"]
+color = Color(0.15, 0.1395, 0.14947501, 1)
+thickness = 2
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7o25s"]
+color = Color(0.55, 0.5115, 0.548075, 1)
+thickness = 2
+vertical = true
+
+[resource]
+default_font = ExtResource("2_0rbtb")
+default_font_size = 8
+Button/colors/font_color = Color(0.61, 0.61, 0.61, 1)
+Button/styles/hover = SubResource("StyleBoxEmpty_0d6uw")
+Button/styles/normal = SubResource("StyleBoxEmpty_getai")
+Button/styles/pressed = SubResource("StyleBoxEmpty_01oxc")
+Panel/styles/panel = SubResource("StyleBoxTexture_hshku")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_iqsei")
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_rb4rf")
+VScrollBar/styles/grabber = SubResource("StyleBoxLine_rb4rf")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxLine_rb4rf")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxLine_rb4rf")
+VScrollBar/styles/scroll = SubResource("StyleBoxLine_7o25s")
