@@ -62,7 +62,6 @@ func update_items() -> void:
 func _start():
 	player.bullets.visible = false
 	player.hearts.visible = false
-	player.weapons.visible = false
 	player.stamina.visible = false
 	player.inventory.visible = true
 	
@@ -81,7 +80,6 @@ func _update():
 func _end():
 	player.bullets.visible = true
 	player.hearts.visible = true
-	player.weapons.visible = true
 	player.stamina.visible = true
 	player.inventory.visible = false
 
