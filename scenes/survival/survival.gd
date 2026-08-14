@@ -3,8 +3,6 @@ extends Level
 
 @export var wave_spawner: WaveSpawner
 
-@export var player: Player
-
 var death_screen: PackedScene = preload("res://scenes/survival_death_screen/survival_death_screen.tscn")
 
 var hud := preload("res://scenes/survival/survival_hud.tscn").instantiate()

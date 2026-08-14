@@ -29,13 +29,20 @@ func spawn_off_camera(
 	):
 	var valid_spawners := spawners.filter(_valid)
 	valid_spawners.sort_custom(_sort_by_closest.bind(closest_to))
+	print("valid: ", len(valid_spawners))
+	print("number: ", number)
 	if number > len(valid_spawners):
+		print("recurse")
 		for spawner in valid_spawners:
 			spawner.spawn(parent, enemy, setup)
 		await get_tree().create_timer(recursive_delay).timeout
 		var enemies_left := number - len(valid_spawners)
 		await spawn_off_camera(parent, enemy, enemies_left, closest_to, setup)
 	else:
+		for index in len(valid_spawners):
+			for index2 in len(valid_spawners):
+				if index != index2 and valid_spawners[index2] == valid_spawners[index]:
+					print("HELLO")
 		for index in number:
 			var spawner: Enemy_Spawner = valid_spawners[index]
 			await spawner.spawn(parent, enemy, setup)

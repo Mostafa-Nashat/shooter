@@ -16,6 +16,7 @@ var enemy_count := 0
 
 signal enemy_died
 signal wave_died
+signal finite_wave_finished
 
 func _on_enemy_died():
 	enemy_count -= 1
@@ -44,7 +45,14 @@ func _auto_continue():
 	wave += 1
 	await get_tree().create_timer(auto_continue_cooldown).timeout
 	await spawn()
-	
+
+
+func spawn_wave(count: int, cooldown: float) -> void:
+	for index in count:
+		await get_tree().create_timer(cooldown).timeout
+		await spawn()
+		await  wave_died
+	finite_wave_finished.emit()
 
 func _ready() -> void:
 	enemy_died.connect(_on_enemy_died)

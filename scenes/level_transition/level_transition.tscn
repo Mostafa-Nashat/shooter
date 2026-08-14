@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cn6u6paousibb"]
+
+[ext_resource type="Script" uid="uid://jf5sagprkk85" path="res://scenes/level_transition/level_transition.gd" id="1_8qvt7"]
+[ext_resource type="PackedScene" uid="uid://dhbwkgusnks1e" path="res://scenes/camera_boundry/camera_boundry.tscn" id="2_ubemh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubemh"]
+resource_local_to_scene = true
+size = Vector2(112, 10)
+
+[node name="level_transition" type="Area2D" unique_id=2028506205]
+script = ExtResource("1_8qvt7")
+length = 7
+direction = 2
+camera_zoom = null
+
+[node name="camera_boundry" parent="." unique_id=982043720 instance=ExtResource("2_ubemh")]
+length = 7
+camera_zoom = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1989837872]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_ubemh")

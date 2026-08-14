@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dhbwkgusnks1e"]
+
+[ext_resource type="Script" uid="uid://b2cf4lcc0ut11" path="res://scenes/camera_boundry/camera_boundry.gd" id="1_8qvt7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qvt7"]
+resource_local_to_scene = true
+size = Vector2(64, 320)
+
+[node name="camera_boundry" type="Area2D" unique_id=982043720]
+rotation = 1.5707964
+script = ExtResource("1_8qvt7")
+length = 4
+direction = 2
+camera_zoom = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015669247]
+position = Vector2(0, 160)
+shape = SubResource("RectangleShape2D_8qvt7")

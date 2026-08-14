@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bfjjimoniuida"]
+
+[ext_resource type="Script" uid="uid://5engu2k780vx" path="res://systems/gate.gd" id="1_3tfc7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfvdi"]
+size = Vector2(16, 2)
+
+[node name="Gate" type="StaticBody2D" unique_id=1172561519 node_paths=PackedStringArray("collision_shape")]
+rotation = 1.5707964
+input_pickable = true
+script = ExtResource("1_3tfc7")
+collision_shape = NodePath("CollisionShape2D")
+metadata/_custom_type_script = "uid://5engu2k780vx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1264166586]
+shape = SubResource("RectangleShape2D_xfvdi")

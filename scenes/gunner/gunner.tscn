@@ -36,7 +36,7 @@ metadata/_custom_type_script = "uid://dtbpjctismtvf"
 [sub_resource type="Resource" id="Resource_7os18"]
 script = ExtResource("2_wwu67")
 item = SubResource("Resource_61hds")
-weight = 0.5
+weight = 0.7
 metadata/_custom_type_script = "uid://bvo10ywo2xvn7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbg2u"]

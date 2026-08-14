@@ -29,8 +29,6 @@
 [ext_resource type="Script" uid="uid://clf7erby3l0wn" path="res://systems/FallbackRayCast2D/FallbackRayCast2D.gd" id="22_uniwh"]
 [ext_resource type="Texture2D" uid="uid://dio8a7tm5eti4" path="res://assets/textures/player/leg.png" id="23_5mf0n"]
 [ext_resource type="Texture2D" uid="uid://koaqxju3evr5" path="res://assets/textures/player/torso.png" id="24_4hvnv"]
-[ext_resource type="Script" uid="uid://se4eio0temhk" path="res://scenes/player/build.gd" id="24_6cv16"]
-[ext_resource type="Script" uid="uid://qhgmmhpoci1n" path="res://systems/build/TileBuilder.gd" id="25_007i1"]
 [ext_resource type="Texture2D" uid="uid://drfk580hbafft" path="res://assets/textures/player/head.png" id="25_bbmj2"]
 [ext_resource type="Theme" uid="uid://bgss6sc118qme" path="res://resources/themes/global.tres" id="27_tffgl"]
 [ext_resource type="Script" uid="uid://cgvijb7vhbgw1" path="res://scenes/player/craft.gd" id="28_tffgl"]
@@ -156,7 +154,7 @@ script = ExtResource("1_g2els")
 MAX_HAND_SWING_SPEED = 20.0
 frag_throw_power = 100.0
 build_ray = NodePath("r6/right_arm/FallbackRayCast2D")
-builder = NodePath("TileBuilder")
+builder = NodePath("")
 health = NodePath("HealthManager")
 gun = NodePath("r6/right_arm/weapons/Gun")
 sword = NodePath("r6/right_arm/weapons/Sword")
@@ -181,19 +179,6 @@ item_grid = NodePath("CanvasLayer/UI_manager/inventory/items/MarginContainer/Gri
 recipe_list = NodePath("CanvasLayer/UI_manager/inventory/PanelContainer/recipes/MarginContainer/recipe_list")
 frag_list = NodePath("CanvasLayer/UI_manager/MarginContainer/VBoxContainer/frags")
 frag_texture = ExtResource("9_wva7c")
-
-[node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox")]
-scale = Vector2(0.75, 0.75)
-zoom = Vector2(0.8, 0.8)
-position_smoothing_enabled = true
-position_smoothing_speed = 30.0
-script = ExtResource("17_kvlxm")
-hitbox = NodePath("Area2D")
-metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
-
-[node name="Area2D" type="Area2D" parent="HelperCamera2D" unique_id=597165037]
-collision_layer = 8
-collision_mask = 8
 
 [node name="fade" type="GPUParticles2D" parent="." unique_id=945222172]
 position = Vector2(0, -16)
@@ -250,10 +235,6 @@ one_shot = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="State_machine/dash" unique_id=1356210807]
 stream = ExtResource("18_rw8a5")
 volume_db = 10.0
-
-[node name="build" type="Node" parent="State_machine" unique_id=1656334326]
-script = ExtResource("24_6cv16")
-metadata/_custom_type_script = "uid://bt1l7q6it3d82"
 
 [node name="craft" type="Node" parent="State_machine" unique_id=463561991]
 script = ExtResource("28_tffgl")
@@ -417,10 +398,6 @@ layout_mode = 2
 [node name="frags" type="HBoxContainer" parent="CanvasLayer/UI_manager/MarginContainer/VBoxContainer" unique_id=1002719796]
 layout_mode = 2
 
-[node name="TileBuilder" type="Node" parent="." unique_id=1247591526]
-script = ExtResource("25_007i1")
-metadata/_custom_type_script = "uid://qhgmmhpoci1n"
-
 [node name="ItemTaker" type="Area2D" parent="." unique_id=1400688395 node_paths=PackedStringArray("sound")]
 collision_layer = 0
 collision_mask = 16
@@ -556,6 +533,19 @@ stream = ExtResource("2_ttakn")
 
 [node name="hit_sounds" type="AudioStreamPlayer2D" parent="." unique_id=1748600844]
 stream = SubResource("AudioStreamRandomizer_niom3")
+
+[node name="HelperCamera2D" type="Camera2D" parent="." unique_id=940801871 node_paths=PackedStringArray("hitbox", "target")]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+position_smoothing_speed = 30.0
+script = ExtResource("17_kvlxm")
+hitbox = NodePath("Area2D")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bpsh5p35yjjgw"
+
+[node name="Area2D" type="Area2D" parent="HelperCamera2D" unique_id=597165037]
+collision_layer = 8
+collision_mask = 8
 
 [connection signal="died" from="HealthManager" to="." method="_on_died"]
 [connection signal="kill" from="r6/right_arm/weapons/Sword" to="." method="_on_sword_kill"]

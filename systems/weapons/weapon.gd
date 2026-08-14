@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func use(user: Node = null) -> void:
-	if enabled:
+	if enabled and weapon:
 		visible = true
 		await _use(user)
 		done_using.emit()

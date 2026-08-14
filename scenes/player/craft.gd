@@ -12,7 +12,7 @@ func _setup() -> void:
 	for recipe_file in recipe_files:
 		var recipe: Recipe = load(path + recipe_file)
 		recipes.append(recipe)
-	print(recipes)
+	(recipes)
 	
 
 func display_items() -> void:

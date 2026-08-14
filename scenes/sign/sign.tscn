@@ -94,7 +94,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wagf6"]
 size = Vector2(16, 16)
 
-[node name="StaticBody2D" type="StaticBody2D" unique_id=1294699632]
+[node name="Sign" type="StaticBody2D" unique_id=1294699632]
 script = ExtResource("1_5sld0")
 shape = SubResource("CircleShape2D_5sld0")
 metadata/_custom_type_script = "uid://dwg4mbvabi2t0"

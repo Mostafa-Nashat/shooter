@@ -60,13 +60,14 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func use_weapon(weapon: Weapon, cooldown: float):
-	weapon_being_used = true
-	weapon.enabled = true
-	weapon.use()
-	await weapon.done_using
-	weapon.enabled = false
-	await get_tree().create_timer(cooldown).timeout
-	weapon_being_used = false
+	if weapon.weapon:
+		weapon_being_used = true
+		weapon.enabled = true
+		weapon.use()
+		await weapon.done_using
+		weapon.enabled = false
+		await get_tree().create_timer(cooldown).timeout
+		weapon_being_used = false
 
 func throw_frag(direction: Vector2) -> void:
 	frag_thrower.throw(direction, frag_throw_power, self)
@@ -89,7 +90,7 @@ func allow_weapon_control() -> void:
 	if !sword or !sword.weapon or !sword.animation_player.is_playing():
 		arm.look_at_target(get_global_mouse_position(), MAX_HAND_SWING_SPEED)
 	if !weapon_being_used:
-		if Input.is_action_just_pressed("shoot") and bullet_count > 0:
+		if Input.is_action_just_pressed("shoot") and bullet_count > 0 and gun.weapon:
 			bullet_count -= 1
 			use_weapon(gun, 0.0)
 		if Input.is_action_just_pressed("swing"):

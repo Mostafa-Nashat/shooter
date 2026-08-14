@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var SPEED: float = 50 
 @export var drops: Array[ItemDrop] = []
 @export var drop_speed : float = 50.0
+@export var enabled: bool = true
 
 @export_category("Dependencies")
 @export var state_machine: State_machine 
@@ -18,6 +19,9 @@ extends CharacterBody2D
 @export var hit_sound_affect: AudioStreamPlayer2D
 @onready var ground_audio_player := SurfaceBasedAudioPlayer.create("res://assets/audio/footsteps/", audio_player)
 
+func enable() -> void:
+	enabled = true
+
 var next_direction: Vector2
 var tilemap: TileMapLayer
 var stun_direction: Vector2
@@ -28,7 +32,9 @@ func play_random_hit_audio(_hp, _damager) -> void:
 	hit_sound_affect.play()
 
 func _ready() -> void:
-	var level: Level = get_tree().root.get_child(0)
+	if !get_tree().current_scene:
+		return
+	var level: Level = get_tree().current_scene
 	tilemap = level.ground_layer
 	health.died.connect(_on_died)
 	health.damaged.connect(play_random_hit_audio)
@@ -45,7 +51,22 @@ func _on_damaged(_hp, damager: Node2D) -> void:
 func _stun() -> void:
 	pass
 
+var enemy_collision_fallsafe_int: int = 0
+
+func enemy_collision_fallsafe() -> void:
+	if enemy_collision_fallsafe_int == 50:
+		position.x += 50
+	for body in hurtbox.get_overlapping_bodies():
+		if body is Enemy:
+			enemy_collision_fallsafe_int += 1
+			return
+	enemy_collision_fallsafe_int = 0
+
 func _physics_process(_delta: float) -> void:
+	enemy_collision_fallsafe()
+	if !enabled:
+		velocity = Vector2.ZERO
+		return
 	state_machine.update()
 	move_and_slide()
 
