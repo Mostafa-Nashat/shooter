@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://bcxvvxolw3pwn"]
 
 [ext_resource type="Texture2D" uid="uid://dy5xuijx7nxir" path="res://assets/textures/stone_panel_ui.png" id="1_01oxc"]
-[ext_resource type="FontFile" uid="uid://6jwheednjkft" path="res://assets/fonts/Micro5-Regular.ttf" id="2_0rbtb"]
+[ext_resource type="FontFile" uid="uid://bcrexoqtgkyc1" path="res://assets/fonts/Jersey10-Regular.ttf" id="2_01oxc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d6uw"]
 
@@ -38,7 +38,7 @@ thickness = 2
 vertical = true
 
 [resource]
-default_font = ExtResource("2_0rbtb")
+default_font = ExtResource("2_01oxc")
 default_font_size = 8
 Button/colors/font_color = Color(0.61, 0.61, 0.61, 1)
 Button/styles/hover = SubResource("StyleBoxEmpty_0d6uw")
