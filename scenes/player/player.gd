@@ -18,7 +18,6 @@ var kill_count = 0
 @export_category("Dependencies")
 @export var tilemap: TileMapLayer
 @export var build_ray: FallbackRayCast2D
-@export var builder: TileBuilder
 @export var health: HealthManager
 @export var gun: Gun
 @export var sword: Sword
@@ -43,7 +42,6 @@ var weapon_being_used: bool = false
 @export var hearts: BoxContainer
 @export var heart_texture: Texture2D
 @export var stamina: ProgressBar
-@export var selected_block: TextureRect
 @export var inventory: Control
 @export var item_grid: GridContainer
 @export var recipe_list: BoxContainer
@@ -52,7 +50,6 @@ var weapon_being_used: bool = false
 
 func _ready() -> void:
 	health.damaged.connect(func (_hp, _damager): hit_sound_player.play())
-	builder.tilemap = tilemap
 	ready.emit()
 
 func _physics_process(_delta: float) -> void:

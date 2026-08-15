@@ -74,6 +74,7 @@ stream_3/stream = ExtResource("15_d2yc3")
 stream_4/stream = ExtResource("16_kafp4")
 
 [node name="blader" type="CharacterBody2D" unique_id=1531731814 node_paths=PackedStringArray("sword", "state_machine", "arm", "navigator", "health", "item_droper", "animation", "hurtbox", "audio_player", "hit_sound_affect")]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_5ipyw")
 sword = NodePath("r6/right_arm/weapons/Sword")

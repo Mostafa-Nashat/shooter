@@ -148,13 +148,12 @@ stream_2/stream = ExtResource("4_iwuka")
 stream_3/stream = ExtResource("5_hyqqp")
 stream_4/stream = ExtResource("6_ds1xl")
 
-[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "builder", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "animation", "hurtbox", "frag_thrower", "audio_player", "hit_sound_player", "hud", "bullets", "hearts", "stamina", "selected_block", "inventory", "item_grid", "recipe_list", "frag_list") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1281965873 node_paths=PackedStringArray("build_ray", "health", "gun", "sword", "camera", "arm", "state", "item_taker", "animation", "hurtbox", "frag_thrower", "audio_player", "hit_sound_player", "hud", "bullets", "hearts", "stamina", "inventory", "item_grid", "recipe_list", "frag_list") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
 MAX_HAND_SWING_SPEED = 20.0
 frag_throw_power = 100.0
 build_ray = NodePath("r6/right_arm/FallbackRayCast2D")
-builder = NodePath("")
 health = NodePath("HealthManager")
 gun = NodePath("r6/right_arm/weapons/Gun")
 sword = NodePath("r6/right_arm/weapons/Sword")
@@ -173,7 +172,6 @@ bullet_texture = ExtResource("18_lgqa7")
 hearts = NodePath("CanvasLayer/UI_manager/MarginContainer/VBoxContainer/hearts")
 heart_texture = ExtResource("17_uf5tr")
 stamina = NodePath("CanvasLayer/UI_manager/stamina")
-selected_block = NodePath("CanvasLayer/UI_manager/selected_block")
 inventory = NodePath("CanvasLayer/UI_manager/inventory")
 item_grid = NodePath("CanvasLayer/UI_manager/inventory/items/MarginContainer/GridContainer")
 recipe_list = NodePath("CanvasLayer/UI_manager/inventory/PanelContainer/recipes/MarginContainer/recipe_list")
@@ -310,18 +308,6 @@ offset_right = 35.0
 offset_bottom = 6.0
 theme_override_styles/separator = SubResource("StyleBoxFlat_j4nxn")
 metadata/_edit_use_anchors_ = true
-
-[node name="selected_block" type="TextureRect" parent="CanvasLayer/UI_manager" unique_id=1730043474]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.025
-anchor_top = 0.88900006
-anchor_right = 0.15
-anchor_bottom = 0.97800004
-offset_top = -0.020004272
-offset_bottom = -0.040039063
-grow_vertical = 0
-stretch_mode = 4
 
 [node name="inventory" type="Control" parent="CanvasLayer/UI_manager" unique_id=1090160704]
 visible = false

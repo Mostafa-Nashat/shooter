@@ -7,7 +7,7 @@ extends Node
 @export var parent: Node2D
 @export var player: Player
 var wave := 1
-var enemy_count := 0
+var enemy_number: int = 0
 @export var autostart: bool
 @export var auto_continue: bool
 @export var auto_continue_cooldown: float
@@ -19,8 +19,10 @@ signal wave_died
 signal finite_wave_finished
 
 func _on_enemy_died():
-	enemy_count -= 1
-	if enemy_count == 0:
+	print("id: ", self)
+	print("enemy_count: ", get("enemy_number"))
+	enemy_number += -1
+	if enemy_number <= 0:
 		wave_died.emit()
 	
 
@@ -37,7 +39,10 @@ func spawn() -> void:
 			player,
 			data.setup.callback
 		)
-		enemy_count += number
+		print("enemy_count_before: " , enemy_number)
+		enemy_number += number
+		print("number: " , number)
+		print("enemy_count_after: " , enemy_number)
 		await  get_tree().create_timer(wave_delay).timeout
 	
 
@@ -51,10 +56,14 @@ func spawn_wave(count: int, cooldown: float) -> void:
 	for index in count:
 		await get_tree().create_timer(cooldown).timeout
 		await spawn()
-		await  wave_died
+		print("spawned")
+		await wave_died
+		print('wave died') 
 	finite_wave_finished.emit()
 
 func _ready() -> void:
+	print("ready")
+	wave_died.connect(func(): print("hello"))
 	enemy_died.connect(_on_enemy_died)
 	for data in wave_data:
 		data.setup.wave_spawner = self

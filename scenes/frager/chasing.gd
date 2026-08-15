@@ -16,12 +16,12 @@ func _start():
 	enemy.arm.rotation_degrees = 0
 
 func get_next_direction() -> Vector2:
-	var direction := (enemy.navigator.get_next_path_position() - enemy.global_position).normalized()
+	var direction := (enemy.get_next_path_position() - enemy.global_position).normalized()
 	return direction
 
 func go_to(target: Vector2, speed: float) -> void:
 	enemy.navigator.target_position = target
-	var velocity_direction := (enemy.navigator.get_next_path_position() - enemy.global_position).normalized()
+	var velocity_direction := (enemy.get_next_path_position() - enemy.global_position).normalized()
 	enemy.velocity = velocity_direction * speed
 
 func _update() -> void:

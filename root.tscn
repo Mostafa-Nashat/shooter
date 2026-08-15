@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://w8l2khf6llpe" path="res://scenes/player/player.tscn" id="2_pyidc"]
 [ext_resource type="PackedScene" uid="uid://bfjjimoniuida" path="res://scenes/gate.tscn" id="5_jnlp7"]
 [ext_resource type="PackedScene" uid="uid://8netm2sxta6k" path="res://scenes/checkpoint/checkpoint.tscn" id="5_l8v81"]
+[ext_resource type="PackedScene" uid="uid://clvooxthdfbwl" path="res://scenes/blader/blader.tscn" id="6_l8v81"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_28aoi"]
 
@@ -42,3 +43,12 @@ tilemap = NodePath("../ground")
 [node name="Gate" parent="." unique_id=1561271956 instance=ExtResource("5_jnlp7")]
 position = Vector2(150, -11)
 length = 6
+
+[node name="blader" parent="." unique_id=1531731814 instance=ExtResource("6_l8v81")]
+position = Vector2(-110, -9)
+
+[node name="blader2" parent="." unique_id=590421225 instance=ExtResource("6_l8v81")]
+position = Vector2(-73, 22)
+
+[node name="blader3" parent="." unique_id=1889031537 instance=ExtResource("6_l8v81")]
+position = Vector2(-116, 67)

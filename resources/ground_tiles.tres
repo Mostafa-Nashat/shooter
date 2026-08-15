@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://c681t8q66c01u" path="res://assets/textures/2d_placeholder_grass.png" id="1_a344r"]
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_vy406"]
+tile_data = PackedInt32Array(0, 196609, 0, 65536, 196609, 1, 131072, 196609, 2, 196608, 196609, 3, 262144, 196609, 4, 1, 262145, 0, 65537, 262145, 1, 131073, 262145, 2, 196609, 262145, 3, 262145, 262145, 4, 2, 327681, 0, 65538, 327681, 1, 131074, 327681, 2, 196610, 327681, 3, 262146, 327681, 4, 3, 393217, 0, 65539, 393217, 1, 131075, 393217, 2, 196611, 393217, 3, 262147, 393217, 4, 4, 458753, 0, 65540, 458753, 1, 131076, 458753, 2, 196612, 458753, 3, 262148, 458753, 4)
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lrqlo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a344r"]
@@ -322,3 +325,4 @@ navigation_layer_0/layers = 1
 custom_data_layer_0/name = "audio"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_j5px3")
+pattern_0 = SubResource("TileMapPattern_vy406")

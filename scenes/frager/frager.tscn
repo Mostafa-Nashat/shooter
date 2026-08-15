@@ -274,10 +274,11 @@ stream_3/stream = ExtResource("20_i86bj")
 stream_4/stream = ExtResource("21_pljk8")
 
 [node name="frager" type="CharacterBody2D" unique_id=1478367599 node_paths=PackedStringArray("frag_thrower", "throw_animation", "state_machine", "arm", "navigator", "health", "item_droper", "animation", "hurtbox", "audio_player", "hit_sound_affect")]
+collision_layer = 0
 script = ExtResource("1_np88m")
 frag_thrower = NodePath("r6/right_arm/weapons/FragThrower")
 throw_animation = NodePath("throw_animations")
-throw_delay = 2.0
+throw_delay = 4.0
 wind_up_time = 0.75
 state_machine = NodePath("State_machine")
 arm = NodePath("r6/right_arm")

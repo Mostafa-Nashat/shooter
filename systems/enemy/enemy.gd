@@ -23,6 +23,7 @@ func enable() -> void:
 	enabled = true
 
 var next_direction: Vector2
+var next_path_position: Vector2
 var tilemap: TileMapLayer
 var stun_direction: Vector2
 
@@ -87,14 +88,18 @@ func _on_died(killer: Node2D) -> void:
 
 func set_next_direction() -> void:
 	next_direction = (navigator.get_next_path_position() - global_position).normalized()
+	next_path_position = navigator.get_next_path_position()
 	if get_tree():
 		get_tree().create_timer(1.0/10).timeout.connect(set_next_direction, CONNECT_ONE_SHOT)
 
 func get_next_direction() -> Vector2:
 	return next_direction
 
+func get_next_path_position() -> Vector2:
+	return next_path_position
+
 func go_to(target: Vector2, speed: float) -> void:
 	ground_audio_player.play_surface_audio(tilemap, global_position, "audio")
 	navigator.target_position = target
-	var velocity_direction := (navigator.get_next_path_position() - global_position).normalized()
+	var velocity_direction := (get_next_path_position() - global_position).normalized()
 	velocity = velocity_direction * speed

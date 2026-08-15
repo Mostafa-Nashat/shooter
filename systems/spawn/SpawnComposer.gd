@@ -4,8 +4,6 @@ extends Node
 var spawners: Array[Enemy_Spawner]
 @export var recursive_delay: float = 1.0
 
-signal enemy_died
-
 func _ready() -> void:
 	for child in get_children():
 		if child is Enemy_Spawner:
@@ -29,8 +27,6 @@ func spawn_off_camera(
 	):
 	var valid_spawners := spawners.filter(_valid)
 	valid_spawners.sort_custom(_sort_by_closest.bind(closest_to))
-	print("valid: ", len(valid_spawners))
-	print("number: ", number)
 	if number > len(valid_spawners):
 		print("recurse")
 		for spawner in valid_spawners:
@@ -39,10 +35,7 @@ func spawn_off_camera(
 		var enemies_left := number - len(valid_spawners)
 		await spawn_off_camera(parent, enemy, enemies_left, closest_to, setup)
 	else:
-		for index in len(valid_spawners):
-			for index2 in len(valid_spawners):
-				if index != index2 and valid_spawners[index2] == valid_spawners[index]:
-					print("HELLO")
+		print("normal")
 		for index in number:
 			var spawner: Enemy_Spawner = valid_spawners[index]
 			await spawner.spawn(parent, enemy, setup)

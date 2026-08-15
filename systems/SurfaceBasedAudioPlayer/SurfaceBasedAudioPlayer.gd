@@ -31,6 +31,7 @@ func play_surface_audio(tilemap: TileMapLayer, global_position: Vector2, data_na
 	player.stream = audio
 	player.play()
 
+var loaded_streams: Dictionary[String, AudioStream]
 func _get_random_audio_from_directory(directory_name: String) -> AudioStream:
 	var audio_directory_path := path + directory_name
 	var files := DirAccess.get_files_at(audio_directory_path)
@@ -39,5 +40,8 @@ func _get_random_audio_from_directory(directory_name: String) -> AudioStream:
 	var random_index := randi_range(0, len(files) - 1)
 	var random_file := files[random_index]
 	var audio_path := audio_directory_path + "/" + random_file
+	if loaded_streams.has(audio_path):
+		return loaded_streams[audio_path]
 	var audio: AudioStream = load(audio_path)
+	loaded_streams[audio_path] = audio
 	return audio
